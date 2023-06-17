@@ -9,7 +9,7 @@ export function ProfileProvider({ children }) {
   const [vote, setVote] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3500/user", {
+    fetch(`${uri}/user`, {
       method: "POST",
       credentials: "include",
     })
@@ -20,7 +20,7 @@ export function ProfileProvider({ children }) {
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
-    fetch("http://localhost:3500/users", {
+    fetch(`${uri}/users`, {
       method: "POST",
       credentials: "include",
     })

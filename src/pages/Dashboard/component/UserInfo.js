@@ -3,14 +3,17 @@ import { CgPen, CgProfile } from "react-icons/cg";
 import ProfileContext from "../../../context/ProfileContext";
 import { FaCamera } from "react-icons/fa";
 import UserBioUpdate from "./UserBioUpdate";
+import AuthContext from "../../../context/AuthContext";
 
 function UserInfo() {
   const [userId, setUserId] = useState(null);
   const { user, setUser } = useContext(ProfileContext);
+  const { uri } = useContext(AuthContext);
+
   const handleUploadProfile = (e) => {
     const formData = new FormData();
     formData.append("profile", e.target.files[0]);
-    fetch(`http://localhost:3500/profile/${user._id}`, {
+    fetch(`${uri}/profile/${user._id}`, {
       method: "POST",
       contentType: "jsonp",
       body: formData,

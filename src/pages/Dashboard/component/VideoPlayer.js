@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../../context/AuthContext";
 
 function VideoPlayer({ videoName, setVideoName }) {
+  const { uri } = useContext(AuthContext);
   return (
     <div>
       {videoName && (
         <div className="video-player">
           <h1 onClick={() => setVideoName(null)}>&times;</h1>
           <video autoPlay controls>
-            <source src={`http://localhost:3500/video/${videoName}`} />
+            <source src={`${uri}/video/${videoName}`} />
           </video>
         </div>
       )}

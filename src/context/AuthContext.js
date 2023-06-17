@@ -6,7 +6,8 @@ export function ContextProvider({ children }) {
   const navigate = useNavigate();
   const [auth, setAuth] = useState(null);
   const [user, setUser] = useState(null);
-  const uri = "http://localhost:3500";
+  //const uri = "http://localhost:3500";
+  const uri = "https://youfeat-server.onrender.com";
   const handleLogout = () => {
     fetch(`${uri}/logout`, {
       method: "POST",

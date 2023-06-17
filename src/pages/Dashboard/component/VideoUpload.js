@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import AuthContext from "../../../context/AuthContext";
 
 function VideoUpload({ userId, setUserId }) {
   const [title, setTitle] = useState("");
@@ -6,6 +7,7 @@ function VideoUpload({ userId, setUserId }) {
   const [videoName, setVideoName] = useState(null);
   const [catigory, setCatigory] = useState("");
   const [description, setDescription] = useState("");
+  const { uri } = useContext(AuthContext);
   const handleUpload = (e) => {
     e.target.style.backgroundColor = "grey";
     e.target.innerText = "Loading...";
@@ -18,7 +20,7 @@ function VideoUpload({ userId, setUserId }) {
     formData.append("userId", userId);
 
     console.log(formData.get("video"));
-    fetch("http://localhost:3500/videouploads", {
+    fetch(`${uri}/videouploads`, {
       method: "POST",
       dataType: "jsonp",
       body: formData,

@@ -5,7 +5,7 @@ import AuthContext from "../../../context/AuthContext";
 import ProfileContext from "../../../context/ProfileContext";
 
 function DashbordSideBar() {
-  const { handleLogout } = useContext(AuthContext);
+  const { handleLogout, uri } = useContext(AuthContext);
   const { user } = useContext(ProfileContext);
   const navigate = useNavigate();
   return (
@@ -14,7 +14,7 @@ function DashbordSideBar() {
         <div onClick={() => navigate("./profile")}>
           <span>
             {user?.profileImage ? (
-              <img src={`http://localhost:3500/image/${user?.profileImage}`} />
+              <img src={`${uri}/image/${user?.profileImage}`} />
             ) : (
               <CgProfile />
             )}
