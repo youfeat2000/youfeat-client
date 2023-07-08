@@ -1,7 +1,7 @@
 import React from "react";
-import UserInfo from "./component/UserInfo";
-import UserVideo from "./component/UserVideo";
-import UserVideoStatistics from "./component/UserVideoStatistics";
+import UserInfo from "./UserInfo";
+import UserVideo from "./UserVideo";
+import UserVideoStatistics from "./UserVideoStatistics";
 
 function Profile() {
   return (

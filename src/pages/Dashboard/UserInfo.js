@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { CgPen, CgProfile } from "react-icons/cg";
-import ProfileContext from "../../../context/ProfileContext";
+import ProfileContext from "../../context/ProfileContext";
 import { FaCamera } from "react-icons/fa";
 import UserBioUpdate from "./UserBioUpdate";
-import AuthContext from "../../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 function UserInfo() {
   const [userId, setUserId] = useState(null);

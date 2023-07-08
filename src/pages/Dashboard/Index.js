@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import SearchBar from "./component/SearchBar";
-import AllVideos from "./component/AllVideos";
-import VideoCatigory from "./component/VideoCatigory";
+import SearchBar from "./SearchBar";
+import AllVideos from "./AllVideos";
+import VideoCatigory from "./VideoCatigory";
 
 function Index() {
   const [users, setUsers] = useState();

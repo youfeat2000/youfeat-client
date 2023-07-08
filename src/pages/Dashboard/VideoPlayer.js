@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import AuthContext from "../../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 function VideoPlayer({ videoName, setVideoName }) {
   const { uri } = useContext(AuthContext);

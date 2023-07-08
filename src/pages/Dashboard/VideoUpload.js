@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import AuthContext from "../../../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 function VideoUpload({ userId, setUserId }) {
   const [title, setTitle] = useState("");
@@ -78,10 +78,9 @@ function VideoUpload({ userId, setUserId }) {
               placeholder="catigory"
               required
               onChange={(e) => setCatigory(e.target.value)}>
-              <option value="None">None</option>
               <option value="Dance">Dance</option>
               <option value="Music">Music</option>
-              <option value="Commedy">Commedy</option>
+              <option value="Commedy">Comedy</option>
               <option value="Short drama">Short drama</option>
               <option value="Poetry/Speach">Poetry/Speach</option>
             </select>

@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import RootRoute from "./pages/RootRoute";
-import DashboadRoot from "./pages/Dashboard/component/DashboadRoot";
+import DashboadRoot from "./pages/Dashboard/DashboadRoot";
 import Index from "./pages/Dashboard/Index";
 import ProtectedRoute from "./component/ProtectedRoute";
 import PersistentLogin from "./component/PersistentLogin";

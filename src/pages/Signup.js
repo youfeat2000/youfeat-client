@@ -91,6 +91,14 @@ function Signup() {
         <br />
         <button onClick={handleRegister}>Register</button>
         <br />
+        <p style={{ fontSize: "larger", color: "white" }}>
+          Have an account{" "}
+          <span
+            onClick={() => navigate("/login")}
+            style={{ cursor: "pointer", color: "red", fontSize: "larger" }}>
+            Login
+          </span>
+        </p>
       </form>
     </div>
   );

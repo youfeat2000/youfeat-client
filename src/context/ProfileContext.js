@@ -6,6 +6,7 @@ export function ProfileProvider({ children }) {
   const { uri } = useContext(AuthContext);
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState(null);
+  const [toggle, setToggle] = useState(true);
   const [vote, setVote] = useState([]);
 
   useEffect(() => {
@@ -41,7 +42,8 @@ export function ProfileProvider({ children }) {
   }, []);
 
   return (
-    <ProfileContext.Provider value={{ user, setUser, users, vote, setVote }}>
+    <ProfileContext.Provider
+      value={{ user, setUser, users, vote, setVote, toggle, setToggle }}>
       {children}
     </ProfileContext.Provider>
   );
