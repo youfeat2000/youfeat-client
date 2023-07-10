@@ -7,10 +7,13 @@ function Login() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
     if (!email && !password) {
       alert("email/password required");
     }
+    e.target.style.backgroundColor = "grey";
+    e.target.innerText = "Loading...";
+    e.target.disabled = true;
     fetch(`${uri}/login`, {
       method: "POST",
       credentials: "include",
@@ -19,19 +22,33 @@ function Login() {
       },
       body: JSON.stringify({ email, password }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          res.json();
+        } else if (res.status === 401) {
+          alert("wrong email/password");
+        } else if (res.status === 500) {
+          alert("server error");
+        }
+      })
       .then((data) => {
-        console.log(data);
+        e.target.disabled = false;
+        e.target.style.backgroundColor = "#e03e03";
+        e.target.innerText = "Login";
         setAuth(data);
         navigate("/dashboard");
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => {
+        e.target.disabled = false;
+        e.target.style.backgroundColor = "#e03e03";
+        e.target.innerText = "Login";
+      });
   };
 
   const navigate = useNavigate();
   return (
-    <div className="login" onSubmit={(e) => e.preventDefault()}>
-      <form>
+    <div className="login">
+      <form onSubmit={(e) => e.preventDefault()}>
         <br />
         <h2 style={{ color: "white" }}>Login</h2>
         <br />
@@ -51,7 +68,7 @@ function Login() {
           required
         />
         <br />
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={(e) => handleLogin(e)}>Login</button>
         <br />
         <p style={{ fontSize: "larger", color: "white" }}>
           Don't have an account

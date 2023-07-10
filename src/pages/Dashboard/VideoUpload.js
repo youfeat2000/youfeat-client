@@ -11,6 +11,7 @@ function VideoUpload({ userId, setUserId }) {
   const handleUpload = (e) => {
     e.target.style.backgroundColor = "grey";
     e.target.innerText = "Loading...";
+    e.target.disabled = true;
 
     const formData = new FormData();
     formData.append("video", video[0]);
@@ -28,11 +29,12 @@ function VideoUpload({ userId, setUserId }) {
       .then((res) => {
         return res.json();
       })
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err))
+      .then((data) => alert("video updated"))
+      .catch((err) => alert("error"))
       .finally(() => {
         e.target.style.backgroundColor = "#374254";
         e.target.innerText = "Update";
+        e.target.disabled = false;
         setUserId(null);
         setVideoName(null);
       });
@@ -45,22 +47,20 @@ function VideoUpload({ userId, setUserId }) {
             <h1 onClick={() => setUserId(null)}>&times;</h1>
             <div>
               <p>Choose a video</p>
+              <input
+                type="file"
+                className="video-input"
+                name="video"
+                aria-required
+                formTarget="video/mp4"
+                required
+                onChange={(e) => {
+                  setVideo(e.target.files);
+                  setVideoName(e.target.files[0].name);
+                }}
+              />
             </div>
             <p>{videoName && `video: ${videoName}`}</p>
-
-            <input
-              type="file"
-              className="video-input"
-              name="video"
-              aria-required
-              formTarget="video/mp4"
-              required
-              onChange={(e) => {
-                setVideo(e.target.files);
-                setVideoName(e.target.files[0].name);
-              }}
-            />
-
             <input
               type="text"
               placeholder="title"

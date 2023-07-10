@@ -556,6 +556,7 @@ body {
 }
 .user-video-stats {
   width: 100%;
+  min-height: 200px;
   background-color: #fafafa;
   border-radius: 0;
   display: flex;
@@ -611,7 +612,6 @@ th {
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
-  height: 50%;
   width: 100%;
   padding: 20px;
   justify-content: space-around;
@@ -639,7 +639,7 @@ th {
   font-size: 20px;
 }
 .uplaod-video div {
-  height: 50px;
+  height: 80px;
   width: 50%;
   margin-bottom: 10px;
   background-color: #374254;
@@ -647,7 +647,9 @@ th {
   display: flex;
   justify-content: center;
   cursor: pointer;
+  position: relative;
   align-items: center;
+  padding: 20px;
 }
 .uplaod-video h1 {
   color: red;
@@ -657,11 +659,10 @@ th {
 }
 .video-input {
   position: absolute;
-  top: 100px;
-  left: 30px;
-  opacity: 0;
+  top: 10px;
+  left: 10px;
   padding: 10px;
-  background-color: transparent;
+  opacity: 0;
 }
 
 /*Notification page*/

@@ -19,8 +19,15 @@ function UserInfo() {
       body: formData,
     })
       .then((res) => res.json())
-      .then((data) => setUser(data))
-      .catch((err) => console.log(err));
+      .then((data) => {
+        setUser(data);
+        console.log(data);
+        alert("profile updated");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("error");
+      });
   };
   return (
     <>
