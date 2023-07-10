@@ -99,7 +99,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  width: 40%;
+  width: 80%;
   border-radius: 10px;
 }
 .login input {
@@ -464,8 +464,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   color: #0e1424;
   font-weight: bolder;
   font-size: larger;
@@ -473,7 +473,14 @@ body {
   background-color: #fafafa;
   border-radius: 0;
   height: 200px;
+  padding: 10px;
+}
+.profile-head i {
   position: relative;
+}
+.profile-head p {
+  padding: 5px;
+  font-weight: lighter;
 }
 .profile-head img {
   height: 150px;
@@ -497,8 +504,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 45px;
-  left: 120px;
+  top: 88px;
+  left: 100px;
   z-index: 2;
 }
 .camera input {
@@ -555,7 +562,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .user-video {
   width: 100%;
@@ -665,6 +672,9 @@ th {
   background-color: #dad7d7;
 }
 @media (min-width: 850px) {
+  .login form {
+    width: 40%;
+  }
   .dash-nav h1 {
     display: none;
   }
@@ -747,12 +757,16 @@ th {
   .user-video div::-webkit-scrollbar {
     display: none;
   }
+  .user-video table {
+    width: 100%;
+  }
   .user-video-stats {
     width: 97%;
     margin: 20px;
   }
   .camera {
-    left: 220px;
+    left: 100px;
+    top: 85px;
   }
   .search2 {
     display: flex;

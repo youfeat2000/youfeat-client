@@ -14,18 +14,18 @@ function ProfileVideo({ user }) {
       </video>
       <div>
         <table>
-          <tr>
+          <thead>
             <th>video Title</th>
             <th>description</th>
             <th>Votes</th>
             <th>View</th>
-          </tr>
-          <tr>
+          </thead>
+          <tbody>
             <td>{user?.video?.title}</td>
             <td>{user?.video?.description}</td>
             <td>{videoVote?.length}</td>
             <td>0</td>
-          </tr>
+          </tbody>
         </table>
       </div>
     </div>

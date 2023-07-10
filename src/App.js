@@ -11,6 +11,7 @@ import PersistentLogin from "./component/PersistentLogin";
 import PreventLogin from "./component/PreventLogin";
 import Profile from "./pages/Dashboard/Profile";
 import Notification from "./pages/Dashboard/Notification";
+import Setting from "./pages/Dashboard/Setting";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route index element={<Index />} />
             <Route path="/dashboard/profile" element={<Profile />} />
             <Route path="/dashboard/notification" element={<Notification />} />
+            <Route path="/dashboard/setting" element={<Setting />} />
           </Route>
         </Route>
       </Route>
