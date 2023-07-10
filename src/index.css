@@ -25,11 +25,11 @@ body {
   color: white;
 }
 .nav ul {
-  display: flex;
   list-style: none;
   justify-content: space-between;
   width: 350px;
   font-size: larger;
+  display: none;
 }
 .nav button {
   padding: 10px;
@@ -672,6 +672,9 @@ th {
   background-color: #dad7d7;
 }
 @media (min-width: 850px) {
+  .nav ul {
+    display: flex;
+  }
   .login form {
     width: 40%;
   }
