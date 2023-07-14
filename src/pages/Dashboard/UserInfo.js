@@ -43,7 +43,7 @@ function UserInfo() {
             />
           </picture>
           {user?.profileImage ? (
-            <img src={`http://localhost:3500/image/${user?.profileImage}`} />
+            <img src={`${uri}/image/${user?.profileImage}`} />
           ) : (
             <CgProfile className="profile-img" />
           )}

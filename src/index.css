@@ -472,7 +472,6 @@ body {
   width: 100%;
   background-color: #fafafa;
   border-radius: 0;
-  height: 200px;
   padding: 10px;
 }
 .profile-head i {
@@ -783,7 +782,6 @@ th {
   }
   .uplaod-video form {
     width: 50%;
-    height: 60%;
   }
   .uplaod-video div {
     width: 30%;

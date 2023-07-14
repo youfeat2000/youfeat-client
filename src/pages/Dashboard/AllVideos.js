@@ -61,10 +61,7 @@ function AllVideos({ users }) {
               </video>
             </div>
             <span>
-              <img
-                src={`http://localhost:3500/image/${value?.profileImage}`}
-                alt="profile"
-              />
+              <img src={`${uri}/image/${value?.profileImage}`} alt="profile" />
               <div>
                 <p>{value?.fullName}</p>
                 <p style={{ fontSize: "smaller", color: "#0e1424" }}>

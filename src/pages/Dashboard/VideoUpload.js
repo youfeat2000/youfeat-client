@@ -27,7 +27,9 @@ function VideoUpload({ userId, setUserId }) {
       body: formData,
     })
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
       })
       .then((data) => alert("video updated"))
       .catch((err) => alert("error"))
