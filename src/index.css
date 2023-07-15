@@ -589,8 +589,8 @@ body {
   padding: 5px;
 }
 .user-video span {
-  max-width: 100vw;
-  height: 250px;
+  max-width: 100%;
+  height: 50%;
   object-fit: cover;
 }
 .user-video div {
@@ -790,9 +790,13 @@ th {
     margin: 20px;
     border-radius: 5px;
   }
-  .user-video-stats video {
-    height: 300px;
+  .user-video video {
+    height: 100%;
+    width: 100%;
+  }
+  .user-video span {
     width: 50%;
+    height: 100%;
   }
   .user-video {
     flex-direction: row;
