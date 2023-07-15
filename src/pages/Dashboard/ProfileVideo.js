@@ -9,9 +9,11 @@ function ProfileVideo({ user }) {
 
   return (
     <div className="user-video">
-      <video controls>
-        <source src={`${uri}/video/${user?.video?.filename}`} />
-      </video>
+      <span>
+        <video controls>
+          <source src={`${uri}/video/${user?.video?.filename}`} />
+        </video>
+      </span>
       <div>
         <table>
           <thead>
