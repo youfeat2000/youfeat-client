@@ -49,22 +49,26 @@ function UserInfo() {
           )}
         </i>
         <article>
-          <p style={{ fontSize: "30px" }}>{user?.fullName}</p>
-          <p>{user?.email?.slice(0, 14)}...</p>
+          <p style={{ fontSize: "20px", marginTop: "10px" }}>
+            {user?.fullName}
+          </p>
+          <p>{user?.email?.slice(0, 20)}...</p>
           <br />
           <p>
             {user?.bio ? (
-              <>
-                {user?.bio}
+              <div>
+                {user.bio.length >= 100
+                  ? user?.bio.slice(0, 100) + "..."
+                  : user.bio}
                 <CgPen
                   style={{
                     float: "right",
-                    fontSize: "35px",
+                    fontSize: "30px",
                     cursor: "pointer",
                   }}
                   onClick={() => setUserId(user?._id)}
                 />
-              </>
+              </div>
             ) : (
               <span onClick={() => setUserId(user?._id)}>Add bio</span>
             )}

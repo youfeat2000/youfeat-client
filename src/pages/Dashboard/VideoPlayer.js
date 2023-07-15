@@ -8,9 +8,11 @@ function VideoPlayer({ videoName, setVideoName }) {
       {videoName && (
         <div className="video-player">
           <h1 onClick={() => setVideoName(null)}>&times;</h1>
-          <video autoPlay controls>
-            <source src={`${uri}/video/${videoName}`} />
-          </video>
+          <div>
+            <video autoPlay controls>
+              <source src={`${uri}/video/${videoName}`} />
+            </video>
+          </div>
         </div>
       )}
     </div>

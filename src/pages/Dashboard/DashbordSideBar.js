@@ -48,30 +48,30 @@ function DashbordSideBar() {
         </div>
         <ul>
           <li onClick={() => handleNavigate("/dashboard")}>
-            <AiFillHome style={{ marginRight: "20px", fontSize: "40px" }} />
+            <AiFillHome style={{ marginRight: "20px", fontSize: "30px" }} />
             Home
           </li>
           <li onClick={() => handleNavigate("./profile")}>
-            <ImProfile style={{ marginRight: "20px", fontSize: "40px" }} />
+            <ImProfile style={{ marginRight: "20px", fontSize: "30px" }} />
             Profile
           </li>
           <li onClick={() => handleNavigate("./notification")}>
             <IoIosNotifications
               style={{
                 marginRight: "20px",
-                fontSize: "40px",
+                fontSize: "30px",
               }}
             />
             Notifications
           </li>
           <li onClick={() => handleNavigate("./setting")}>
             <AiTwotoneSetting
-              style={{ marginRight: "20px", fontSize: "40px" }}
+              style={{ marginRight: "20px", fontSize: "30px" }}
             />
             Setting
           </li>
           <li onClick={handleLogout} style={{ color: "red" }}>
-            <BiLogOutCircle style={{ marginRight: "20px", fontSize: "40px" }} />
+            <BiLogOutCircle style={{ marginRight: "20px", fontSize: "30px" }} />
             logout
           </li>
         </ul>

@@ -6,7 +6,7 @@ function SearchBar() {
     <div className="search-bar">
       <input type="text" placeholder="Search" />
       <CgSearch
-        style={{ fontSize: "3rem", marginTop: "5px", fontWeight: "bolder" }}
+        style={{ fontSize: "larger", marginTop: "5px", fontWeight: "bolder" }}
       />
     </div>
   );
