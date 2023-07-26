@@ -5,7 +5,7 @@
   font-family: sans-serif;
 }
 body {
-  background-color: #bdb9b9;
+  background-color: #ececec;
 }
 .none {
   height: 100vh;
@@ -132,7 +132,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   background-color: #fafafa;
   position: sticky;
   top: 0;
@@ -148,6 +148,7 @@ body {
 .dash-nav span {
   font-size: 40px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 0;
   margin-right: 20px;
@@ -180,8 +181,6 @@ body {
   padding: 10px;
   left: 0;
   color: #ececec;
-  font-size: larger;
-  font-weight: bolder;
   top: 0;
   display: none;
   position: fixed;
@@ -202,26 +201,25 @@ body {
   justify-content: center;
 }
 .side-bar p {
-  font-size: larger;
   text-align: center;
   padding: 5px;
   cursor: pointer;
 }
 .side-bar ul {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .side-bar li {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   cursor: pointer;
-  padding-left: 10px;
+  padding-left: 5px;
   font-size: 20px;
 }
 .side-bar img {
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  border: 5px solid #dad7d7;
+  border: 4px solid #dad7d7;
 }
 .side-bar li:hover {
   background-color: #374254;
@@ -243,6 +241,12 @@ body {
   background-color: #374254;
   color: #fafafa;
   font-size: larger;
+  display: none;
+}
+.search-icon {
+  margin-top: 5px;
+  margin-right: 5px;
+  color: #0e1424;
 }
 .search-bar input {
   padding: 5px;
@@ -252,24 +256,23 @@ body {
 }
 .search2 {
   background-color: #374254;
-  min-width: 65px;
-  height: 65px;
+  width: 250px;
+  height: 40px;
   margin-right: 15px;
   color: #fafafa;
   display: flex;
-  padding: 10px;
   border-radius: 50%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-weight: bolder;
   display: none;
 }
 .search2 input {
   height: 40px;
-  border-radius: 20px;
-  padding: 10px;
-  width: 350px;
-  font-size: 20px;
+  border-radius: 20px 0 0 20px;
+  padding: 5px;
+  width: 80%;
+  font-size: 16px;
 }
 .catigory {
   display: flex;
@@ -301,12 +304,11 @@ body {
   margin-left: 20px;
   background-color: #374254;
   color: #fafafa;
-  padding: 7px;
+  padding: 5px;
   border-radius: 10px;
+  border: 2px solid #374254;
 }
 .catigory li:hover {
-  border: 4px solid #374254;
-  padding: 3px;
   color: #0e1424;
   background-color: #dad7d7;
 }
@@ -316,8 +318,11 @@ body {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  max-height: 200px;
+  min-height: 200px;
   padding: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #ececec;
 }
 .all-video span {
   height: 100%;
@@ -333,40 +338,46 @@ body {
 }
 .all-video button {
   width: 50%;
-  padding: 10px;
+  margin: 15px 0;
+  padding: 8px;
   align-self: center;
   font-size: larger;
   border: none;
   border-radius: 20px;
-  background-color: #374254;
-  color: #fafafa;
+  background-color: #fafafa;
+  color: #374254;
+  border: 2px solid #374254;
   font-weight: bolder;
 }
+.all-video button:hover {
+  background-color: #374254;
+  color: #fafafa;
+}
 .all-video p {
-  font-size: larger;
+  font-size: 16px;
   padding-left: 10px;
 }
 .all-video h3 {
   padding-left: 10px;
 }
 .video {
-  width: 100vw;
+  width: 100%;
   background-color: #fafafa;
   color: #374254;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .video-con {
   max-height: 200px;
-  object-fit: cover;
+  overflow: hidden;
 }
 .video span {
   display: flex;
   color: #000;
   align-items: center;
-  background-color: #9ba4b5;
+  background-color: #fafafa;
   padding: 5px;
 }
 .video span p {
@@ -375,12 +386,13 @@ body {
 .video h2 {
   margin-left: 10px;
   font-weight: lighter;
+  font-size: 20px;
 }
 .video img {
-  height: 55px;
-  width: 55px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
-  border: 3px solid #dad7d7;
+  border: 2px solid #dad7d7;
 }
 .video-player {
   position: absolute;
@@ -421,7 +433,45 @@ body {
 .profile {
   width: 100%;
   /*height: 90.8vh;*/
-  background-color: #bdb9b9;
+  background-color: #ececec;
+}
+.profile-header {
+  background-image: url("./public/banner.png");
+  height: 150px;
+  width: 100%;
+  background-position: center;
+}
+.profile-header div {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 4px solid #9ba4b5;
+  position: relative;
+  top: 35px;
+  left: 5px;
+}
+.profile-header img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.profile-header span {
+  position: absolute;
+  background-color: #9ba4b5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  left: 80%;
+  padding: 5px;
+  bottom: 20px;
+  border-radius: 50%;
+}
+.profile-header input {
+  position: absolute;
+  left: 20px;
+  z-index: 2;
+  opacity: 0;
 }
 .user-info {
   display: flex;
@@ -474,10 +524,8 @@ body {
   cursor: pointer;
 }
 
-.profile-head {
+.profile-info {
   display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 5px;
   margin-top: 5px;
   color: #0e1424;
@@ -488,49 +536,18 @@ body {
   border-radius: 0;
   padding: 5px;
 }
-.profile-head i {
-  position: relative;
-  align-self: flex-start;
-  margin-left: 0;
-}
-.profile-head p {
+.profile-info p {
   font-weight: lighter;
   font-size: 16px;
-}
-.profile-head img {
-  height: 110px;
-  width: 110px;
-  border-radius: 50%;
-  border: 4px solid #dad7d7;
 }
 .profile-img {
   font-size: 150px;
 }
-.camera {
-  font-size: 30px;
-  background-color: #dad7d7;
-  color: #374254;
-  padding: 5px;
-  position: absolute;
-  border-radius: 50%;
-  height: 35px;
-  width: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 60px;
-  left: 80px;
-  z-index: 2;
-}
-.camera input {
-  position: absolute;
-  width: 30px;
-  opacity: 0;
-}
-.profile-head article {
+
+.profile-info article {
   margin-left: 20px;
 }
-.profile-head div {
+.profile-info div {
   padding: 5px;
 }
 .video-uploads {
@@ -541,7 +558,7 @@ body {
   align-items: center;
   padding: 15px;
 }
-.profile-head span {
+.profile-info span {
   color: green;
   font-weight: bolder;
   width: 100%;
@@ -712,11 +729,14 @@ th {
   }
   .dash-nav img {
     margin-right: 0;
-    height: 65px;
-    width: 65px;
+    height: 50px;
+    width: 50px;
   }
   .search-bar input {
     width: 40%;
+  }
+  .search-icon {
+    display: none;
   }
   /*side bar*/
   .side-bar {
@@ -725,11 +745,11 @@ th {
     position: static;
   }
   .side-bar img {
-    height: 150px;
-    width: 150px;
+    height: 110px;
+    width: 110px;
   }
   .side-bar li {
-    font-size: larger;
+    font-size: 16px;
   }
   .sidebar-exit {
     display: none;
@@ -743,10 +763,11 @@ th {
     overflow: hidden;
   }
   .catigory li {
-    padding: 10px;
+    padding: 8px;
+    font-size: 16px;
   }
   .video {
-    width: 350px;
+    width: 300px;
     margin: 15px;
     border-radius: 10px;
   }
@@ -755,12 +776,17 @@ th {
     max-height: 180px;
     object-fit: cover;
   }
+  .all-video {
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: #ececec;
+  }
   .all-video video {
     border-radius: 10px 10px 0 0;
     height: 100%;
   }
   .all-video p {
-    font-size: 25px;
+    font-size: 16px;
   }
   .video-player div {
     width: 70vw;
@@ -772,22 +798,15 @@ th {
     flex-direction: row;
     justify-content: space-between;
   }
-  .profile-head {
+  .profile-info {
     width: 48%;
-    margin: 20px;
+    margin: 10px;
     padding: 10px;
     border-radius: 5px;
   }
-  .profile-head i {
-    margin-left: 10px;
-  }
-  .profile-head img {
-    height: 150px;
-    width: 150px;
-  }
   .video-uploads {
     width: 48%;
-    margin: 20px;
+    margin: 10px;
     border-radius: 5px;
   }
   .user-video video {
@@ -801,7 +820,7 @@ th {
   .user-video {
     flex-direction: row;
     justify-content: space-around;
-    padding: 20px;
+    padding: 10px;
   }
   .user-video div {
     height: 100%;
@@ -815,13 +834,7 @@ th {
   }
   .user-video-stats {
     width: 97%;
-    margin: 20px;
-  }
-  .camera {
-    height: 50px;
-    width: 50px;
-    left: 100px;
-    top: 85px;
+    margin: 10px;
   }
   .search2 {
     display: flex;

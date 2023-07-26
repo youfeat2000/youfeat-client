@@ -22,6 +22,7 @@ function DashboardNav() {
       </h1>
       <span>
         <Searchbart />
+        <CgSearch className="search-icon" />
         {user?.profileImage ? (
           <img
             src={`${uri}/image/${user?.profileImage}`}

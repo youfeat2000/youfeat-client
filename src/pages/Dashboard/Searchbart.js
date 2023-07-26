@@ -5,7 +5,9 @@ function searchbar2() {
   return (
     <div className="search2">
       <input type="text" placeholder="search" />
-      <CgSearch />
+      <CgSearch
+        style={{ marginTop: "0 auto", marginRight: "10px", padding: "5px" }}
+      />
     </div>
   );
 }

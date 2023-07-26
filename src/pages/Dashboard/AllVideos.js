@@ -17,7 +17,6 @@ function AllVideos({ users }) {
   }, [users]);
 
   const handleVote = (e, value) => {
-    e.target.style.backgroundColor = "grey";
     e.target.innerText = "Loading...";
 
     fetch(`${uri}/vote`, {
@@ -43,7 +42,6 @@ function AllVideos({ users }) {
         alert("something went wrong");
       })
       .finally(() => {
-        e.target.style.backgroundColor = "#374254";
         e.target.innerText = "Vote";
       });
   };
@@ -70,13 +68,18 @@ function AllVideos({ users }) {
               </div>
             </span>
             <div>
-              <h3>{value?.video?.title}</h3>
-              <p>{value?.video?.catigory}</p>
-              <h3 style={{ alignSelf: "flex-end" }}>{videoVote.length}V</h3>
-              <br />
+              <p>
+                {`${value?.video?.title} | ${value?.video?.description.slice(
+                  0,
+                  50
+                )}`}
+                {value.video.description.length >= 50 && "..."}
+              </p>
+              <p style={{ alignSelf: "flex-end" }}>
+                <b>{videoVote.length}V</b>
+              </p>
             </div>
             <button onClick={(e) => handleVote(e, value)}>Vote</button>
-            <br />
           </div>
         );
       })}
