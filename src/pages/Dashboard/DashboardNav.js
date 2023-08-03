@@ -4,7 +4,6 @@ import { FaHamburger } from "react-icons/fa";
 import ProfileContext from "../../context/ProfileContext";
 import AuthContext from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import Searchbar from "./Searchbar";
 
 function DashboardNav() {
   const { setToggle, user, toggle } = useContext(ProfileContext);
@@ -21,7 +20,6 @@ function DashboardNav() {
         />
       </h1>
       <span>
-        <Searchbar />
         <CgSearch className="search-icon" />
         {auth && (
           <>
