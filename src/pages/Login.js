@@ -7,6 +7,7 @@ function Login() {
   const [email, setEmail] = useState(null);
   const [formWidth, setFormWidth] = useState("40%");
   const [password, setPassword] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     if (window.innerWidth <= 850) {
       setFormWidth("90%");
@@ -50,7 +51,6 @@ function Login() {
       });
   };
 
-  const navigate = useNavigate();
   return (
     <div className="login">
       <form onSubmit={(e) => e.preventDefault()} style={{ width: formWidth }}>
