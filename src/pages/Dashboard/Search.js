@@ -1,7 +1,7 @@
 import React from "react";
 import { CgSearch } from "react-icons/cg";
 
-function Searchbar() {
+function Search() {
   return (
     <div className="search2">
       <input type="text" placeholder="search" />
@@ -12,4 +12,4 @@ function Searchbar() {
   );
 }
 
-export default Searchbar;
+export default Search;
