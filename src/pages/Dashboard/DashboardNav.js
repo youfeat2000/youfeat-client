@@ -3,8 +3,8 @@ import { CgProfile, CgSearch } from "react-icons/cg";
 import { FaHamburger } from "react-icons/fa";
 import ProfileContext from "../../context/ProfileContext";
 import AuthContext from "../../context/AuthContext";
-import Searchbar from "./Searchbar";
 import { useNavigate } from "react-router-dom";
+import Searchbar from "./Searchbar";
 
 function DashboardNav() {
   const { setToggle, user, toggle } = useContext(ProfileContext);
