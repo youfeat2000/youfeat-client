@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import ProfileContext from "../../context/ProfileContext";
 import VideoUpload from "./VideoUpload";
 
 function UserVideo({ foundUser }) {

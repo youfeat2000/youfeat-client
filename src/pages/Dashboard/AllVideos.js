@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import VideoPlayer from "./VideoPlayer";
 import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AllVideos({ users }) {
   const [newUser, setNewUser] = useState(null);

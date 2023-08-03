@@ -11,7 +11,6 @@ import PersistentLogin from "./component/PersistentLogin";
 import PreventLogin from "./component/PreventLogin";
 import Profile from "./pages/Dashboard/Profile";
 import Notification from "./pages/Dashboard/Notification";
-import Setting from "./pages/Dashboard/Setting";
 import Admin from "./pages/Dashboard/Admin";
 import UserRanking from "./pages/Dashboard/UserRanking";
 
