@@ -5,7 +5,10 @@ function Notify({ sendTo, setSendTo }) {
   const { uri } = useContext(AuthContext);
   const [message, setMessage] = useState("");
 
-  const handleNotify = () => {
+  const handleNotify = (e) => {
+    e.target.style.backgroundColor = "grey";
+    e.target.innerText = "Loading...";
+    e.target.disabled = true;
     const i = new Date();
     fetch(`${uri}/notify`, {
       method: "POST",
@@ -25,7 +28,12 @@ function Notify({ sendTo, setSendTo }) {
         console.log(data);
       })
       .catch((err) => alert("Error"))
-      .finally(() => setSendTo(null));
+      .finally(() => {
+        e.target.style.backgroundColor = "#374254";
+        e.target.innerText = "Send";
+        e.target.disabled = true;
+        setSendTo(null);
+      });
   };
   return (
     <>
@@ -39,7 +47,7 @@ function Notify({ sendTo, setSendTo }) {
               required
               onChange={(e) => setMessage(e.target.value)}
             />
-            <button onClick={() => handleNotify()}>Send</button>
+            <button onClick={(e) => handleNotify(e)}>Send</button>
           </div>
         </div>
       )}

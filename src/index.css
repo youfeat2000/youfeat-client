@@ -355,7 +355,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .video-con {
   max-height: 200px;
@@ -686,7 +686,7 @@ th {
 }
 .uplaod-video div {
   height: 80px;
-  width: 50%;
+  width: 70%;
   margin-bottom: 10px;
   background-color: #374254;
   color: #fafafa;
@@ -702,7 +702,6 @@ th {
   align-self: flex-end;
   font-size: 50px;
   cursor: pointer;
-  font-weight: lighter;
 }
 .video-input {
   position: absolute;
@@ -777,7 +776,6 @@ th {
   background-color: #fafafa;
   color: #374254;
   border: 1px solid #374254;
-  z-index: 4;
 }
 
 /*Notification page*/

@@ -7,6 +7,7 @@ function UserBioUpdate({ userId, setUserId }) {
   const handleSubmit = (e) => {
     e.target.style.backgroundColor = "gray";
     e.target.innerText = "Loading...";
+    e.target.disabled = true;
 
     fetch(`${uri}/bio/${userId}`, {
       method: "POST",
@@ -21,6 +22,7 @@ function UserBioUpdate({ userId, setUserId }) {
       .finally(() => {
         e.target.style.backgroundColor = "#374254";
         e.target.innerText = "Update";
+        e.target.disabled = false;
         setUserId(null);
       });
   };

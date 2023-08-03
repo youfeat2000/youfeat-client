@@ -32,9 +32,9 @@ function DashbordSideBar() {
   return (
     <div className="side-bar" ref={sidebarRef}>
       <div>
-        <i className="sidebar-exit" onClick={() => setToggle(true)}>
+        <h2 className="sidebar-exit" onClick={() => setToggle(true)}>
           &times;
-        </i>
+        </h2>
         <div onClick={() => navigate(`./profile/${user?._id}`)}>
           <>
             {user?.profileImage ? (
