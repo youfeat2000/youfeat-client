@@ -1,15 +1,15 @@
 import React from "react";
 import { CgSearch } from "react-icons/cg";
 
-function SearchBar() {
+function searchbar2() {
   return (
-    <div className="search-bar">
-      <input type="text" placeholder="Search" />
+    <div className="search2">
+      <input type="text" placeholder="search" />
       <CgSearch
-        style={{ fontSize: "larger", marginTop: "5px", fontWeight: "bolder" }}
+        style={{ marginTop: "0 auto", marginRight: "10px", padding: "5px" }}
       />
     </div>
   );
 }
 
-export default SearchBar;
+export default searchbar2;

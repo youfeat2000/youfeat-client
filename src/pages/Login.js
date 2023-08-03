@@ -1,12 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 function Login() {
   const { setAuth, uri } = useContext(AuthContext);
   const [email, setEmail] = useState(null);
+  const [formWidth, setFormWidth] = useState("40%");
   const [password, setPassword] = useState(null);
-
+  useEffect(() => {
+    if (window.innerWidth <= 850) {
+      setFormWidth("90%");
+    }
+  }, []);
   const handleLogin = (e) => {
     if (!email && !password) {
       alert("email/password required");
@@ -48,7 +53,7 @@ function Login() {
   const navigate = useNavigate();
   return (
     <div className="login">
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={(e) => e.preventDefault()} style={{ width: formWidth }}>
         <br />
         <h2 style={{ color: "white" }}>Login</h2>
         <br />

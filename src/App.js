@@ -12,6 +12,8 @@ import PreventLogin from "./component/PreventLogin";
 import Profile from "./pages/Dashboard/Profile";
 import Notification from "./pages/Dashboard/Notification";
 import Setting from "./pages/Dashboard/Setting";
+import Admin from "./pages/Dashboard/Admin";
+import UserRanking from "./pages/Dashboard/UserRanking";
 
 const App = () => {
   return (
@@ -24,13 +26,14 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
       </Route>
       <Route element={<PersistentLogin />}>
-        <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard" element={<DashboadRoot />}>
-            <Route index element={<Index />} />
-            <Route path="/dashboard/profile" element={<Profile />} />
+        <Route path="/dashboard" element={<DashboadRoot />}>
+          <Route index element={<Index />} />
+          <Route path="/dashboard/profile/:id" element={<Profile />} />
+          <Route element={<ProtectedRoute />}>
             <Route path="/dashboard/notification" element={<Notification />} />
-            <Route path="/dashboard/setting" element={<Setting />} />
+            <Route path="/dashboard/admin" element={<Admin />} />
           </Route>
+          <Route path="/dashboard/rank" element={<UserRanking />} />
         </Route>
       </Route>
       <Route

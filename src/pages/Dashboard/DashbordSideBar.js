@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { CgProfile } from "react-icons/cg";
-import { AiFillHome, AiTwotoneSetting } from "react-icons/ai";
+import { AiFillHome, AiFillTrophy } from "react-icons/ai";
 import { ImProfile } from "react-icons/im";
 import { IoIosNotifications } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { BiLogOutCircle } from "react-icons/bi";
+import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
 import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
 
 function DashbordSideBar() {
-  const { handleLogout, uri } = useContext(AuthContext);
+  const { handleLogout, uri, auth } = useContext(AuthContext);
   const { user, toggle, setToggle } = useContext(ProfileContext);
   const navigate = useNavigate();
   const sidebarRef = useRef();
@@ -35,14 +35,18 @@ function DashbordSideBar() {
         <i className="sidebar-exit" onClick={() => setToggle(true)}>
           &times;
         </i>
-        <div onClick={() => navigate("./profile")}>
-          <span>
+        <div onClick={() => navigate(`./profile/${user?._id}`)}>
+          <>
             {user?.profileImage ? (
-              <img src={`${uri}/image/${user?.profileImage}`} />
+              <span>
+                <img src={`${uri}/image/${user?.profileImage}`} alt="ropfile" />
+              </span>
             ) : (
-              <CgProfile />
+              <span style={{ border: "none" }}>
+                <CgProfile />
+              </span>
             )}
-          </span>
+          </>
           <p>{user?.fullName}</p>
           <p style={{ color: "#374254", overflow: "hidden" }}>{user?.email}</p>
         </div>
@@ -51,29 +55,49 @@ function DashbordSideBar() {
             <AiFillHome style={{ marginRight: "20px", fontSize: "30px" }} />
             Home
           </li>
-          <li onClick={() => handleNavigate("./profile")}>
-            <ImProfile style={{ marginRight: "20px", fontSize: "30px" }} />
-            Profile
+          {auth && (
+            <li onClick={() => handleNavigate(`./profile/${user?._id}`)}>
+              <ImProfile style={{ marginRight: "20px", fontSize: "30px" }} />
+              Profile
+            </li>
+          )}
+          {user?.role === 1999 && (
+            <li onClick={() => handleNavigate("./admin")}>
+              <ImProfile style={{ marginRight: "20px", fontSize: "30px" }} />
+              Admin
+            </li>
+          )}
+          <li onClick={() => handleNavigate("./rank")}>
+            <AiFillTrophy style={{ marginRight: "20px", fontSize: "30px" }} />
+            Ranking board
           </li>
-          <li onClick={() => handleNavigate("./notification")}>
-            <IoIosNotifications
-              style={{
-                marginRight: "20px",
-                fontSize: "30px",
-              }}
-            />
-            Notifications
-          </li>
-          <li onClick={() => handleNavigate("./setting")}>
-            <AiTwotoneSetting
-              style={{ marginRight: "20px", fontSize: "30px" }}
-            />
-            Setting
-          </li>
-          <li onClick={handleLogout} style={{ color: "red" }}>
-            <BiLogOutCircle style={{ marginRight: "20px", fontSize: "30px" }} />
-            logout
-          </li>
+          {auth && (
+            <li onClick={() => handleNavigate("./notification")}>
+              <IoIosNotifications
+                style={{
+                  marginRight: "20px",
+                  fontSize: "30px",
+                }}
+              />
+              Notifications
+            </li>
+          )}
+          {auth && (
+            <li onClick={handleLogout} style={{ color: "red" }}>
+              <BiLogOutCircle
+                style={{ marginRight: "20px", fontSize: "30px" }}
+              />
+              Logout
+            </li>
+          )}
+          {!auth && (
+            <li onClick={() => navigate("/login")} style={{ color: "green" }}>
+              <BiLogInCircle
+                style={{ marginRight: "20px", fontSize: "30px" }}
+              />
+              Login
+            </li>
+          )}
         </ul>
       </div>
     </div>

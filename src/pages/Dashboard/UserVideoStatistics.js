@@ -1,20 +1,31 @@
 import React, { useContext } from "react";
 import ProfileContext from "../../context/ProfileContext";
 import ProfileVideo from "./ProfileVideo";
+import { useParams } from "react-router-dom";
 
-function UserVideoStatistics() {
+function UserVideoStatistics({ foundUser }) {
   const { user } = useContext(ProfileContext);
-
+  const params = useParams();
   return (
     <>
       <div className="user-video-stats">
-        {user?.video ? (
-          <ProfileVideo user={user} />
+        {foundUser[0]?.video ? (
+          <ProfileVideo foundUser={foundUser} />
         ) : (
-          <>
-            <h2>you do not have a any video yet</h2>
-            <p>Publish a video and stand a chance to win</p>
-          </>
+          <span>
+            {user?._id && params ? (
+              <>
+                <h2 style={{ marginRight: "10px" }}>
+                  you do not have a any video yet
+                </h2>
+                <p style={{ marginLeft: "10px" }}>
+                  Publish a video and stand a chance to win
+                </p>
+              </>
+            ) : (
+              <h3>No video to display</h3>
+            )}
+          </span>
         )}
       </div>
     </>

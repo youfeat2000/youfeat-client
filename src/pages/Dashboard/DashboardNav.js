@@ -3,12 +3,12 @@ import { CgProfile, CgSearch } from "react-icons/cg";
 import { FaHamburger } from "react-icons/fa";
 import ProfileContext from "../../context/ProfileContext";
 import AuthContext from "../../context/AuthContext";
-import Searchbart from "./Searchbart";
+import Searchbar from "./Searchbar";
 import { useNavigate } from "react-router-dom";
 
 function DashboardNav() {
   const { setToggle, user, toggle } = useContext(ProfileContext);
-  const { uri } = useContext(AuthContext);
+  const { uri, auth } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -21,15 +21,26 @@ function DashboardNav() {
         />
       </h1>
       <span>
-        <Searchbart />
+        <Searchbar />
         <CgSearch className="search-icon" />
-        {user?.profileImage ? (
-          <img
-            src={`${uri}/image/${user?.profileImage}`}
-            onClick={() => navigate("profile")}
-          />
-        ) : (
-          <CgProfile />
+        {auth && (
+          <>
+            {user?.profileImage ? (
+              <img
+                src={`${uri}/image/${user?.profileImage}`}
+                onClick={() => navigate(`profile/${user?._id}`)}
+              />
+            ) : (
+              <CgProfile />
+            )}
+          </>
+        )}
+        {!auth && (
+          <p
+            style={{ fontSize: "20px", fontWeight: "bolder" }}
+            onClick={() => navigate("/login")}>
+            Login
+          </p>
         )}
       </span>
     </nav>

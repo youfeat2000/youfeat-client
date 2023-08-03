@@ -3,11 +3,10 @@ import { FaPlus } from "react-icons/fa";
 import ProfileContext from "../../context/ProfileContext";
 import VideoUpload from "./VideoUpload";
 
-function UserVideo() {
+function UserVideo({ foundUser }) {
   const [userId, setUserId] = useState(null);
-  const { user } = useContext(ProfileContext);
   const handleUpload = () => {
-    setUserId(user?._id);
+    setUserId(foundUser[0]?._id);
   };
   return (
     <div className="video-uploads">

@@ -4,6 +4,7 @@ import AuthContext from "../context/AuthContext";
 
 function Signup() {
   const { uri } = useContext(AuthContext);
+  const [contestant, setContestant] = useState(false);
   const [fullName, setFullName] = useState(null);
   const [email, setEmail] = useState(null);
   const [state, setState] = useState(null);
@@ -26,6 +27,8 @@ function Signup() {
           PhoneNumber,
           password,
           state,
+          contestant,
+          role: 2000,
         }),
       })
         .then((res) => res.json())
@@ -38,56 +41,79 @@ function Signup() {
   };
   return (
     <div className="login" onSubmit={(e) => e.preventDefault()}>
+      <br />
       <form>
         <h2 style={{ color: "white" }}>Register</h2>
         <br />
-        <label>Full name</label>
-        <input
-          type="text"
-          placeholder="full name"
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
+        <div className="input-con">
+          <div>
+            <label>Full name</label>
+            <input
+              type="text"
+              placeholder="full name"
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+            <br />
+            <label>Email</label>
+            <input
+              type="text"
+              placeholder="email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <br />
+            <label>Phone number</label>
+            <input
+              type="tel"
+              placeholder="phone number"
+              onChange={(e) => setPoneNumber(e.target.value)}
+              required
+            />
+            <br />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <br />
+            <label>Confirm password</label>
+            <input
+              type="password"
+              placeholder="confirm password"
+              onChange={(e) => setSetVerifyPassword(e.target.value)}
+              required
+            />
+            <br />
+            <label>State</label>
+            <input
+              type="text"
+              placeholder="state"
+              onChange={(e) => setState(e.target.value)}
+              required
+            />
+            <br />
+          </div>
+        </div>
         <br />
-        <label>Email</label>
-        <input
-          type="text"
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <br />
-        <label>Phone number</label>
-        <input
-          type="tel"
-          placeholder="phone number"
-          onChange={(e) => setPoneNumber(e.target.value)}
-          required
-        />
-        <br />
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <br />
-        <label>Confirm password</label>
-        <input
-          type="password"
-          placeholder="confirm password"
-          onChange={(e) => setSetVerifyPassword(e.target.value)}
-          required
-        />
-        <br />
-        <label>State</label>
-        <input
-          type="text"
-          placeholder="state"
-          onChange={(e) => setState(e.target.value)}
-          required
-        />
+        <span>
+          <label>Register as a contestant</label>
+          <input
+            type="checkbox"
+            checked={contestant}
+            onChange={() => setContestant(!contestant)}
+            style={{
+              padding: "10px",
+              height: "20px",
+              width: "40px",
+              borderRadius: "0",
+            }}
+          />
+        </span>
         <br />
         <button onClick={handleRegister}>Register</button>
         <br />
@@ -100,6 +126,7 @@ function Signup() {
           </span>
         </p>
       </form>
+      <br />
     </div>
   );
 }

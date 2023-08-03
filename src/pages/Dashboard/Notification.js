@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import ProfileContext from "../../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
 
 function Notification() {
+  const [notification, setNotification] = useState([]);
+  const [newNotification, setNewNotification] = useState([]);
+  const { user } = useContext(ProfileContext);
+  const { uri } = useContext(AuthContext);
+  useEffect(() => {
+    fetch(`${uri}/notification`, {
+      method: "POST",
+    })
+      .then((res) => res.json())
+      .then((data) => setNotification(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    const i = notification?.filter(
+      (value) => value?.to === "everyOne" || value?.to === user?._id
+    );
+    setNewNotification(i);
+  }, [notification]);
+
   return (
     <div className="notification">
-      <h1> Notification</h1>
+      {notification.length ? (
+        newNotification.map((value) => {
+          return (
+            <div>
+              <h3>{value.from}</h3>
+              <p>{value.message}</p>
+              <span>{value.date}</span>
+            </div>
+          );
+        })
+      ) : (
+        <h1>no notification</h1>
+      )}
     </div>
   );
 }
