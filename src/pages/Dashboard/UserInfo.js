@@ -99,7 +99,7 @@ function UserInfo({ foundUser }) {
             <button onClick={(e) => handleVote(e, foundUser)}>Vote</button>
           )}
           <button
-            href={`https://youfeat-client.onrender.com/dashboard/profile/${params.id}`}
+            href={`https://youfeat.onrender.com/dashboard/profile/${params.id}`}
             onClick={(e) => copyUri(e)}>
             Share link
           </button>

@@ -4,16 +4,19 @@ import AuthContext from "../../context/AuthContext";
 
 function Notification() {
   const [notification, setNotification] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [newNotification, setNewNotification] = useState([]);
   const { user } = useContext(ProfileContext);
   const { uri } = useContext(AuthContext);
   useEffect(() => {
+    setLoading(true);
     fetch(`${uri}/notification`, {
       method: "POST",
     })
       .then((res) => res.json())
       .then((data) => setNotification(data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -36,7 +39,10 @@ function Notification() {
           );
         })
       ) : (
-        <h1>no notification</h1>
+        <h1
+          style={{ alignSelf: "center", justifySelf: "center", color: "grey" }}>
+          {!loading ? "no notification" : "Loading..."}
+        </h1>
       )}
     </div>
   );
