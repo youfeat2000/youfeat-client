@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { Outlet, useNavigate } from "react-router-dom";
+import ProfileContext from "../context/ProfileContext";
 
 function PersistentLogin() {
   const { auth, setAuth, uri } = useContext(AuthContext);
+  const { setUser } = useContext(ProfileContext);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
