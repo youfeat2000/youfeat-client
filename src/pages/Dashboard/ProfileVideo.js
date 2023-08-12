@@ -29,6 +29,7 @@ function ProfileVideo({ foundUser }) {
             <td>0</td>
           </tbody>
         </table>
+        <br />
       </div>
     </div>
   );

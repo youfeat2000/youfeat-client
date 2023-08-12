@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function AllVideos({ users }) {
   const [newUser, setNewUser] = useState(null);
   const { uri, auth } = useContext(AuthContext);
-  const { user, setVote, vote } = useContext(ProfileContext);
+  const { user, setVote, vote, search } = useContext(ProfileContext);
   const [videoName, setVideoName] = useState(null);
   const navigate = useNavigate();
 
@@ -17,6 +17,9 @@ function AllVideos({ users }) {
     });
     setNewUser(i);
   }, [users]);
+  useEffect(() => {
+    setNewUser(search);
+  }, [search]);
 
   const handleVote = (e, value) => {
     if (auth) {
@@ -54,43 +57,51 @@ function AllVideos({ users }) {
   };
 
   return (
-    <div className="all-video">
-      <VideoPlayer videoName={videoName} setVideoName={setVideoName} />
-      {newUser?.map((value) => {
-        const videoVote = vote.filter((i) => i.userId === value?._id);
-        return (
-          <div key={value?._id} className="video">
-            <div className="video-con">
-              <video onClick={() => setVideoName(value?.video?.filename)}>
-                <source src={`${uri}/video/${value?.video?.filename}`} />
-              </video>
-            </div>
-            <span onClick={() => navigate(`profile/${value?._id}`)}>
-              <img src={`${uri}/image/${value?.profileImage}`} alt="profile" />
-              <div>
-                <h2>{value?.fullName}</h2>
-                <p style={{ fontSize: "smaller", color: "#0e1424" }}>
-                  {value?.email}
-                </p>
+    <>
+      {search.length ? (
+        <div className="all-video">
+          <VideoPlayer videoName={videoName} setVideoName={setVideoName} />
+          {newUser?.map((value) => {
+            const videoVote = vote.filter((i) => i.userId === value?._id);
+            return (
+              <div key={value?._id} className="video">
+                <div className="video-con">
+                  <video onClick={() => setVideoName(value?.video?.filename)}>
+                    <source src={`${uri}/video/${value?.video?.filename}`} />
+                  </video>
+                </div>
+                <span onClick={() => navigate(`profile/${value?._id}`)}>
+                  <img
+                    src={`${uri}/image/${value?.profileImage}`}
+                    alt="profile"
+                  />
+                  <div>
+                    <h2>{value?.fullName}</h2>
+                    <p style={{ fontSize: "smaller", color: "#0e1424" }}>
+                      {value?.email}
+                    </p>
+                  </div>
+                </span>
+                <div>
+                  <p>
+                    {`${
+                      value?.video?.title
+                    } | ${value?.video?.description.slice(0, 50)}`}
+                    {value?.video?.description.length >= 50 && "..."}
+                  </p>
+                  <p style={{ alignSelf: "flex-end" }}>
+                    <b>{videoVote?.length}V</b>
+                  </p>
+                </div>
+                <button onClick={(e) => handleVote(e, value)}>Vote</button>
               </div>
-            </span>
-            <div>
-              <p>
-                {`${value?.video?.title} | ${value?.video?.description.slice(
-                  0,
-                  50
-                )}`}
-                {value?.video.description.length >= 50 && "..."}
-              </p>
-              <p style={{ alignSelf: "flex-end" }}>
-                <b>{videoVote.length}V</b>
-              </p>
-            </div>
-            <button onClick={(e) => handleVote(e, value)}>Vote</button>
-          </div>
-        );
-      })}
-    </div>
+            );
+          })}
+        </div>
+      ) : (
+        <h2 style={{ color: "black", textAlign: "center" }}>No result...</h2>
+      )}
+    </>
   );
 }
 

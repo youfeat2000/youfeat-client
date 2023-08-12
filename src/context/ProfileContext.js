@@ -8,7 +8,12 @@ export function ProfileProvider({ children }) {
   const [users, setUsers] = useState([]);
   const [toggle, setToggle] = useState(true);
   const [vote, setVote] = useState([]);
+  const [search, setSearch] = useState();
 
+  useEffect(() => {
+    const i = users.filter((value) => value.video);
+    setSearch(i);
+  }, [users]);
   useEffect(() => {
     fetch(`${uri}/user`, {
       method: "POST",
@@ -51,6 +56,8 @@ export function ProfileProvider({ children }) {
         setVote,
         toggle,
         setToggle,
+        search,
+        setSearch,
       }}>
       {children}
     </ProfileContext.Provider>

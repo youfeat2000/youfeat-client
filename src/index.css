@@ -23,6 +23,7 @@ body {
   position: fixed;
   width: 100%;
   color: white;
+  border-bottom: 1px solid #bdb9b9;
 }
 .nav ul {
   list-style: none;
@@ -142,6 +143,7 @@ body {
   padding: 5px;
   background-color: #fafafa;
   position: sticky;
+  border-bottom: 1px solid #dddddd;
   top: 0;
   left: 0;
   z-index: 3;
@@ -151,6 +153,7 @@ body {
   width: 50px;
   border-radius: 50%;
   border: 3px solid #bdb9b9;
+  background-color: #fafafa;
 }
 .dash-nav span {
   font-size: 40px;
@@ -165,6 +168,7 @@ body {
   font-size: 25px;
   font-weight: lighter;
   cursor: pointer;
+  color: #0e1424;
   display: block;
 }
 .dash-nav ul {
@@ -179,65 +183,23 @@ body {
   max-height: 100vh;
   overflow-y: scroll;
 }
-
-/*side-bar*/
-.side-bar {
-  background-color: #0e1424;
-  width: 100vw;
-  height: 100vh;
-  padding: 10px;
-  left: 0;
-  color: #ececec;
-  top: 0;
-  display: none;
-  position: fixed;
-  overflow-y: scroll;
-  overflow-x: clip;
-  z-index: 4;
-}
-.sidebar-exit {
-  font-size: 50px;
-  position: relative;
-  font-weight: lighter;
-  top: 4px;
-  left: 80vw;
-}
-.side-bar span {
-  margin-top: 10px;
-  font-size: 7rem;
+.search-toggle {
   display: flex;
+  align-items: center;
   justify-content: center;
+  height: 50px;
+  width: 100%;
 }
-.side-bar p {
-  text-align: center;
+.search-toggle input {
+  width: 90%;
+  height: 100%;
   padding: 5px;
-  cursor: pointer;
-}
-.side-bar ul {
-  margin-top: 10px;
-}
-.side-bar li {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  cursor: pointer;
-  padding-left: 5px;
+  border: none;
   font-size: 20px;
 }
-.side-bar img {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  border: 4px solid #dad7d7;
-}
-.side-bar li:hover {
-  background-color: #374254;
-}
-
-/*index*/
-.index {
-  background-color: #bdb9b9;
-  width: 100%;
-  height: 100vh;
+.search-toggle p {
+  font-size: 25px;
+  padding: 10px;
 }
 .search-icon {
   margin-top: 5px;
@@ -260,9 +222,69 @@ body {
 .search2 input {
   height: 40px;
   border-radius: 20px 0 0 20px;
-  padding: 5px;
+  padding: 10px;
   width: 80%;
   font-size: 16px;
+  border: 0.5px solid #374254;
+}
+
+/*side-bar*/
+.side-bar {
+  background-color: #0e1424;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px;
+  left: 0;
+  color: #ececec;
+  top: 0;
+  display: none;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: clip;
+  z-index: 4;
+}
+.sidebar-exit {
+  font-size: 50px;
+  position: relative;
+  top: 4px;
+  left: 80vw;
+}
+.side-bar span {
+  font-size: 7rem;
+  display: flex;
+  justify-content: center;
+}
+.side-bar p {
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+}
+.side-bar ul {
+  margin-top: 10px;
+  list-style: none;
+}
+.side-bar li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  padding-left: 5px;
+  font-size: 20px;
+}
+.side-bar img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 4px solid #dad7d7;
+}
+.side-bar li:hover {
+  background-color: #374254;
+}
+
+/*index*/
+.index {
+  background-color: #ececec;
+  width: 100%;
+  height: 100vh;
 }
 .catigory {
   display: flex;
@@ -488,6 +510,7 @@ body {
   color: #374254;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .edit-bio textarea {
   width: 90%;
@@ -504,7 +527,9 @@ body {
   border: none;
 }
 .edit-bio h2 {
-  align-self: flex-end;
+  position: absolute;
+  top: 10px;
+  right: 20px;
   color: red;
   font-size: 3rem;
   cursor: pointer;
@@ -656,6 +681,9 @@ th {
   align-items: center;
   z-index: 5;
 }
+.uplaod-video p {
+  font-size: 20px;
+}
 .uplaod-video form {
   background-color: #fafafa;
   display: flex;
@@ -669,6 +697,11 @@ th {
   padding: 15px;
   margin-bottom: 15px;
   font-size: 20px;
+}
+.uplaod-video article {
+  text-align: center;
+  width: 100%;
+  color: #0e1424;
 }
 .uplaod-video select {
   padding: 15px;
@@ -687,7 +720,6 @@ th {
   font-size: 20px;
 }
 .uplaod-video div {
-  height: 80px;
   width: 70%;
   margin-bottom: 10px;
   background-color: #374254;
@@ -697,11 +729,13 @@ th {
   cursor: pointer;
   position: relative;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
 }
 .uplaod-video h1 {
   color: red;
-  align-self: flex-end;
+  position: absolute;
+  top: 10px;
+  right: 20px;
   font-size: 50px;
   cursor: pointer;
 }
@@ -863,6 +897,9 @@ th {
     margin-right: 0;
     height: 50px;
     width: 50px;
+  }
+  .search-toggle {
+    display: none;
   }
   .search-icon {
     display: none;

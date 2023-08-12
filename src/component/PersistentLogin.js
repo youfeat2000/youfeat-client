@@ -29,7 +29,17 @@ function PersistentLogin() {
 
     auth ? setLoading(false) : handleRefresh();
   }, []);
-  return <>{loading ? <h1>Loading...</h1> : <Outlet />}</>;
+  return (
+    <>
+      {loading ? (
+        <h1 style={{ textAlign: "center", color: "grey", marginTop: "40px" }}>
+          Loading...
+        </h1>
+      ) : (
+        <Outlet />
+      )}
+    </>
+  );
 }
 
 export default PersistentLogin;

@@ -1,26 +1,57 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
 
 function VideoUpload({ userId, setUserId }) {
   const [title, setTitle] = useState("");
   const [video, setVideo] = useState("");
+  const [videoLength, setVideoLength] = useState();
+  const [videoLarge, setVideoLarge] = useState(false);
   const [videoName, setVideoName] = useState(null);
   const [catigory, setCatigory] = useState("");
   const [description, setDescription] = useState("");
   const { uri } = useContext(AuthContext);
+  const { setUser } = useContext(ProfileContext);
+
+  useEffect(() => {
+    if (videoLength >= 120) {
+      setVideoLarge(true);
+    } else {
+      setVideoLarge(false);
+    }
+  }, [videoLength]);
+
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setVideo(e.target.files[0]);
+      setVideoName(e.target.files[0].name);
+
+      const vide = document.createElement("video");
+      vide.preload = "metadata";
+      vide.src = URL.createObjectURL(e.target.files[0]);
+      vide.onloadedmetadata = () => {
+        setVideoLength(vide.duration);
+      };
+    }
+  };
+
   const handleUpload = (e) => {
+    console.log(videoLarge);
+    console.log(videoLength);
+    if (videoLarge) {
+      return alert("video duration too long");
+    }
     e.target.style.backgroundColor = "grey";
     e.target.innerText = "Loading...";
     e.target.disabled = true;
 
     const formData = new FormData();
-    formData.append("video", video[0]);
+    formData.append("video", video);
     formData.append("title", title);
     formData.append("catigory", catigory);
     formData.append("description", description);
     formData.append("userId", userId);
 
-    console.log(formData.get("video"));
     fetch(`${uri}/videouploads`, {
       method: "POST",
       dataType: "jsonp",
@@ -29,10 +60,14 @@ function VideoUpload({ userId, setUserId }) {
       .then((res) => {
         if (res.ok) {
           return res.json();
+        } else {
+          console.log("err");
         }
       })
-      .then((data) => alert("video updated"))
-      .catch((err) => alert("error"))
+      .then((data) => {
+        setUser(data);
+        alert("video updated");
+      })
       .finally(() => {
         e.target.style.backgroundColor = "#374254";
         e.target.innerText = "Update";
@@ -47,6 +82,12 @@ function VideoUpload({ userId, setUserId }) {
         <div className="uplaod-video">
           <form onSubmit={(e) => e.preventDefault()}>
             <h1 onClick={() => setUserId(null)}>&times;</h1>
+            <article>
+              <h2>Upload a video</h2>
+              <p>Video must not be more than two minutes long</p>
+            </article>
+            <br />
+            {videoLarge && <p style={{ color: "red" }}>video file too long</p>}
             <div>
               <p>Choose a video</p>
               <input
@@ -55,11 +96,9 @@ function VideoUpload({ userId, setUserId }) {
                 name="video"
                 aria-required
                 formTarget="video/mp4"
+                accept="video/*"
                 required
-                onChange={(e) => {
-                  setVideo(e.target.files);
-                  setVideoName(e.target.files[0].name);
-                }}
+                onChange={(e) => handleChange(e)}
               />
             </div>
             <p>{videoName && `video: ${videoName}`}</p>
