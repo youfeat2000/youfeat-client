@@ -29,6 +29,17 @@ function PersistentLogin() {
 
     auth ? setLoading(false) : handleRefresh();
   }, []);
+  useEffect(() => {
+    fetch(`${uri}/user`, {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data);
+      })
+      .catch((err) => console.log(err));
+  }, [auth]);
   return (
     <>
       {loading ? (

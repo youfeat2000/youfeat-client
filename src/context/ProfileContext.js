@@ -25,6 +25,7 @@ export function ProfileProvider({ children }) {
       })
       .catch((err) => console.log(err));
   }, [auth]);
+
   useEffect(() => {
     fetch(`${uri}/users`, {
       method: "POST",
