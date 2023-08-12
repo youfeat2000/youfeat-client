@@ -16,7 +16,7 @@ function Profile() {
   useEffect(() => {
     const singleUser = users?.filter((value) => value?._id === params.id);
     setFoundUser(singleUser);
-  }, [params]);
+  }, [users]);
 
   useEffect(() => {
     fetch(`${uri}/users`, {
@@ -29,6 +29,7 @@ function Profile() {
       })
       .catch((err) => console.log(err));
   }, []);
+  console.log(user);
 
   return (
     <div className="profile">

@@ -5,7 +5,6 @@ const AuthContext = createContext();
 export function ContextProvider({ children }) {
   const navigate = useNavigate();
   const [auth, setAuth] = useState(null);
-  const [user, setUser] = useState(null);
   //const uri = "http://localhost:3500";
   const uri = "https://youfeat-server.onrender.com";
   const handleLogout = () => {
@@ -39,8 +38,6 @@ export function ContextProvider({ children }) {
       value={{
         auth,
         setAuth,
-        user,
-        setUser,
         uri,
         handleRefresh,
         handleLogout,
