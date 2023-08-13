@@ -27,6 +27,8 @@ function SocialShare({ userUrl, setUserUrl }) {
       {userUrl && (
         <div className="share">
           <div>
+            <h1 onClick={close}>&times;</h1>
+
             <h3>Share to</h3>
             <br />
             <ul>

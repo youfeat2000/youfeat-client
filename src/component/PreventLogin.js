@@ -31,7 +31,7 @@ function PreventLogin() {
           Loading...
         </h1>
       ) : (
-        <>{auth ? <Navigate to="dashboard" /> : <Outlet />}</>
+        <>{auth ? <Navigate to="/" /> : <Outlet />}</>
       )}
     </>
   );

@@ -489,6 +489,13 @@ nav ul {
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  position: relative;
+}
+.share h1 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 .share ul {
   display: flex;
