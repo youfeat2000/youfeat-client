@@ -37,15 +37,15 @@ function SocialShare({ userUrl, setUserUrl }) {
                 <FacebookIcon round={true} size={45} />
               </FacebookShareButton>
 
-              <TwitterShareButton url={userUrl}>
+              <TwitterShareButton url={userUrl} onClick={close}>
                 <TwitterIcon round={true} size={45} />
               </TwitterShareButton>
 
-              <LinkedinShareButton url={userUrl}>
+              <LinkedinShareButton url={userUrl} onClick={close}>
                 <LinkedinIcon round={true} size={45} />
               </LinkedinShareButton>
 
-              <WhatsappShareButton url={userUrl}>
+              <WhatsappShareButton url={userUrl} onClick={close}>
                 <WhatsappIcon round={true} size={45} />
               </WhatsappShareButton>
             </ul>
