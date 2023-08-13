@@ -3,11 +3,14 @@ import AuthContext from "../context/AuthContext";
 import { Outlet, useNavigate } from "react-router-dom";
 import ProfileContext from "../context/ProfileContext";
 
+//this keeps the user logedin even after the page is refreshed
 function PersistentLogin() {
   const { auth, setAuth, uri } = useContext(AuthContext);
   const { setUser } = useContext(ProfileContext);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  //this useEffect checks if theres a refreshToken cookie
   useEffect(() => {
     const handleRefresh = () => {
       fetch(`${uri}/refresh`, {
@@ -31,6 +34,8 @@ function PersistentLogin() {
 
     auth ? setLoading(false) : handleRefresh();
   }, []);
+
+  //this useEffect gets the user from the server and store it back in state
   useEffect(() => {
     fetch(`${uri}/user`, {
       method: "POST",

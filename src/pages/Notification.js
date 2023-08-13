@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import ProfileContext from "../../context/ProfileContext";
-import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 
 function Notification() {
   const [notification, setNotification] = useState([]);
@@ -8,6 +8,8 @@ function Notification() {
   const [newNotification, setNewNotification] = useState([]);
   const { user } = useContext(ProfileContext);
   const { uri } = useContext(AuthContext);
+
+  //function to get all notification
   useEffect(() => {
     setLoading(true);
     fetch(`${uri}/notification`, {

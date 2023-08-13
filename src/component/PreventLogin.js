@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { Navigate, Outlet } from "react-router-dom";
 
+//this component checks if the user is loged in to prevent them from loging in twice
 function PreventLogin() {
   const { auth, uri, setAuth, handleLogout } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+
+  //this useEffect gets back an accessToken if theres a refreshToken
   useEffect(() => {
     fetch(`${uri}/refresh`, {
       method: "POST",

@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { CgSearch } from "react-icons/cg";
-import { useNavigate } from "react-router-dom";
-import ProfileContext from "../../context/ProfileContext";
 
+//this is the search bar for big screen
 function Search({ handleChange }) {
   return (
     <div className="search2">

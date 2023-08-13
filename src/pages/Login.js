@@ -8,11 +8,14 @@ function Login() {
   const [formWidth, setFormWidth] = useState("40%");
   const [password, setPassword] = useState(null);
   const navigate = useNavigate();
+
+  //checks the width to inform the width of the form
   useEffect(() => {
     if (window.innerWidth <= 850) {
       setFormWidth("90%");
     }
   }, []);
+
   const handleLogin = (e) => {
     if (!email && !password) {
       alert("email/password required");
@@ -42,7 +45,7 @@ function Login() {
         e.target.style.backgroundColor = "#e03e03";
         e.target.innerText = "Login";
         setAuth(data);
-        navigate("/dashboard");
+        navigate("/");
       })
       .catch((err) => {
         e.target.disabled = false;

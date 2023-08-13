@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { CgPen } from "react-icons/cg";
-import ProfileContext from "../../context/ProfileContext";
+import ProfileContext from "../context/ProfileContext";
 import UserBioUpdate from "./UserBioUpdate";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 import { useParams } from "react-router-dom";
 
+//this is the component that contains the user bio, user name and email in the profile page
 function UserInfo({ foundUser }) {
   const userInfo = useRef();
   const [userId, setUserId] = useState(null);
@@ -43,6 +44,7 @@ function UserInfo({ foundUser }) {
       });
   };
 
+  //this useEffect checks if the user is a contestant to determine the length of this section
   useEffect(() => {
     if (window.innerWidth >= 850) {
       user?._id === foundUser[0]?._id && user?.contestant
@@ -51,6 +53,7 @@ function UserInfo({ foundUser }) {
     }
   }, [foundUser]);
 
+  //this function helps users copy the url of the profile
   const copyUri = (e) => {
     e.preventDefault();
     navigator.clipboard
@@ -70,6 +73,7 @@ function UserInfo({ foundUser }) {
           <p style={{ marginTop: "5px" }}>{foundUser[0]?.email}</p>
           <br />
           <p>
+            {/*checking if the user has a bio */}
             {foundUser[0]?.bio ? (
               <>
                 {foundUser[0]?.bio?.length >= 100

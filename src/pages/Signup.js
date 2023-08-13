@@ -12,6 +12,8 @@ function Signup() {
   const [password, setPassword] = useState(null);
   const [verifyPassword, setSetVerifyPassword] = useState(null);
   const navigate = useNavigate();
+
+  //send information to server
   const handleRegister = () => {
     if (password !== verifyPassword) {
       return alert("your password does not match");

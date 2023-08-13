@@ -14,6 +14,8 @@ export function ProfileProvider({ children }) {
     const i = users.filter((value) => value.video);
     setSearch(i);
   }, [users]);
+
+  //function to get user and set state
   useEffect(() => {
     fetch(`${uri}/user`, {
       method: "POST",
@@ -26,6 +28,7 @@ export function ProfileProvider({ children }) {
       .catch((err) => console.log(err));
   }, [auth]);
 
+  //function to get all users and set state
   useEffect(() => {
     fetch(`${uri}/users`, {
       method: "POST",
@@ -37,6 +40,7 @@ export function ProfileProvider({ children }) {
       .catch((err) => console.log(err));
   }, []);
 
+  //function to get all vote and set state
   useEffect(() => {
     fetch(`${uri}/allvote`, {
       method: "POST",

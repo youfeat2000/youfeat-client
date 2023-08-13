@@ -5,8 +5,12 @@ const AuthContext = createContext();
 export function ContextProvider({ children }) {
   const navigate = useNavigate();
   const [auth, setAuth] = useState(null);
+
+  //backend url to share it across the applicatoin
   //const uri = "http://localhost:3500";
   const uri = "https://youfeat-server.onrender.com";
+
+  //logout function
   const handleLogout = () => {
     fetch(`${uri}/logout`, {
       method: "POST",
@@ -18,6 +22,8 @@ export function ContextProvider({ children }) {
       })
       .catch((err) => console.log(err));
   };
+
+  //sends back the refresh token to get back an accessToken
   const handleRefresh = () => {
     fetch(`${uri}/refresh`, {
       method: "POST",

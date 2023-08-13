@@ -1,18 +1,22 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { CgProfile } from "react-icons/cg";
 import { AiFillHome, AiFillTrophy } from "react-icons/ai";
+import { FcAbout } from "react-icons/fc";
 import { ImProfile } from "react-icons/im";
 import { IoIosNotifications } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
-import AuthContext from "../../context/AuthContext";
-import ProfileContext from "../../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 
+//this is the sidebar
 function DashbordSideBar() {
   const { handleLogout, uri, auth } = useContext(AuthContext);
   const { user, toggle, setToggle } = useContext(ProfileContext);
   const navigate = useNavigate();
   const sidebarRef = useRef();
+
+  //this useEffect checks if it is a mobile screen to hide the sidebar or not
   useEffect(() => {
     if (window.innerWidth < 850) {
       if (toggle) {
@@ -35,44 +39,51 @@ function DashbordSideBar() {
         <h2 className="sidebar-exit" onClick={() => setToggle(true)}>
           &times;
         </h2>
-        <div onClick={() => navigate(`./profile/${user?._id}`)}>
-          <>
-            {user?.profileImage ? (
-              <span>
-                <img src={`${uri}/image/${user?.profileImage}`} alt="ropfile" />
-              </span>
-            ) : (
-              <span style={{ border: "none" }}>
-                <CgProfile />
-              </span>
-            )}
-          </>
+        <div onClick={() => handleNavigate(`/profile/${user?._id}`)}>
+          {auth && (
+            <>
+              {/*profile head*/}
+              {user?.profileImage ? (
+                <span>
+                  <img
+                    src={`${uri}/image/${user?.profileImage}`}
+                    alt="ropfile"
+                  />
+                </span>
+              ) : (
+                <span style={{ border: "none" }}>
+                  <CgProfile />
+                </span>
+              )}
+            </>
+          )}
           <p>{user?.fullName}</p>
           <p style={{ color: "#374254", overflow: "hidden" }}>{user?.email}</p>
         </div>
+        {/*navigation list*/}
         <ul>
-          <li onClick={() => handleNavigate("/dashboard")}>
+          <li onClick={() => handleNavigate("/")}>
             <AiFillHome style={{ marginRight: "20px", fontSize: "30px" }} />
             Home
           </li>
           {auth && (
-            <li onClick={() => handleNavigate(`./profile/${user?._id}`)}>
+            <li onClick={() => handleNavigate(`/profile/${user?._id}`)}>
               <ImProfile style={{ marginRight: "20px", fontSize: "30px" }} />
               Profile
             </li>
           )}
           {user?.role === 1999 && (
-            <li onClick={() => handleNavigate("./admin")}>
+            <li onClick={() => handleNavigate("/admin")}>
               <ImProfile style={{ marginRight: "20px", fontSize: "30px" }} />
               Admin
             </li>
           )}
-          <li onClick={() => handleNavigate("./rank")}>
+          <li onClick={() => handleNavigate("/rank")}>
             <AiFillTrophy style={{ marginRight: "20px", fontSize: "30px" }} />
             Ranking board
           </li>
           {auth && (
-            <li onClick={() => handleNavigate("./notification")}>
+            <li onClick={() => handleNavigate("/notification")}>
               <IoIosNotifications
                 style={{
                   marginRight: "20px",
@@ -82,6 +93,15 @@ function DashbordSideBar() {
               Notifications
             </li>
           )}
+          <li onClick={() => handleNavigate("/about")}>
+            <FcAbout
+              style={{
+                marginRight: "20px",
+                fontSize: "30px",
+              }}
+            />
+            About
+          </li>
           {auth && (
             <li onClick={handleLogout} style={{ color: "red" }}>
               <BiLogOutCircle

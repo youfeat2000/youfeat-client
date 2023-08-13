@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
-import ProfileContext from "../../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 
+//this is the section that shows the user video in the profile page
+//imported in the userVideoStatistics component
 function ProfileVideo({ foundUser }) {
   const { uri } = useContext(AuthContext);
   const { vote } = useContext(ProfileContext);

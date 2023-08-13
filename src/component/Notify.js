@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 
+//this pade is the popup that allows admin send notifcation
 function Notify({ sendTo, setSendTo }) {
   const { uri } = useContext(AuthContext);
   const [message, setMessage] = useState("");
 
+  //sending notification to the server
   const handleNotify = (e) => {
     e.target.style.backgroundColor = "grey";
     e.target.innerText = "Loading...";

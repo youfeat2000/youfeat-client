@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
-import AuthContext from "../../context/AuthContext";
-import ProfileContext from "../../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 
+//this is the popup that allows you upload a video
 function VideoUpload({ userId, setUserId }) {
   const [title, setTitle] = useState("");
   const [video, setVideo] = useState("");
@@ -13,6 +14,7 @@ function VideoUpload({ userId, setUserId }) {
   const { uri } = useContext(AuthContext);
   const { setUser } = useContext(ProfileContext);
 
+  //this useEffect checks if the video is too long
   useEffect(() => {
     if (videoLength >= 120) {
       setVideoLarge(true);
@@ -26,6 +28,7 @@ function VideoUpload({ userId, setUserId }) {
       setVideo(e.target.files[0]);
       setVideoName(e.target.files[0].name);
 
+      //create an instant of the selected video to check the length
       const vide = document.createElement("video");
       vide.preload = "metadata";
       vide.src = URL.createObjectURL(e.target.files[0]);
@@ -36,8 +39,7 @@ function VideoUpload({ userId, setUserId }) {
   };
 
   const handleUpload = (e) => {
-    console.log(videoLarge);
-    console.log(videoLength);
+    //checks if the video is too long
     if (videoLarge) {
       return alert("video duration too long");
     }
@@ -94,8 +96,6 @@ function VideoUpload({ userId, setUserId }) {
                 type="file"
                 className="video-input"
                 name="video"
-                aria-required
-                formTarget="video/mp4"
                 accept="video/*"
                 required
                 onChange={(e) => handleChange(e)}

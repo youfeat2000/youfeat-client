@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 
+//this is the video popup section that allows user watch videos
 function VideoPlayer({ videoName, setVideoName }) {
   const { uri } = useContext(AuthContext);
   return (

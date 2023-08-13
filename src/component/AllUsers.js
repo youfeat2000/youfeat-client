@@ -1,21 +1,24 @@
 import React, { useContext, useState } from "react";
-import ProfileContext from "../../context/ProfileContext";
-import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 import Notify from "./Notify";
 import { CgProfile } from "react-icons/cg";
-import { useNavigate } from "react-router-dom";
 
+//this component is imported and used in the Admin Page
 function AllUsers() {
+  //bring users and the api url from my context
   const { users } = useContext(ProfileContext);
   const { uri } = useContext(AuthContext);
   const [sendTo, setSendTo] = useState(null);
-  const navigate = useNavigate();
+
   return (
     <>
+      {/*mapping all the users*/}
       {users?.map((value) => {
         return (
           <div className="all-users" key={value?._id}>
             <div>
+              {/*checking to know is the user has a profile image */}
               {value?.profileImage ? (
                 <img
                   src={`${uri}/image/${value?.profileImage}`}
@@ -39,6 +42,7 @@ function AllUsers() {
           </div>
         );
       })}
+      {/*this is the notification popUp that helps admin write and send notification*/}
       <Notify sendTo={sendTo} setSendTo={setSendTo} />
     </>
   );

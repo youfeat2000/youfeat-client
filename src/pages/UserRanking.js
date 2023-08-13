@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import ProfileContext from "../../context/ProfileContext";
-import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 import { AiFillStar } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
@@ -11,6 +11,7 @@ function UserRanking() {
   const { uri } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  //sorting users according to their votes
   newUsers?.sort((a, b) => {
     let x = vote?.filter((v) => v?.userId === a?._id);
     let y = vote?.filter((v) => v?.userId === b?._id);
@@ -21,10 +22,12 @@ function UserRanking() {
     }
   });
 
+  //filter only the contestant
   useEffect(() => {
     const i = users.filter((value) => value.contestant);
     setNewUsers(i);
   }, [users]);
+
   return (
     <div className="ranking-con">
       {newUsers.map((value, index) => {

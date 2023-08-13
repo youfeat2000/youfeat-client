@@ -1,38 +1,35 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import RootRoute from "./pages/RootRoute";
-import DashboadRoot from "./pages/Dashboard/DashboadRoot";
-import Index from "./pages/Dashboard/Index";
+import DashboadRoot from "./component/DashboadRoot";
+import Index from "./pages/Index";
 import ProtectedRoute from "./component/ProtectedRoute";
 import PersistentLogin from "./component/PersistentLogin";
 import PreventLogin from "./component/PreventLogin";
-import Profile from "./pages/Dashboard/Profile";
-import Notification from "./pages/Dashboard/Notification";
-import Admin from "./pages/Dashboard/Admin";
-import UserRanking from "./pages/Dashboard/UserRanking";
+import Profile from "./pages/Profile";
+import Notification from "./pages/Notification";
+import Admin from "./pages/Admin";
+import UserRanking from "./pages/UserRanking";
+import About from "./pages/About";
 
 const App = () => {
   return (
     <Routes>
-      <Route element={<RootRoute />}>
-        <Route index element={<Home />} />
-      </Route>
       <Route element={<PreventLogin />}>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Route>
       <Route element={<PersistentLogin />}>
-        <Route path="/dashboard" element={<DashboadRoot />}>
+        <Route element={<DashboadRoot />}>
           <Route index element={<Index />} />
-          <Route path="/dashboard/profile/:id" element={<Profile />} />
+          <Route path="/profile/:id" element={<Profile />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard/notification" element={<Notification />} />
-            <Route path="/dashboard/admin" element={<Admin />} />
+            <Route path="/notification" element={<Notification />} />
+            <Route path="/admin" element={<Admin />} />
           </Route>
-          <Route path="/dashboard/rank" element={<UserRanking />} />
+          <Route path="/rank" element={<UserRanking />} />
+          <Route path="/about" element={<About />} />
         </Route>
       </Route>
       <Route

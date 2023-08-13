@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 
+//this is the popup that allows users edit their bio
 function UserBioUpdate({ userId, setUserId }) {
   const { uri, setUser } = useContext(AuthContext);
   const [bio, setBio] = useState();

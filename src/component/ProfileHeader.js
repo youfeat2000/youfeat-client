@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import { FaCamera } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import AuthContext from "../../context/AuthContext";
-import ProfileContext from "../../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 import { useParams } from "react-router-dom";
 
+//this is the profile header component
 function ProfileHeader({ foundUser }) {
   const { uri } = useContext(AuthContext);
   const { setUser, user } = useContext(ProfileContext);
   const params = useParams();
 
+  //this functions uploads the usser profile image
   const handleUploadProfile = (e) => {
     const formData = new FormData();
     formData.append("profile", e.target.files[0]);

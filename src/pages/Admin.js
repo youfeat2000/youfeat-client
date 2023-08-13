@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import AllUsers from "./AllUsers";
-import Notify from "./Notify";
+import AllUsers from "../component/AllUsers";
+import Notify from "../component/Notify";
 
+// admin page
 function Admin() {
   const [sendTo, setSendTo] = useState(null);
   return (

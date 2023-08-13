@@ -1,12 +1,15 @@
 import React, { useContext, useEffect } from "react";
-import ProfileContext from "../../context/ProfileContext";
+import ProfileContext from "../context/ProfileContext";
 
+//this section is after the navbar at the home page
+//it allows users navigate through catigories
 function VideoCatigory({ setUsers }) {
   const { users } = useContext(ProfileContext);
 
   useEffect(() => {
     setUsers(users);
   }, [users]);
+
   const handleFilter = (filter) => {
     const newVideoList = users?.filter((value) => {
       return value?.video?.catigory === filter;

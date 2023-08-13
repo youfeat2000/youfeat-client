@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import UserInfo from "./UserInfo";
-import UserVideo from "./UserVideo";
-import UserVideoStatistics from "./UserVideoStatistics";
-import ProfileHeader from "./ProfileHeader";
-import ProfileContext from "../../context/ProfileContext";
+import UserInfo from "../component/UserInfo";
+import UserVideo from "../component/UserVideo";
+import UserVideoStatistics from "../component/UserVideoStatistics";
+import ProfileHeader from "../component/ProfileHeader";
+import ProfileContext from "../context/ProfileContext";
 import { useParams } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 
 function Profile() {
   const [foundUser, setFoundUser] = useState([]);
@@ -13,11 +13,13 @@ function Profile() {
   const { uri } = useContext(AuthContext);
   const params = useParams();
 
+  //filter the user from users
   useEffect(() => {
     const singleUser = users?.filter((value) => value?._id === params.id);
     setFoundUser(singleUser);
   }, [users]);
 
+  //get all users
   useEffect(() => {
     fetch(`${uri}/users`, {
       method: "POST",
@@ -29,7 +31,6 @@ function Profile() {
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(user);
 
   return (
     <div className="profile">
