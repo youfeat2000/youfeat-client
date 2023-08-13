@@ -4,11 +4,13 @@ import ProfileContext from "../context/ProfileContext";
 import UserBioUpdate from "./UserBioUpdate";
 import AuthContext from "../context/AuthContext";
 import { useParams } from "react-router-dom";
+import SocialShare from "./SocialShare";
 
 //this is the component that contains the user bio, user name and email in the profile page
 function UserInfo({ foundUser }) {
   const userInfo = useRef();
   const [userId, setUserId] = useState(null);
+  const [userUrl, setUserUrl] = useState(null);
   const { uri } = useContext(AuthContext);
   const { user, setVote } = useContext(ProfileContext);
   const params = useParams();
@@ -56,10 +58,8 @@ function UserInfo({ foundUser }) {
   //this function helps users copy the url of the profile
   const copyUri = (e) => {
     e.preventDefault();
-    navigator.clipboard
-      .writeText(e.target.getAttribute("href"))
-      .then(() => (e.target.innerText = "Copied"))
-      .catch(() => alert("error"));
+    const i = e.target.getAttribute("href");
+    setUserUrl(i);
   };
   return (
     <>
@@ -103,12 +103,13 @@ function UserInfo({ foundUser }) {
             <button onClick={(e) => handleVote(e, foundUser)}>Vote</button>
           )}
           <button
-            href={`https://youfeat.onrender.com/dashboard/profile/${params.id}`}
+            href={`https://youfeat.onrender.com/profile/${params.id}`}
             onClick={(e) => copyUri(e)}>
-            Share link
+            Share
           </button>
         </div>
       </div>
+      <SocialShare userUrl={userUrl} setUserUrl={setUserUrl} />
     </>
   );
 }

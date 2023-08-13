@@ -18,18 +18,18 @@ function ProfileVideo({ foundUser }) {
       </span>
       <div>
         <table>
-          <thead>
+          <tr>
             <th>video Title</th>
             <th>description</th>
             <th>Votes</th>
             <th>View</th>
-          </thead>
-          <tbody>
+          </tr>
+          <tr>
             <td>{foundUser[0]?.video?.title}</td>
             <td>{foundUser[0]?.video?.description}</td>
             <td>{videoVote?.length}</td>
             <td>0</td>
-          </tbody>
+          </tr>
         </table>
         <br />
       </div>
