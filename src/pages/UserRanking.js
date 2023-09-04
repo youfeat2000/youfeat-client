@@ -48,7 +48,6 @@ function UserRanking() {
               )}
               <span>
                 <h3>{value?.fullName}</h3>
-                <p>{value?.email}</p>
                 {index === 0 && (
                   <p>
                     <AiFillStar color="goldenrod" />

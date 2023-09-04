@@ -41,6 +41,7 @@ function ProfileHeader({ foundUser }) {
             <input
               type="file"
               name="profile"
+              accept="image/*"
               onChange={(e) => handleUploadProfile(e)}
             />
           </span>

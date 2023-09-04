@@ -32,23 +32,77 @@ function SocialShare({ userUrl, setUserUrl }) {
             <h3>Share to</h3>
             <br />
             <ul>
-              <i onClick={CopyUrl}>
-                <BiLinkAlt />
-              </i>
-              <FacebookShareButton url={userUrl} onClick={close}>
+              <li style={{ display: "flex", flexDirection: "column" }}>
+                <i onClick={CopyUrl}>
+                  <BiLinkAlt />
+                </i>
+                <span
+                  style={{
+                    color: "grey",
+                    fontSize: "smaller",
+                    textAlign: "center",
+                  }}>
+                  Link
+                </span>
+              </li>
+              <FacebookShareButton
+                url={userUrl}
+                onClick={close}
+                style={{ display: "flex", flexDirection: "column" }}>
                 <FacebookIcon round={true} size={45} />
+                <span
+                  style={{
+                    color: "grey",
+                    fontSize: "smaller",
+                    textAlign: "center",
+                  }}>
+                  Facebook
+                </span>
               </FacebookShareButton>
 
-              <TwitterShareButton url={userUrl} onClick={close}>
+              <TwitterShareButton
+                url={userUrl}
+                onClick={close}
+                style={{ display: "flex", flexDirection: "column" }}>
                 <TwitterIcon round={true} size={45} />
+                <span
+                  style={{
+                    color: "grey",
+                    fontSize: "smaller",
+                    textAlign: "center",
+                  }}>
+                  Twitter
+                </span>
               </TwitterShareButton>
 
-              <LinkedinShareButton url={userUrl} onClick={close}>
+              <LinkedinShareButton
+                url={userUrl}
+                onClick={close}
+                style={{ display: "flex", flexDirection: "column" }}>
                 <LinkedinIcon round={true} size={45} />
+                <span
+                  style={{
+                    color: "grey",
+                    fontSize: "smaller",
+                    textAlign: "center",
+                  }}>
+                  Linkedin
+                </span>
               </LinkedinShareButton>
 
-              <WhatsappShareButton url={userUrl} onClick={close}>
+              <WhatsappShareButton
+                url={userUrl}
+                onClick={close}
+                style={{ display: "flex", flexDirection: "column" }}>
                 <WhatsappIcon round={true} size={45} />
+                <span
+                  style={{
+                    color: "grey",
+                    fontSize: "smaller",
+                    textAlign: "center",
+                  }}>
+                  Whatsapp
+                </span>
               </WhatsappShareButton>
             </ul>
           </div>

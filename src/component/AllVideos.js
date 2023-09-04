@@ -94,9 +94,6 @@ function AllVideos({ users }) {
                   )}
                   <div>
                     <h2>{value?.fullName}</h2>
-                    <p style={{ fontSize: "smaller", color: "#0e1424" }}>
-                      {value?.email}
-                    </p>
                   </div>
                 </span>
                 <div>

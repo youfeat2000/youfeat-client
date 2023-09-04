@@ -35,9 +35,9 @@ function Login() {
         if (res.ok) {
           res.json();
         } else if (res.status === 401) {
-          alert("wrong email/password");
+          throw "wrong email/password";
         } else if (res.status === 500) {
-          alert("server error");
+          throw "server error";
         }
       })
       .then((data) => {
@@ -48,6 +48,7 @@ function Login() {
         navigate("/");
       })
       .catch((err) => {
+        alert(err);
         e.target.disabled = false;
         e.target.style.backgroundColor = "#e03e03";
         e.target.innerText = "Login";

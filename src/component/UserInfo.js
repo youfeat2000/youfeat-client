@@ -71,6 +71,9 @@ function UserInfo({ foundUser }) {
             {foundUser[0]?.fullName}
           </p>
           <p style={{ marginTop: "5px" }}>{foundUser[0]?.email}</p>
+          <p>
+            State<b>:</b> {foundUser[0]?.state}
+          </p>
           <br />
           <p>
             {/*checking if the user has a bio */}
