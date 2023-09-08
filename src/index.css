@@ -318,7 +318,7 @@ body {
   position: relative;
 }
 .video-con {
-  max-height: 200px;
+  max-height: 300px;
   overflow: hidden;
 }
 .comment-icon {
