@@ -1,13 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 //this is the section that shows the user video in the profile page
 //imported in the userVideoStatistics component
 function ProfileVideo({ foundUser }) {
   const { uri } = useSelector((state) => state.AuthSlice);
-  const { vote } = useSelector((state) => state.UsersSlice);
+  const { vote, comments } = useSelector((state) => state.UsersSlice);
   const videoVote = vote.filter((i) => i.userId === foundUser[0]?._id);
+  const [userComment, setUserComment] = useState();
+  const params = useParams();
 
+  useEffect(() => {
+    const i = comments?.filter((v) => v?.userId === params.id);
+    setUserComment(i);
+  }, [comments]);
   return (
     <div className="user-video">
       <span>
@@ -18,16 +25,16 @@ function ProfileVideo({ foundUser }) {
       <div>
         <table>
           <tr>
-            <th>video Title</th>
-            <th>description</th>
+            <th>Video Title</th>
+            <th>Description</th>
             <th>Votes</th>
-            <th>View</th>
+            <th>Comments</th>
           </tr>
           <tr>
             <td>{foundUser[0]?.video?.title}</td>
             <td>{foundUser[0]?.video?.description}</td>
             <td>{videoVote?.length}</td>
-            <td>0</td>
+            <td>{userComment?.length}</td>
           </tr>
         </table>
       </div>
