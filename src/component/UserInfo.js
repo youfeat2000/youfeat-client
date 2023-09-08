@@ -1,19 +1,20 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CgPen } from "react-icons/cg";
-import ProfileContext from "../context/ProfileContext";
 import UserBioUpdate from "./UserBioUpdate";
-import AuthContext from "../context/AuthContext";
 import { useParams } from "react-router-dom";
 import SocialShare from "./SocialShare";
+import { useDispatch, useSelector } from "react-redux";
+import { setVotes } from "../redux/redux-slice/UsersSlice";
 
 //this is the component that contains the user bio, user name and email in the profile page
 function UserInfo({ foundUser }) {
   const userInfo = useRef();
   const [userId, setUserId] = useState(null);
   const [userUrl, setUserUrl] = useState(null);
-  const { uri } = useContext(AuthContext);
-  const { user, setVote } = useContext(ProfileContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
+  const { user } = useSelector((state) => state.UsersSlice);
   const params = useParams();
+  const dispatch = useDispatch();
 
   const handleVote = (e, value) => {
     e.target.innerText = "Loading...";
@@ -33,7 +34,7 @@ function UserInfo({ foundUser }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        setVote((i) => [...i, data]);
+        dispatch(setVotes((i) => [...i, data]));
         alert("your vote has been sent");
       })
       .catch((err) => {

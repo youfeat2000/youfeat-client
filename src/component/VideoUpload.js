@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 //this is the popup that allows you upload a video
 function VideoUpload({ userId, setUserId }) {
@@ -11,8 +10,8 @@ function VideoUpload({ userId, setUserId }) {
   const [videoName, setVideoName] = useState(null);
   const [catigory, setCatigory] = useState("");
   const [description, setDescription] = useState("");
-  const { uri } = useContext(AuthContext);
-  const { setUser } = useContext(ProfileContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
+  const { setUser } = useSelector((state) => state.UsersSlice);
 
   //this useEffect checks if the video is too long
   useEffect(() => {

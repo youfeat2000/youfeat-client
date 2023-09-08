@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllUsers from "../component/AllUsers";
 import Notify from "../component/Notify";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handleGetUser,
+  handleGetUsers,
+  handleGetVote,
+} from "../redux/redux-slice/UsersSlice";
 
 // admin page
 function Admin() {
   const [sendTo, setSendTo] = useState(null);
+  const { user, vote, users } = useSelector((state) => state.UsersSlice);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!user) {
+      dispatch(handleGetUser());
+    }
+  }, []);
+  useEffect(() => {
+    if (!users?.length) {
+      dispatch(handleGetUsers());
+    }
+  }, []);
+  useEffect(() => {
+    if (!vote?.length) {
+      dispatch(handleGetVote());
+    }
+  }, []);
   return (
     <div>
       <header className="admin-header">

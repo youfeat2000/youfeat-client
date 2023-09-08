@@ -1,15 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
-import ProfileContext from "../context/ProfileContext";
-import AuthContext from "../context/AuthContext";
+import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handleGetUser,
+  handleGetUsers,
+  handleGetVote,
+} from "../redux/redux-slice/UsersSlice";
 
 function UserRanking() {
-  const { users, vote } = useContext(ProfileContext);
+  const { users, user, vote, loading } = useSelector(
+    (state) => state.UsersSlice
+  );
   const [newUsers, setNewUsers] = useState([]);
-  const { uri } = useContext(AuthContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //sorting users according to their votes
   newUsers?.sort((a, b) => {
@@ -22,6 +29,22 @@ function UserRanking() {
     }
   });
 
+  useEffect(() => {
+    if (!users?.length) {
+      dispatch(handleGetUsers());
+    }
+  }, []);
+  useEffect(() => {
+    if (!vote?.length) {
+      dispatch(handleGetVote());
+    }
+  }, []);
+  useEffect(() => {
+    if (!user) {
+      dispatch(handleGetUser());
+    }
+  }, []);
+
   //filter only the contestant
   useEffect(() => {
     const i = users.filter((value) => value.contestant);
@@ -30,6 +53,9 @@ function UserRanking() {
 
   return (
     <div className="ranking-con">
+      <h1 style={{ alignSelf: "center", justifySelf: "center", color: "grey" }}>
+        {loading && "Loading..."}
+      </h1>
       {newUsers.map((value, index) => {
         const userVote = vote?.filter((v) => v?.userId === value?._id);
         return (

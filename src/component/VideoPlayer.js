@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import React from "react";
+import { useSelector } from "react-redux";
 
 //this is the video popup section that allows user watch videos
 function VideoPlayer({ videoName, setVideoName }) {
-  const { uri } = useContext(AuthContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
   return (
     <div>
       {videoName && (

@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FaCamera } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../redux/redux-slice/UsersSlice";
 
 //this is the profile header component
 function ProfileHeader({ foundUser }) {
-  const { uri } = useContext(AuthContext);
-  const { setUser, user } = useContext(ProfileContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
+  const { user } = useSelector((state) => state.UsersSlice);
   const params = useParams();
+  const dispatch = useDispatch();
 
   //this functions uploads the usser profile image
   const handleUploadProfile = (e) => {
@@ -23,7 +24,7 @@ function ProfileHeader({ foundUser }) {
       .then((res) => res.json())
       .then((data) => {
         setUser(data);
-        console.log(data);
+        dispatch(setUser(data));
         alert("profile updated");
       })
       .catch((err) => {

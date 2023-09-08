@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import { useSelector } from "react-redux";
 
 function Signup() {
-  const { uri } = useContext(AuthContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
   const [contestant, setContestant] = useState(false);
   const [fullName, setFullName] = useState(null);
   const [email, setEmail] = useState(null);
@@ -33,12 +33,22 @@ function Signup() {
           role: 2000,
         }),
       })
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.ok) {
+            res.json();
+          } else if (res.status === 403) {
+            throw "Email already in use";
+          } else if (res.status === 500) {
+            throw "Server error";
+          } else {
+            throw "Error please try again";
+          }
+        })
         .then((data) => {
           console.log(data);
           navigate("/login");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => alert(err));
     }
   };
   return (
@@ -49,7 +59,9 @@ function Signup() {
         <br />
         <div className="input-con">
           <div>
-            <label>Full name</label>
+            <label>
+              Full name<span style={{ color: "orangered" }}>*</span>
+            </label>
             <input
               type="text"
               placeholder="full name"
@@ -57,7 +69,9 @@ function Signup() {
               required
             />
             <br />
-            <label>Email</label>
+            <label>
+              Email<span style={{ color: "orangered" }}>*</span>
+            </label>
             <input
               type="text"
               placeholder="email"
@@ -65,7 +79,9 @@ function Signup() {
               required
             />
             <br />
-            <label>Phone number</label>
+            <label>
+              Phone number<span style={{ color: "orangered" }}>*</span>
+            </label>
             <input
               type="tel"
               placeholder="phone number"
@@ -75,7 +91,9 @@ function Signup() {
             <br />
           </div>
           <div>
-            <label>Password</label>
+            <label>
+              Password<span style={{ color: "orangered" }}>*</span>
+            </label>
             <input
               type="password"
               placeholder="password"
@@ -83,7 +101,9 @@ function Signup() {
               required
             />
             <br />
-            <label>Confirm password</label>
+            <label>
+              Confirm password<span style={{ color: "orangered" }}>*</span>
+            </label>
             <input
               type="password"
               placeholder="confirm password"
@@ -91,7 +111,9 @@ function Signup() {
               required
             />
             <br />
-            <label>State</label>
+            <label>
+              State<span style={{ color: "orangered" }}>*</span>
+            </label>
             <input
               type="text"
               placeholder="state"

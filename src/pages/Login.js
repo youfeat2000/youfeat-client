@@ -1,13 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setAuth } from "../redux/redux-slice/AuthSlice";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 function Login() {
-  const { setAuth, uri } = useContext(AuthContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
   const [email, setEmail] = useState(null);
   const [formWidth, setFormWidth] = useState("40%");
   const [password, setPassword] = useState(null);
+  const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //checks the width to inform the width of the form
   useEffect(() => {
@@ -44,7 +48,7 @@ function Login() {
         e.target.disabled = false;
         e.target.style.backgroundColor = "#e03e03";
         e.target.innerText = "Login";
-        setAuth(data);
+        dispatch(setAuth(data));
         navigate("/");
       })
       .catch((err) => {
@@ -71,11 +75,25 @@ function Login() {
         <br />
         <label>password</label>
         <input
-          type="password"
+          type={!toggle ? "password" : "text"}
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <span
+          style={{
+            position: "absolute",
+            top: "235px",
+            right: "40px",
+            fontSize: "1.5rem",
+            color: "#0e1424",
+          }}>
+          {!toggle ? (
+            <AiOutlineEye onClick={() => setToggle(true)} />
+          ) : (
+            <AiOutlineEyeInvisible onClick={() => setToggle(false)} />
+          )}
+        </span>
         <br />
         <button onClick={(e) => handleLogin(e)}>Login</button>
         <br />

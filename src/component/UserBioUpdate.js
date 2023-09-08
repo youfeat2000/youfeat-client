@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
-import AuthContext from "../context/AuthContext";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 //this is the popup that allows users edit their bio
 function UserBioUpdate({ userId, setUserId }) {
-  const { uri, setUser } = useContext(AuthContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
+  const { setUser } = useSelector((state) => state.UsersSlice);
   const [bio, setBio] = useState();
   const handleSubmit = (e) => {
     e.target.style.backgroundColor = "gray";

@@ -1,17 +1,24 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CgProfile } from "react-icons/cg";
 import VideoPlayer from "./VideoPlayer";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setVotes } from "../redux/redux-slice/UsersSlice";
+import { FaCommentDots } from "react-icons/fa";
+import Comment from "./Comment";
 
 //this page contains the list of all the video and is used in the Index page
 function AllVideos({ users }) {
   const [newUser, setNewUser] = useState(null);
-  const { uri, auth } = useContext(AuthContext);
-  const { user, setVote, vote, search } = useContext(ProfileContext);
+  const { uri, auth } = useSelector((state) => state.AuthSlice);
+  const { user, vote, search, comments } = useSelector(
+    (state) => state.UsersSlice
+  );
   const [videoName, setVideoName] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [commenterId, setCommenterId] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //this use effect filter all the users that has their video upladed
   useEffect(() => {
@@ -46,7 +53,7 @@ function AllVideos({ users }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          setVote((i) => [...i, data]);
+          dispatch(setVotes([...vote, data]));
           alert("your vote has been sent");
         })
         .catch((err) => {
@@ -62,10 +69,20 @@ function AllVideos({ users }) {
     }
   };
 
+  const handleComment = (id) => {
+    if (auth) {
+      setCommenterId(user?._id);
+      setUserId(id);
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <>
+      <Comment commenterId={commenterId} user={userId} setUser={setUserId} />
       {/*checking if videos */}
-      {search.length ? (
+      {search?.length ? (
         <div className="all-video">
           {/*video popUp */}
           <VideoPlayer videoName={videoName} setVideoName={setVideoName} />
@@ -74,7 +91,8 @@ function AllVideos({ users }) {
             {
               /*filtering the videos vote for the video */
             }
-            const videoVote = vote.filter((i) => i.userId === value?._id);
+            const videoVote = vote?.filter((i) => i.userId === value?._id);
+            const comment = comments?.filter((i) => i?.userId === value?._id);
             return (
               <div key={value?._id} className="video">
                 <div className="video-con">
@@ -90,7 +108,7 @@ function AllVideos({ users }) {
                       alt="profile"
                     />
                   ) : (
-                    <CgProfile size={"50px"} />
+                    <CgProfile size={"50px"} color="#0e1424" />
                   )}
                   <div>
                     <h2>{value?.fullName}</h2>
@@ -109,6 +127,10 @@ function AllVideos({ users }) {
                   </p>
                 </div>
                 <button onClick={(e) => handleVote(e, value)}>Vote</button>
+                <i className="comment-icon">
+                  <small>{comment?.length}</small>
+                  <FaCommentDots onClick={() => handleComment(value)} />
+                </i>
               </div>
             );
           })}

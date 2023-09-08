@@ -32,6 +32,7 @@ body {
   padding: 20px;
   width: 95%;
   border-radius: 10px;
+  position: relative;
 }
 .login input {
   width: 100%;
@@ -74,7 +75,7 @@ body {
 }
 
 /*nav*/
-nav {
+.nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -87,22 +88,21 @@ nav {
   left: 0;
   z-index: 3;
 }
-nav img {
+.nav img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   border: 3px solid #bdb9b9;
   background-color: #fafafa;
 }
-nav span {
+.nav span {
   font-size: 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0;
   margin-right: 20px;
 }
-nav h1 {
+.nav h1 {
   margin-left: 20px;
   font-size: 25px;
   font-weight: lighter;
@@ -110,9 +110,15 @@ nav h1 {
   color: #0e1424;
   display: block;
 }
-nav ul {
+.nav ul {
   position: fixed;
   top: 50px;
+}
+.search-con {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /*searchbar*/
@@ -262,7 +268,6 @@ nav ul {
   flex-wrap: wrap;
   width: 100%;
   min-height: 200px;
-  padding: 0;
   align-items: center;
   justify-content: center;
   background-color: #ececec;
@@ -310,10 +315,31 @@ nav ul {
   flex-direction: column;
   justify-content: flex-start;
   margin-top: 8px;
+  position: relative;
 }
 .video-con {
   max-height: 200px;
   overflow: hidden;
+}
+.comment-icon {
+  position: absolute;
+  color: #374254;
+  font-size: 30px;
+  right: 15px;
+  bottom: 15px;
+  cursor: pointer;
+}
+.comment-icon small {
+  font-size: 10px;
+  background-color: #9ba4b5;
+  border-radius: 50%;
+  padding: 3px;
+  height: 50px;
+  min-width: 50px;
+  color: #000;
+  font-weight: 600;
+  position: relative;
+  left: 30px;
 }
 .video span {
   display: flex;
@@ -361,14 +387,30 @@ nav ul {
 }
 .video-player h1 {
   color: #fafafa;
-  font-size: 35px;
+  font-size: 25px;
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 15px;
+  top: 10px;
   cursor: pointer;
   z-index: 4;
 }
 
+/*all comments*/
+.allcomment {
+  padding: 10px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.allcomment div {
+  padding: 15px;
+  background-color: #fafafa;
+  border-radius: 10px;
+  margin-top: 5px;
+  width: 100%;
+}
+.allcomment p {
+  margin-top: 5px;
+}
 /*Profile page*/
 .profile {
   width: 100%;
@@ -871,8 +913,10 @@ th {
   nav h1 {
     display: none;
   }
-  nav {
+  .nav {
     padding: 10px;
+  }
+  .search-con {
     justify-content: flex-end;
   }
   nav img {

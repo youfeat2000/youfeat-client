@@ -1,18 +1,18 @@
-import React, { useContext, useEffect } from "react";
-import ProfileContext from "../context/ProfileContext";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 //this section is after the navbar at the home page
 //it allows users navigate through catigories
 function VideoCatigory({ setUsers }) {
-  const { users } = useContext(ProfileContext);
+  const { users } = useSelector((state) => state.UsersSlice);
 
   useEffect(() => {
-    setUsers(users);
-  }, [users]);
+    if (users?.length) setUsers(users);
+  }, []);
 
   const handleFilter = (filter) => {
     const newVideoList = users?.filter((value) => {
-      return value?.video?.catigory === filter;
+      return value?.video?.catigory === filter && value?.video;
     });
     setUsers(newVideoList);
   };

@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
+import React from "react";
+import { useSelector } from "react-redux";
 
 //this is the section that shows the user video in the profile page
 //imported in the userVideoStatistics component
 function ProfileVideo({ foundUser }) {
-  const { uri } = useContext(AuthContext);
-  const { vote } = useContext(ProfileContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
+  const { vote } = useSelector((state) => state.UsersSlice);
   const videoVote = vote.filter((i) => i.userId === foundUser[0]?._id);
 
   return (
@@ -31,7 +30,6 @@ function ProfileVideo({ foundUser }) {
             <td>0</td>
           </tr>
         </table>
-        <br />
       </div>
     </div>
   );

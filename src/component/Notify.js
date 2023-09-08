@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
-import AuthContext from "../context/AuthContext";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 //this pade is the popup that allows admin send notifcation
 function Notify({ sendTo, setSendTo }) {
-  const { uri } = useContext(AuthContext);
+  const { uri } = useSelector((state) => state.AuthSlice);
   const [message, setMessage] = useState("");
 
   //sending notification to the server

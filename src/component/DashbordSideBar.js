@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { CgProfile } from "react-icons/cg";
 import { AiFillHome, AiFillTrophy } from "react-icons/ai";
 import { FcAbout } from "react-icons/fc";
@@ -6,14 +6,16 @@ import { ImProfile } from "react-icons/im";
 import { IoIosNotifications } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
+import { handleLogout, setAuth } from "../redux/redux-slice/AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setToggle } from "../redux/redux-slice/UsersSlice";
 
 //this is the sidebar
 function DashbordSideBar() {
-  const { handleLogout, uri, auth } = useContext(AuthContext);
-  const { user, toggle, setToggle } = useContext(ProfileContext);
+  const { uri, auth } = useSelector((state) => state.AuthSlice);
+  const { user, toggle } = useSelector((state) => state.UsersSlice);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const sidebarRef = useRef();
 
   //this useEffect checks if it is a mobile screen to hide the sidebar or not
@@ -29,14 +31,19 @@ function DashbordSideBar() {
     }
   }, [toggle]);
 
+  const logout = () => {
+    dispatch(handleLogout());
+    dispatch(setAuth(null));
+  };
+
   const handleNavigate = (e) => {
-    setToggle(true);
+    dispatch(setToggle(true));
     navigate(e);
   };
   return (
     <div className="side-bar" ref={sidebarRef}>
       <div>
-        <h2 className="sidebar-exit" onClick={() => setToggle(true)}>
+        <h2 className="sidebar-exit" onClick={() => dispatch(setToggle(true))}>
           &times;
         </h2>
         <div onClick={() => handleNavigate(`/profile/${user?._id}`)}>
@@ -103,7 +110,7 @@ function DashbordSideBar() {
             About
           </li>
           {auth && (
-            <li onClick={handleLogout} style={{ color: "red" }}>
+            <li onClick={logout} style={{ color: "red" }}>
               <BiLogOutCircle
                 style={{ marginRight: "20px", fontSize: "30px" }}
               />
