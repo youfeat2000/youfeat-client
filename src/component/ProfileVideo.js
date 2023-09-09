@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 //this is the section that shows the user video in the profile page
 //imported in the userVideoStatistics component
