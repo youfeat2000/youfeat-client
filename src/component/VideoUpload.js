@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../redux/redux-slice/UsersSlice";
 
 //this is the popup that allows you upload a video
 function VideoUpload({ userId, setUserId }) {
@@ -8,10 +9,10 @@ function VideoUpload({ userId, setUserId }) {
   const [videoLength, setVideoLength] = useState();
   const [videoLarge, setVideoLarge] = useState(false);
   const [videoName, setVideoName] = useState(null);
-  const [catigory, setCatigory] = useState("");
+  const [catigory, setCatigory] = useState(null);
   const [description, setDescription] = useState("");
   const { uri } = useSelector((state) => state.AuthSlice);
-  const { setUser } = useSelector((state) => state.UsersSlice);
+  const dispatch = useDispatch();
 
   //this useEffect checks if the video is too long
   useEffect(() => {
@@ -39,6 +40,9 @@ function VideoUpload({ userId, setUserId }) {
 
   const handleUpload = (e) => {
     //checks if the video is too long
+    if (catigory === null) {
+      return alert("select a catigory");
+    }
     if (videoLarge) {
       return alert("video duration too long");
     }
@@ -66,7 +70,7 @@ function VideoUpload({ userId, setUserId }) {
         }
       })
       .then((data) => {
-        setUser(data);
+        dispatch(setUser(data));
         alert("video updated");
       })
       .finally(() => {
@@ -118,6 +122,7 @@ function VideoUpload({ userId, setUserId }) {
               placeholder="catigory"
               required
               onChange={(e) => setCatigory(e.target.value)}>
+              <option value={null}>select a catigory</option>
               <option value="Dance">Dance</option>
               <option value="Music">Music</option>
               <option value="Commedy">Comedy</option>

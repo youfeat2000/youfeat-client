@@ -45,6 +45,22 @@ function UserRanking() {
     }
   }, []);
 
+  const handleFilter = (e) => {
+    console.log(e.target.value);
+    if (e.target.value === "All") {
+      const i = users.filter((value) => value.contestant);
+      setNewUsers(i);
+      console.log(i);
+    } else {
+      const i = users?.filter(
+        (v) =>
+          v?.video?.catigory?.toLowerCase() === e.target.value.toLowerCase() &&
+          v?.contestant
+      );
+      setNewUsers(i);
+    }
+  };
+
   //filter only the contestant
   useEffect(() => {
     const i = users.filter((value) => value.contestant);
@@ -52,55 +68,71 @@ function UserRanking() {
   }, [users]);
 
   return (
-    <div className="ranking-con">
-      <h1 style={{ alignSelf: "center", justifySelf: "center", color: "grey" }}>
-        {loading && "Loading..."}
-      </h1>
-      {newUsers.map((value, index) => {
-        const userVote = vote?.filter((v) => v?.userId === value?._id);
-        return (
-          <div
-            key={value?._id}
-            className="ranking"
-            onClick={(e) => navigate(`../profile/${value?._id}`)}>
-            <div>
-              {value?.profileImage ? (
-                <img
-                  src={`${uri}/image/${value?.profileImage}`}
-                  alt="profile"
-                />
-              ) : (
-                <CgProfile size={"60px"} />
-              )}
-              <span>
-                <h3>{value?.fullName}</h3>
-                {index === 0 && (
-                  <p>
-                    <AiFillStar color="goldenrod" />
-                    <AiFillStar color="goldenrod" />
-                    <AiFillStar color="goldenrod" />
-                  </p>
+    <div>
+      <div className="filter-rank">
+        <div>
+          <p>Rank by catigory</p>
+          <select onChange={(e) => handleFilter(e)}>
+            <option>All</option>
+            <option>Dance</option>
+            <option>Drama</option>
+            <option>Music</option>
+            <option>Comedy</option>
+            <option>Poetry/Speach</option>
+          </select>
+        </div>
+      </div>
+      <div className="ranking-con">
+        <h1
+          style={{ alignSelf: "center", justifySelf: "center", color: "grey" }}>
+          {loading && "Loading..."}
+        </h1>
+        {newUsers.map((value, index) => {
+          const userVote = vote?.filter((v) => v?.userId === value?._id);
+          return (
+            <div
+              key={value?._id}
+              className="ranking"
+              onClick={(e) => navigate(`../profile/${value?._id}`)}>
+              <div>
+                {value?.profileImage ? (
+                  <img
+                    src={`${uri}/image/${value?.profileImage}`}
+                    alt="profile"
+                  />
+                ) : (
+                  <CgProfile size={"60px"} />
                 )}
-                {index === 1 && (
-                  <p>
-                    <AiFillStar color="goldenrod" />
-                    <AiFillStar color="goldenrod" />
-                    <AiFillStar color="grey" />
-                  </p>
-                )}
-                {index === 2 && (
-                  <p>
-                    <AiFillStar color="goldenrod" />
-                    <AiFillStar color="grey" />
-                    <AiFillStar color="grey" />
-                  </p>
-                )}
-              </span>
+                <span>
+                  <h3>{value?.fullName}</h3>
+                  {index === 0 && (
+                    <p>
+                      <AiFillStar color="goldenrod" />
+                      <AiFillStar color="goldenrod" />
+                      <AiFillStar color="goldenrod" />
+                    </p>
+                  )}
+                  {index === 1 && (
+                    <p>
+                      <AiFillStar color="goldenrod" />
+                      <AiFillStar color="goldenrod" />
+                      <AiFillStar color="grey" />
+                    </p>
+                  )}
+                  {index === 2 && (
+                    <p>
+                      <AiFillStar color="goldenrod" />
+                      <AiFillStar color="grey" />
+                      <AiFillStar color="grey" />
+                    </p>
+                  )}
+                </span>
+              </div>
+              <p style={{ fontWeight: "bolder" }}>{userVote?.length} vote</p>
             </div>
-            <p style={{ fontWeight: "bolder" }}>{userVote?.length} vote</p>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }

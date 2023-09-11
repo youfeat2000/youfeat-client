@@ -876,6 +876,24 @@ th {
   cursor: pointer;
   justify-content: space-between;
 }
+.filter-rank {
+  width: 100%;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 65px;
+}
+.filter-rank div {
+  width: 30%;
+  height: 80%;
+  margin-right: 30px;
+}
+.filter-rank select {
+  width: 80%;
+  height: 50%;
+  font-size: 18px;
+}
 .ranking div {
   display: flex;
   align-items: center;
@@ -888,6 +906,30 @@ th {
 }
 .ranking span {
   margin-left: 10px;
+}
+/*About*/
+.about-action {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fafafa;
+  align-items: center;
+  font-weight: bold;
+  padding: 15px;
+  height: 70px;
+  border-bottom: 1px solid #9ba4b5;
+  cursor: pointer;
+}
+.about-details {
+  padding: 10px;
+  display: none;
+  border-bottom: 1px solid #9ba4b5;
+  background-color: #fafafa;
+}
+.about-action span {
+  transition: transform 300ms;
+}
+.about-details li {
+  padding: 10px 20px;
 }
 @media (min-width: 850px) {
   /*login and signup*/
@@ -1064,6 +1106,13 @@ th {
   }
   .admin-header {
     flex-direction: row;
+  }
+  /*about*/
+  .about-details li {
+    padding: 10px 20px;
+  }
+  .about-details {
+    padding: 10px;
   }
 }
 @media (min-aspect-ratio: 7/4) {
