@@ -1,31 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AllUsers from "../component/AllUsers";
 import Notify from "../component/Notify";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  handleGetUser,
-  handleGetUsers,
-  handleGetVote,
-} from "../redux/redux-slice/UsersSlice";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 
 // admin page
 function Admin() {
   const [sendTo, setSendTo] = useState(null);
-  const { user, vote, users } = useSelector((state) => state.UsersSlice);
-  const dispatch = useDispatch();
+  const { user, vote, users, setUser, setUsers, setVote } =
+    useContext(ProfileContext);
+  const { uri } = useContext(AuthContext);
   useEffect(() => {
     if (!user) {
-      dispatch(handleGetUser());
+      fetch(`${uri}/user`, {
+        method: "POST",
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
   useEffect(() => {
     if (!users?.length) {
-      dispatch(handleGetUsers());
+      fetch(`${uri}/users`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUsers(data);
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
   useEffect(() => {
     if (!vote?.length) {
-      dispatch(handleGetVote());
+      fetch(`${uri}/allvote`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => setVote(data))
+        .catch((err) => console.log(err));
     }
   }, []);
   return (

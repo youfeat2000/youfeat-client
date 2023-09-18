@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { CgProfile } from "react-icons/cg";
 import { AiFillHome, AiFillTrophy } from "react-icons/ai";
 import { FcAbout } from "react-icons/fc";
@@ -6,16 +6,14 @@ import { ImProfile } from "react-icons/im";
 import { IoIosNotifications } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
-import { handleLogout, setAuth } from "../redux/redux-slice/AuthSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { setToggle } from "../redux/redux-slice/UsersSlice";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 
 //this is the sidebar
 function DashbordSideBar() {
-  const { uri, auth } = useSelector((state) => state.AuthSlice);
-  const { user, toggle } = useSelector((state) => state.UsersSlice);
+  const { uri, auth, setAuth, handleLogout } = useContext(AuthContext);
+  const { user, toggle, setToggle } = useContext(ProfileContext);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const sidebarRef = useRef();
 
   //this useEffect checks if it is a mobile screen to hide the sidebar or not
@@ -32,18 +30,18 @@ function DashbordSideBar() {
   }, [toggle]);
 
   const logout = () => {
-    dispatch(handleLogout());
-    dispatch(setAuth(null));
+    handleLogout();
+    setAuth(null);
   };
 
   const handleNavigate = (e) => {
-    dispatch(setToggle(true));
+    setToggle(true);
     navigate(e);
   };
   return (
     <div className="side-bar" ref={sidebarRef}>
       <div>
-        <h2 className="sidebar-exit" onClick={() => dispatch(setToggle(true))}>
+        <h2 className="sidebar-exit" onClick={() => setToggle(true)}>
           &times;
         </h2>
         <div onClick={() => handleNavigate(`/profile/${user?._id}`)}>

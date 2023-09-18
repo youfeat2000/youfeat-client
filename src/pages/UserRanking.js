@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  handleGetUser,
-  handleGetUsers,
-  handleGetVote,
-} from "../redux/redux-slice/UsersSlice";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 
 function UserRanking() {
-  const { users, user, vote, loading } = useSelector(
-    (state) => state.UsersSlice
-  );
+  const { users, user, vote, loading, setUsers, setVote, setUser } =
+    useContext(ProfileContext);
   const [newUsers, setNewUsers] = useState([]);
-  const { uri } = useSelector((state) => state.AuthSlice);
+  const { uri } = useContext(AuthContext);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   //sorting users according to their votes
   newUsers?.sort((a, b) => {
@@ -31,17 +25,37 @@ function UserRanking() {
 
   useEffect(() => {
     if (!users?.length) {
-      dispatch(handleGetUsers());
+      fetch(`${uri}/users`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUsers(data);
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
   useEffect(() => {
     if (!vote?.length) {
-      dispatch(handleGetVote());
+      fetch(`${uri}/allvote`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => setVote(data))
+        .catch((err) => console.log(err));
     }
   }, []);
   useEffect(() => {
     if (!user) {
-      dispatch(handleGetUser());
+      fetch(`${uri}/user`, {
+        method: "POST",
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
 

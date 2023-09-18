@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setUser } from "../redux/redux-slice/UsersSlice";
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 
 //this is the popup that allows you upload a video
 function VideoUpload({ userId, setUserId }) {
@@ -11,8 +11,8 @@ function VideoUpload({ userId, setUserId }) {
   const [videoName, setVideoName] = useState(null);
   const [catigory, setCatigory] = useState(null);
   const [description, setDescription] = useState("");
-  const { uri } = useSelector((state) => state.AuthSlice);
-  const dispatch = useDispatch();
+  const { uri } = useContext(AuthContext);
+  const { setUser } = useContext(ProfileContext);
 
   //this useEffect checks if the video is too long
   useEffect(() => {
@@ -70,7 +70,7 @@ function VideoUpload({ userId, setUserId }) {
         }
       })
       .then((data) => {
-        dispatch(setUser(data));
+        setUser(data);
         alert("video updated");
       })
       .finally(() => {

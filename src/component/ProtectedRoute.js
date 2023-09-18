@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import AuthContext from "../context/AuthContext";
 
 //this component wraps the protected routes to prevent unauthorised users from access
 const ProtectedRoute = () => {
-  const { auth } = useSelector((state) => state.AuthSlice);
+  const { auth } = useContext(AuthContext);
 
   return <>{auth ? <Outlet /> : <Navigate to="/login" />}</>;
 };

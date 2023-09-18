@@ -1,19 +1,19 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useContext } from "react";
 import { CgProfile, CgSearch } from "react-icons/cg";
 import { FaHamburger } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Search from "./Search";
 import logo from "../public/youfeatlogo.png";
-import { useDispatch, useSelector } from "react-redux";
-import { setToggle, setSearch } from "../redux/redux-slice/UsersSlice";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 
 //this is the navigation bar
 function DashboardNav() {
-  const { user, toggle, users } = useSelector((state) => state.UsersSlice);
-  const { uri, auth } = useSelector((state) => state.AuthSlice);
+  const { user, toggle, users, setSearch, setToggle } =
+    useContext(ProfileContext);
+  const { uri, auth } = useContext(AuthContext);
   const [searchToggle, setSearchToggle] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   //this is the logic for the searchbar
   const handleChange = (e) => {
@@ -32,7 +32,7 @@ function DashboardNav() {
           value?.video)
       );
     });
-    dispatch(setSearch(i));
+    setSearch(i);
   };
 
   //this helps the user toggle the searchbar in smaller screen
@@ -70,9 +70,7 @@ function DashboardNav() {
               <h1>
                 <FaHamburger
                   onClick={() => {
-                    toggle
-                      ? dispatch(setToggle(false))
-                      : dispatch(setToggle(true));
+                    toggle ? setToggle(false) : setToggle(true);
                   }}
                 />
               </h1>

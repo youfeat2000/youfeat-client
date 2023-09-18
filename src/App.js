@@ -11,7 +11,7 @@ import Profile from "./pages/Profile";
 import Notification from "./pages/Notification";
 import Admin from "./pages/Admin";
 import UserRanking from "./pages/UserRanking";
-import About from "./pages/About";
+import About from "./pages/About/About";
 
 const App = () => {
   return (

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { handleGetUser } from "../redux/redux-slice/UsersSlice";
+import React, { useContext, useEffect, useState } from "react";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 
 function Notification() {
   const [notification, setNotification] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newNotification, setNewNotification] = useState([]);
-  const { user } = useSelector((state) => state.UsersSlice);
-  const { uri } = useSelector((state) => state.AuthSlice);
-  const dispatch = useDispatch();
+  const { user, setUser } = useContext(ProfileContext);
+  const { uri } = useContext(AuthContext);
 
   //function to get all notification
   useEffect(() => {
@@ -24,7 +23,15 @@ function Notification() {
 
   useEffect(() => {
     if (!user) {
-      dispatch(handleGetUser());
+      fetch(`${uri}/user`, {
+        method: "POST",
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
 

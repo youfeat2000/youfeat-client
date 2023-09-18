@@ -1,15 +1,15 @@
 import React, { useRef } from "react";
-import Intro from "./About/Intro";
-import OurStory from "./About/OurStory";
-import Mission from "./About/Mission";
-import Offer from "./About/Offer";
-import WyChooseUs from "./About/WyChooseUs";
-import Community from "./About/Community";
-import CallToAction from "./About/CallToAction";
-import HowItWorks from "./About/HowItWorks";
-import Partnership from "./About/Partnership";
-import Sponsorship from "./About/Sponsorship";
-import Advartise from "./About/Advartise";
+import Intro from "./Intro";
+import OurStory from "./OurStory";
+import Mission from "./Mission";
+import Offer from "./Offer";
+import WyChooseUs from "./WyChooseUs";
+import Community from "./Community";
+import CallToAction from "./CallToAction";
+import HowItWorks from "./HowItWorks";
+import Partnership from "./Partnership";
+import Sponsorship from "./Sponsorship";
+import Advartise from "./Advartise";
 import { IoIosArrowDropdown } from "react-icons/io";
 
 function About() {

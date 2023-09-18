@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import UserInfo from "../component/UserInfo";
 import UserVideo from "../component/UserVideo";
 import UserVideoStatistics from "../component/UserVideoStatistics";
 import ProfileHeader from "../component/ProfileHeader";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import AllComment from "../component/AllComment";
-import {
-  handleGetUser,
-  handleGetUsers,
-  handleGetVote,
-  handleGetComments,
-} from "../redux/redux-slice/UsersSlice";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 
 function Profile() {
   const [foundUser, setFoundUser] = useState([]);
-  const { users, user, vote, comments } = useSelector(
-    (state) => state.UsersSlice
-  );
+  const {
+    users,
+    user,
+    vote,
+    comments,
+    setComment,
+    setVote,
+    setUsers,
+    setUser,
+  } = useContext(ProfileContext);
+  const { uri } = useContext(AuthContext);
   const params = useParams();
-  const dispatch = useDispatch();
   //filter the user from users
   useEffect(() => {
     const singleUser = users?.filter((value) => value?._id === params.id);
@@ -29,22 +31,48 @@ function Profile() {
   //get all users
   useEffect(() => {
     if (!users?.length) {
-      dispatch(handleGetUsers());
+      fetch(`${uri}/users`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUsers(data);
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
   useEffect(() => {
     if (!comments?.length) {
-      dispatch(handleGetComments());
+      fetch(`${uri}/allcomment`, {
+        method: "POST",
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => setComment(data))
+        .catch((err) => console.log(err));
     }
   }, []);
   useEffect(() => {
     if (!user) {
-      dispatch(handleGetUser());
+      fetch(`${uri}/user`, {
+        method: "POST",
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
   useEffect(() => {
     if (!vote?.length) {
-      dispatch(handleGetVote());
+      fetch(`${uri}/allvote`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => setVote(data))
+        .catch((err) => console.log(err));
     }
   }, []);
 

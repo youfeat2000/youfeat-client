@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ProfileContext from "../context/ProfileContext";
 
 function AllComment() {
   const [userComment, setUserComment] = useState();
-  const { comments, users } = useSelector((state) => state.UsersSlice);
+  const { comments, users } = useContext(ProfileContext);
   const params = useParams();
 
   useEffect(() => {

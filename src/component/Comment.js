@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setComments } from "../redux/redux-slice/UsersSlice";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 
 function Comment({ user, commenterId, setUser }) {
-  const [comment, setComment] = useState();
-  const { uri } = useSelector((state) => state.AuthSlice);
-  const { comments } = useSelector((state) => state.UsersSlice);
+  const [comments, setComments] = useState();
+  const { uri } = useContext(AuthContext);
+  const { comment, setComment } = useContext(ProfileContext);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleComment = (e) => {
     e.target.innerText = "Loading...";
@@ -17,7 +16,7 @@ function Comment({ user, commenterId, setUser }) {
     const userId = user?._id;
     const body = {
       userId,
-      comment,
+      comments,
       commenterId,
     };
     console.log(body);
@@ -29,7 +28,7 @@ function Comment({ user, commenterId, setUser }) {
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
-      .then((data) => dispatch(setComments([...comments, data])))
+      .then((data) => setComment([...comment, data]))
       .catch((err) => console.log(err))
       .finally(() => {
         setUser(null);
@@ -46,7 +45,7 @@ function Comment({ user, commenterId, setUser }) {
             <h4>leave a comment for {user?.fullName}</h4>
             <textarea
               placeholder="Comment..."
-              onChange={(e) => setComment(e.target.value)}
+              onChange={(e) => setComments(e.target.value)}
             />
             <button onClick={(e) => handleComment(e)}>Send</button>
             <button onClick={() => navigate(`/profile/${user._id}/#comment`)}>

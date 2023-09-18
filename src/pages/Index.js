@@ -1,39 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AllVideos from "../component/AllVideos";
 import VideoCatigory from "../component/VideoCatigory";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  handleGetComments,
-  handleGetUsers,
-  handleGetVote,
-} from "../redux/redux-slice/UsersSlice";
+import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../context/AuthContext";
 
 function Index() {
-  const [users, setUsers] = useState();
-  const { vote, comments } = useSelector((state) => state.UsersSlice);
-  const dispatch = useDispatch();
-
+  const [users, setIUsers] = useState();
+  const { uri } = useContext(AuthContext);
+  const { vote, comment, setVote, setComment, setUsers } =
+    useContext(ProfileContext);
   useEffect(() => {
     if (!vote?.length) {
-      dispatch(handleGetVote());
+      fetch(`${uri}/allvote`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => setVote(data))
+        .catch((err) => console.log(err));
     }
   }, []);
 
   useEffect(() => {
-    if (!comments?.length) {
-      dispatch(handleGetComments());
+    if (!comment?.length) {
+      fetch(`${uri}/allcomment`, {
+        method: "POST",
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => setComment(data))
+        .catch((err) => console.log(err));
     }
   }, []);
 
   useEffect(() => {
     if (!users?.length) {
-      dispatch(handleGetUsers());
+      fetch(`${uri}/users`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUsers(data);
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
 
   return (
     <div className="index">
-      <VideoCatigory setUsers={setUsers} />
+      <VideoCatigory setUsers={setIUsers} />
       <AllVideos users={users} videoUri={"video"} />
     </div>
   );

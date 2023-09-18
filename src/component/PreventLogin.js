@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setAuth, handleLogout } from "../redux/redux-slice/AuthSlice";
+import ProfileContext from "../context/ProfileContext";
 
 //this component checks if the user is loged in to prevent them from loging in twice
 function PreventLogin() {
-  const { auth, uri } = useSelector((state) => state.AuthSlice);
-  const dispatch = useDispatch();
+  const { auth, uri, setAuth, handleLogout } = useContext(ProfileContext);
   const [loading, setLoading] = useState(true);
 
   //this useEffect gets back an accessToken if theres a refreshToken
@@ -19,10 +17,10 @@ function PreventLogin() {
         if (res.ok) {
           return res.json();
         } else if (res.status === 401) {
-          dispatch(handleLogout());
+          handleLogout();
         }
       })
-      .then((data) => dispatch(setAuth(data)))
+      .then((data) => setAuth(data))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   }, []);

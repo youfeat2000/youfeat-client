@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import VideoPlayer from "./VideoPlayer";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setVotes } from "../redux/redux-slice/UsersSlice";
 import { FaCommentDots } from "react-icons/fa";
 import Comment from "./Comment";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 
 //this page contains the list of all the video and is used in the Index page
 function AllVideos({ users }) {
   const [newUser, setNewUser] = useState(null);
-  const { uri, auth } = useSelector((state) => state.AuthSlice);
-  const { user, vote, search, comments } = useSelector(
-    (state) => state.UsersSlice
-  );
+  const { uri, auth } = useContext(AuthContext);
+  const { user, vote, search, comment, setVote } = useContext(ProfileContext);
   const [videoName, setVideoName] = useState(null);
   const [userId, setUserId] = useState(null);
   const [commenterId, setCommenterId] = useState(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   //this use effect filter all the users that has their video upladed
   useEffect(() => {
@@ -53,7 +50,7 @@ function AllVideos({ users }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          dispatch(setVotes([...vote, data]));
+          setVote([...vote, data]);
           alert("your vote has been sent");
         })
         .catch((err) => {
@@ -92,7 +89,7 @@ function AllVideos({ users }) {
               /*filtering the videos vote for the video */
             }
             const videoVote = vote?.filter((i) => i.userId === value?._id);
-            const comment = comments?.filter((i) => i?.userId === value?._id);
+            const comments = comment?.filter((i) => i?.userId === value?._id);
             return (
               <div key={value?._id} className="video">
                 <div className="video-con">
@@ -128,7 +125,7 @@ function AllVideos({ users }) {
                 </div>
                 <button onClick={(e) => handleVote(e, value)}>Vote</button>
                 <i className="comment-icon">
-                  <small>{comment?.length}</small>
+                  <small>{comments?.length}</small>
                   <FaCommentDots onClick={() => handleComment(value)} />
                 </i>
               </div>

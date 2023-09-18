@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import AuthContext from "../context/AuthContext";
 
 function Signup() {
-  const { uri } = useSelector((state) => state.AuthSlice);
+  const { uri } = useContext(AuthContext);
   const [contestant, setContestant] = useState(false);
   const [fullName, setFullName] = useState(null);
   const [email, setEmail] = useState(null);

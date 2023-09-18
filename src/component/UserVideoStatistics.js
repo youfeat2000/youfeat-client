@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProfileVideo from "./ProfileVideo";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import ProfileContext from "../context/ProfileContext";
 
 //this section checks if the user has a video and display it
 function UserVideoStatistics({ foundUser }) {
-  const { user } = useSelector((state) => state.UsersSlice);
+  const { user } = useContext(ProfileContext);
   const params = useParams();
   return (
     <>

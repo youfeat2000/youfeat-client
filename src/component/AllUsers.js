@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Notify from "./Notify";
 import { CgProfile } from "react-icons/cg";
-import { useSelector } from "react-redux";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 
 //this component is imported and used in the Admin Page
 function AllUsers() {
   //bring users and the api url from my context
-  const { users } = useSelector((state) => state.UsersSlice);
-  const { uri } = useSelector((state) => state.AuthSlice);
+  const { users } = useContext(ProfileContext);
+  const { uri } = useContext(AuthContext);
   const [sendTo, setSendTo] = useState(null);
 
   return (

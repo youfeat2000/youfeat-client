@@ -1,21 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 
 //this is the section that shows the user video in the profile page
 //imported in the userVideoStatistics component
 function ProfileVideo({ foundUser }) {
-  const { uri } = useSelector((state) => state.AuthSlice);
-  const { vote, comments } = useSelector((state) => state.UsersSlice);
+  const { uri } = useContext(AuthContext);
+  const { vote, comment } = useContext(ProfileContext);
   const videoVote = vote.filter((i) => i.userId === foundUser[0]?._id);
   const [userComment, setUserComment] = useState();
   const params = useParams();
 
   useEffect(() => {
-    const i = comments?.filter((v) => v?.userId === params.id);
+    const i = comment?.filter((v) => v?.userId === params.id);
     setUserComment(i);
-  }, [comments]);
+  }, [comment]);
   return (
     <div className="user-video">
       <span>

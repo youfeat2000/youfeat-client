@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setAuth } from "../redux/redux-slice/AuthSlice";
-import { setUser } from "../redux/redux-slice/UsersSlice";
+import AuthContext from "../context/AuthContext";
+import ProfileContext from "../context/ProfileContext";
 
 //this keeps the user logedin even after the page is refreshed
 function PersistentLogin() {
-  const { auth, uri } = useSelector((state) => state.AuthSlice);
+  const { auth, uri, setAuth } = useContext(AuthContext);
+  const { setUser } = useContext(ProfileContext);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   //this useEffect checks if theres a refreshToken cookie
   useEffect(() => {
@@ -24,7 +23,7 @@ function PersistentLogin() {
           }
         })
         .then((data) => {
-          dispatch(setAuth(data));
+          setAuth(data);
           setLoading(false);
         })
         .catch((err) => {
@@ -44,7 +43,7 @@ function PersistentLogin() {
     })
       .then((res) => res.json())
       .then((data) => {
-        dispatch(setUser(data));
+        setUser(data);
       })
       .catch((err) => console.log(err));
   }, [auth]);
