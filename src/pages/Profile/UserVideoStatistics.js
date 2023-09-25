@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ProfileVideo from "./ProfileVideo";
 import { useParams } from "react-router-dom";
-import ProfileContext from "../context/ProfileContext";
+import ProfileContext from "../../context/ProfileContext";
 
 //this section checks if the user has a video and display it
 function UserVideoStatistics({ foundUser }) {

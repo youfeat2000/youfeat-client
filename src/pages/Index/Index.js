@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import AllVideos from "../component/AllVideos";
-import VideoCatigory from "../component/VideoCatigory";
-import ProfileContext from "../context/ProfileContext";
-import AuthContext from "../context/AuthContext";
+import AllVideos from "./AllVideos";
+import VideoCatigory from "./VideoCatigory";
+import ProfileContext from "../../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
 
 function Index() {
   const [users, setIUsers] = useState();

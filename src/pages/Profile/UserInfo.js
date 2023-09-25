@@ -3,8 +3,9 @@ import { CgPen } from "react-icons/cg";
 import UserBioUpdate from "./UserBioUpdate";
 import { useParams } from "react-router-dom";
 import SocialShare from "./SocialShare";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
+import {GiCheckMark} from 'react-icons/gi'
 
 //this is the component that contains the user bio, user name and email in the profile page
 function UserInfo({ foundUser }) {
@@ -12,8 +13,16 @@ function UserInfo({ foundUser }) {
   const [userId, setUserId] = useState(null);
   const [userUrl, setUserUrl] = useState(null);
   const { uri } = useContext(AuthContext);
-  const { user, setVote } = useContext(ProfileContext);
+  const { user, setVote, vote } = useContext(ProfileContext);
+  const [yourVote, setYourVote] = useState([])
   const params = useParams();
+
+
+  useEffect(()=>{
+    const userVotes = vote.filter((i)=> i?.userId === foundUser[0]?._id)
+    const corentUserVote = userVotes.filter(i=> i?.voterId === user?._id)
+    setYourVote(corentUserVote)
+  }, [vote, foundUser])
 
   const handleVote = (e, value) => {
     e.target.innerText = "Loading...";
@@ -103,7 +112,7 @@ function UserInfo({ foundUser }) {
         </article>
         <div>
           {foundUser[0]?.contestant && (
-            <button onClick={(e) => handleVote(e, foundUser)}>Vote</button>
+            <button onClick={(e) => handleVote(e, foundUser)}>{!yourVote?.length ? 'Vote' : <GiCheckMark size={18}/>}</button>
           )}
           <button
             href={`https://youfeat.onrender.com/profile/${params.id}`}

@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { FaCamera } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { useParams } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
 
 //this is the profile header component
 function ProfileHeader({ foundUser }) {

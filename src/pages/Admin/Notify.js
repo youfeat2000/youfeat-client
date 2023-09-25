@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 //this pade is the popup that allows admin send notifcation
 function Notify({ sendTo, setSendTo }) {

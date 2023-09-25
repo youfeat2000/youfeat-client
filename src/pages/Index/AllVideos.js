@@ -3,9 +3,10 @@ import { CgProfile } from "react-icons/cg";
 import VideoPlayer from "./VideoPlayer";
 import { useNavigate } from "react-router-dom";
 import { FaCommentDots } from "react-icons/fa";
+import {GiCheckMark} from 'react-icons/gi'
 import Comment from "./Comment";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
 
 //this page contains the list of all the video and is used in the Index page
 function AllVideos({ users }) {
@@ -88,8 +89,10 @@ function AllVideos({ users }) {
             {
               /*filtering the videos vote for the video */
             }
-            const videoVote = vote?.filter((i) => i.userId === value?._id);
+            const videoVote = vote?.filter((i) => i?.userId === value?._id);
+            const yourVote = videoVote?.filter((i) => i?.voterId === user?._id)
             const comments = comment?.filter((i) => i?.userId === value?._id);
+            console.log(yourVote)
             return (
               <div key={value?._id} className="video">
                 <div className="video-con">
@@ -123,7 +126,7 @@ function AllVideos({ users }) {
                     <b>{videoVote?.length}V</b>
                   </p>
                 </div>
-                <button onClick={(e) => handleVote(e, value)}>Vote</button>
+                <button onClick={(e) => handleVote(e, value)}>{!yourVote?.length ? 'Vote' : <GiCheckMark size={18}/>}</button>
                 <i className="comment-icon">
                   <small>{comments?.length}</small>
                   <FaCommentDots onClick={() => handleComment(value)} />

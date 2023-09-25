@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
-import UserInfo from "../component/UserInfo";
-import UserVideo from "../component/UserVideo";
-import UserVideoStatistics from "../component/UserVideoStatistics";
-import ProfileHeader from "../component/ProfileHeader";
+import UserInfo from "./UserInfo";
+import UserVideo from "./UserVideo";
+import UserVideoStatistics from "./UserVideoStatistics";
+import ProfileHeader from "./ProfileHeader";
 import { useParams } from "react-router-dom";
-import AllComment from "../component/AllComment";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
+import AllComment from "./AllComment";
+import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
 
 function Profile() {
   const [foundUser, setFoundUser] = useState([]);

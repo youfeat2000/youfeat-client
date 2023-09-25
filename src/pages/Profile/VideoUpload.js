@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
 
 //this is the popup that allows you upload a video
 function VideoUpload({ userId, setUserId }) {

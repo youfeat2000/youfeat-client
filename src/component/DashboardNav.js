@@ -82,10 +82,12 @@ function DashboardNav() {
               {auth && (
                 <>
                   {user?.profileImage ? (
-                    <img
-                      src={`${uri}/image/${user?.profileImage}`}
-                      onClick={() => navigate(`profile/${user?._id}`)}
-                    />
+                    <small>
+                      <img
+                        src={`${uri}/image/${user?.profileImage}`}
+                        onClick={() => navigate(`profile/${user?._id}`)}
+                      />
+                    </small>
                   ) : (
                     <CgProfile />
                   )}

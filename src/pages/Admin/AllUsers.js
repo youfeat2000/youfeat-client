@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import Notify from "./Notify";
 import { CgProfile } from "react-icons/cg";
-import AuthContext from "../context/AuthContext";
-import ProfileContext from "../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
 
 //this component is imported and used in the Admin Page
 function AllUsers() {

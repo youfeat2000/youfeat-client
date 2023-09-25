@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import ProfileContext from "../context/ProfileContext";
+import ProfileContext from "../../context/ProfileContext";
 
 //this section is after the navbar at the home page
 //it allows users navigate through catigories

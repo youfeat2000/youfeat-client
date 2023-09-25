@@ -44,13 +44,13 @@ function Notification() {
 
   return (
     <div className="notification">
-      {notification.length ? (
-        newNotification.map((value) => {
+      {notification?.length ? (
+        newNotification?.map((value) => {
           return (
             <div>
-              <h3>{value.from}</h3>
-              <p>{value.message}</p>
-              <span>{value.date}</span>
+              <h3>{value?.from}</h3>
+              <p>{value?.message}</p>
+              <span>{value?.date?.slice(0, 15)}</span>
             </div>
           );
         })

@@ -3,13 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import DashboadRoot from "./component/DashboadRoot";
-import Index from "./pages/Index";
+import Index from "./pages/Index/Index";
 import ProtectedRoute from "./component/ProtectedRoute";
 import PersistentLogin from "./component/PersistentLogin";
 import PreventLogin from "./component/PreventLogin";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile/Profile";
 import Notification from "./pages/Notification";
-import Admin from "./pages/Admin";
+import Admin from "./pages/Admin/Admin";
 import UserRanking from "./pages/UserRanking";
 import About from "./pages/About/About";
 

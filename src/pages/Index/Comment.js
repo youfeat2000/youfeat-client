@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ProfileContext from "../context/ProfileContext";
-import AuthContext from "../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
 
 function Comment({ user, commenterId, setUser }) {
   const [comments, setComments] = useState();

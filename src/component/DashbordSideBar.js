@@ -44,17 +44,23 @@ function DashbordSideBar() {
         <h2 className="sidebar-exit" onClick={() => setToggle(true)}>
           &times;
         </h2>
-        <div onClick={() => handleNavigate(`/profile/${user?._id}`)}>
+        <div
+          onClick={() => handleNavigate(`/profile/${user?._id}`)}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
           {auth && (
             <>
               {/*profile head*/}
               {user?.profileImage ? (
-                <span>
+                <small>
                   <img
                     src={`${uri}/image/${user?.profileImage}`}
                     alt="ropfile"
                   />
-                </span>
+                </small>
               ) : (
                 <span style={{ border: "none" }}>
                   <CgProfile />
