@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import emailjs from 'emailjs-com'
 
 function Signup() {
   const { uri } = useContext(AuthContext);
@@ -10,9 +11,27 @@ function Signup() {
   const [state, setState] = useState(null);
   const [PhoneNumber, setPoneNumber] = useState(null);
   const [password, setPassword] = useState(null);
-  const [verifyPassword, setSetVerifyPassword] = useState(null);
+  const [verifyPassword, setVerifyPassword] = useState(null);
   const navigate = useNavigate();
 
+  const sendEmail = (code) => {
+    console.log(code?.toString())
+    const emailParams = {
+      to_email: email,
+      message: code?.toString(),
+      to_name: fullName,
+    };
+    emailjs
+      .send("service_o7zsqgf", "template_xjt6l7d", emailParams, "hSaHRFDu3n5QYIXsK")
+      .then((response) => {
+        navigate('../confirmemailcode')
+        console.log("Email sent successfully:", response);
+      })
+      .catch((error) => {
+        console.log("Email sending failed:", error);
+      });
+  };
+   
   //send information to server
   const handleRegister = () => {
     if (password !== verifyPassword) {
@@ -31,11 +50,12 @@ function Signup() {
           state,
           contestant,
           role: 2000,
+          code: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000,
         }),
       })
         .then((res) => {
           if (res.ok) {
-            res.json();
+           return res.json();
           } else if (res.status === 403) {
             throw "Email already in use";
           } else if (res.status === 500) {
@@ -45,12 +65,14 @@ function Signup() {
           }
         })
         .then((data) => {
-          console.log(data);
-          navigate("/login");
+          console.log(data, data?.code)
+          sendEmail(data?.code)
         })
         .catch((err) => alert(err));
     }
   };
+  
+
   return (
     <div className="login" onSubmit={(e) => e.preventDefault()}>
       <br />
@@ -107,7 +129,7 @@ function Signup() {
             <input
               type="password"
               placeholder="confirm password"
-              onChange={(e) => setSetVerifyPassword(e.target.value)}
+              onChange={(e) => setVerifyPassword(e.target.value)}
               required
             />
             <br />

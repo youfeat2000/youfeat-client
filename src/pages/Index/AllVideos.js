@@ -86,9 +86,7 @@ function AllVideos({ users }) {
           <VideoPlayer videoName={videoName} setVideoName={setVideoName} />
           {/*mapping through all the video */}
           {newUser?.map((value) => {
-            {
               /*filtering the videos vote for the video */
-            }
             const videoVote = vote?.filter((i) => i?.userId === value?._id);
             const yourVote = videoVote?.filter((i) => i?.voterId === user?._id)
             const comments = comment?.filter((i) => i?.userId === value?._id);
@@ -136,7 +134,7 @@ function AllVideos({ users }) {
           })}
         </div>
       ) : (
-        <h2 style={{ color: "black", textAlign: "center" }}>No result...</h2>
+        <h2 style={{ color: "black", textAlign: "center" }}>No Video for Now!</h2>
       )}
     </>
   );

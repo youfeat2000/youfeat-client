@@ -93,6 +93,8 @@ function Login() {
           )}
         </span>
         <br />
+        <p style={{color:'green', cursor:'pointer', fontWeight: 600}} onClick={()=>navigate('../resetpassword')}>Forgot Password</p>
+        <br/>
         <button onClick={(e) => handleLogin(e)}>Login</button>
         <br />
         <p style={{ fontSize: "larger", color: "white" }}>

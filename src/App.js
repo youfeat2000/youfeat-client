@@ -12,13 +12,17 @@ import Notification from "./pages/Notification";
 import Admin from "./pages/Admin/Admin";
 import UserRanking from "./pages/UserRanking";
 import About from "./pages/About/About";
+import ConfirmEmailCode from "./pages/ConfirmEmailCode"
+import ForgetPassword from "./pages/ForgetPassword";
 
 const App = () => {
   return (
     <Routes>
       <Route element={<PreventLogin />}>
         <Route path="/login" element={<Login />} />
+        <Route path='confirmemailcode' element={<ConfirmEmailCode/>}/>
         <Route path="/signup" element={<Signup />} />
+        <Route path="/resetpassword" element={<ForgetPassword />} />
       </Route>
       <Route element={<PersistentLogin />}>
         <Route element={<DashboadRoot />}>
