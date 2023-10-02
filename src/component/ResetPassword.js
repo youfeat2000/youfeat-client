@@ -2,13 +2,16 @@ import React, {useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 
-function ResetPassword({email}) {
+function ResetPassword({email, handleResend}) {
     const [newPassword, setNewPassword] = useState()
     const {uri}= useContext(AuthContext)
     const [code, setCode] = useState()
     const navigate = useNavigate()
 
-    const handleSubmit = ()=>{
+    const handleSubmit = (e)=>{
+        e.target.disabled = true;
+        e.target.style.backgroundColor = "grey";
+        e.target.innerText = "Loading...";
         fetch(`${uri}/setpassword`, {
             method: 'POST',
             headers:{
@@ -29,6 +32,11 @@ function ResetPassword({email}) {
             }
         })
         .catch(err=> alert(err))
+        .finally(()=>{
+            e.target.disabled = false;
+        e.target.style.backgroundColor = "#e03e03";
+        e.target.innerText = "Submit";
+        })
     }
   return (
     <form onSubmit={(e)=> e.preventDefault()}>
@@ -45,7 +53,9 @@ function ResetPassword({email}) {
                 </label>
                 <input type='password' placeholder='enter new password...' onChange={(e)=>setNewPassword(e.target.value)} required/>
                 <br/>
-                <button onClick={handleSubmit}>Submit</button>
+                <button onClick={(e)=>handleSubmit(e)}>Submit</button>
+                <br/>
+                <p>Did't get an email <span onClick={handleResend} style={{color:'green', fontWeight: 600}}>Resend</span></p>
             </form>
   )
 }

@@ -29,7 +29,6 @@ function AllUsers() {
               )}
               <span>
                 <h3>{value?.fullName}</h3>
-                <p>{value?.email}</p>
               </span>
             </div>
             <br />

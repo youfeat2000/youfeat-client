@@ -4,10 +4,8 @@ import AuthContext from "../context/AuthContext";
 import emailjs from 'emailjs-com'
 
 function Signup() {
-  const { uri } = useContext(AuthContext);
-  const [contestant, setContestant] = useState(false);
+  const { uri, email, setEmail} = useContext(AuthContext);
   const [fullName, setFullName] = useState(null);
-  const [email, setEmail] = useState(null);
   const [state, setState] = useState(null);
   const [PhoneNumber, setPoneNumber] = useState(null);
   const [password, setPassword] = useState(null);
@@ -22,7 +20,7 @@ function Signup() {
       to_name: fullName,
     };
     emailjs
-      .send("service_o7zsqgf", "template_xjt6l7d", emailParams, "hSaHRFDu3n5QYIXsK")
+      .send(process.env.REACT_APP_SERVICE_KEY, process.env.REACT_APP_TEMPLATE_KEY, emailParams, process.env.REACT_APP_USER_KEY)
       .then((response) => {
         navigate('../confirmemailcode')
         console.log("Email sent successfully:", response);
@@ -33,10 +31,13 @@ function Signup() {
   };
    
   //send information to server
-  const handleRegister = () => {
+  const handleRegister = (e) => {
     if (password !== verifyPassword) {
       return alert("your password does not match");
     } else {
+      e.target.disabled = true;
+        e.target.style.backgroundColor = "grey";
+        e.target.innerText = "Loading...";
       fetch(`${uri}/signup`, {
         method: "POST",
         headers: {
@@ -48,7 +49,7 @@ function Signup() {
           PhoneNumber,
           password,
           state,
-          contestant,
+          contestant: true,
           role: 2000,
           code: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000,
         }),
@@ -68,7 +69,12 @@ function Signup() {
           console.log(data, data?.code)
           sendEmail(data?.code)
         })
-        .catch((err) => alert(err));
+        .catch((err) => alert(err))
+        .finally(()=>{
+          e.target.disabled = false;
+        e.target.style.backgroundColor = "#e03e03";
+        e.target.innerText = "Login";
+        })
     }
   };
   
@@ -146,22 +152,7 @@ function Signup() {
           </div>
         </div>
         <br />
-        <span>
-          <label>Register as a contestant</label>
-          <input
-            type="checkbox"
-            checked={contestant}
-            onChange={() => setContestant(!contestant)}
-            style={{
-              padding: "10px",
-              height: "20px",
-              width: "40px",
-              borderRadius: "0",
-            }}
-          />
-        </span>
-        <br />
-        <button onClick={handleRegister}>Register</button>
+        <button onClick={(e)=>handleRegister(e)}>Register</button>
         <br />
         <p style={{ fontSize: "larger", color: "white" }}>
           Have an account{" "}

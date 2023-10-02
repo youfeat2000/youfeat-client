@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import AuthContext from "../context/AuthContext";
+import img from '../public/logo2.png'
 
 function Login() {
   const { uri, setAuth } = useContext(AuthContext);
@@ -43,23 +44,23 @@ function Login() {
         }
       })
       .then((data) => {
-        e.target.disabled = false;
-        e.target.style.backgroundColor = "#e03e03";
-        e.target.innerText = "Login";
         setAuth(data);
         navigate("/");
       })
       .catch((err) => {
         alert(err);
+      })
+      .finally(()=>{
         e.target.disabled = false;
         e.target.style.backgroundColor = "#e03e03";
         e.target.innerText = "Login";
-      });
+      })
   };
 
   return (
     <div className="login">
-      <form onSubmit={(e) => e.preventDefault()} style={{ width: formWidth }}>
+      <form onSubmit={(e) => e.preventDefault()} style={{ width: formWidth  }}>
+        <img src={img} alt='logo' width='200px' />
         <br />
         <h2 style={{ color: "white" }}>Login</h2>
         <br />
@@ -81,10 +82,11 @@ function Login() {
         <span
           style={{
             position: "absolute",
-            top: "235px",
+            top: "360px",
             right: "40px",
             fontSize: "1.5rem",
             color: "#0e1424",
+            cursor: 'pointer'
           }}>
           {!toggle ? (
             <AiOutlineEye onClick={() => setToggle(true)} />
@@ -93,7 +95,7 @@ function Login() {
           )}
         </span>
         <br />
-        <p style={{color:'green', cursor:'pointer', fontWeight: 600}} onClick={()=>navigate('../resetpassword')}>Forgot Password</p>
+        <p style={{ fontSize: "larger", color: "white" }}>Forgot Password: <span style={{color:'green', cursor:'pointer', fontWeight: 600}} onClick={()=>navigate('../resetpassword')}>Reset</span></p>
         <br/>
         <button onClick={(e) => handleLogin(e)}>Login</button>
         <br />

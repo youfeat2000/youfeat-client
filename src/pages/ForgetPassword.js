@@ -11,14 +11,13 @@ function ForgetPassword() {
     const navigate = useNavigate()
 
     const sendEmail = (code, fullName) => {
-      console.log(fullName, email, code)
       const emailParams = {
         to_email: email,
         message: code?.toString(),
         to_name: fullName,
       };
       emailjs
-        .send("service_o7zsqgf", "template_xjt6l7d", emailParams, "hSaHRFDu3n5QYIXsK")
+        .send(process.env.REACT_APP_SERVICE_KEY, process.env.REACT_APP_TEMPLATE_KEY, emailParams, process.env.REACT_APP_USER_KEY)
         .then((response) => {
           setResulved(true)
           console.log("Email sent successfully:", response);
@@ -28,7 +27,10 @@ function ForgetPassword() {
         });
     };
 
-    const handleSubmit =()=>{
+    const handleSubmit =(e)=>{
+      e.target.disabled = true;
+        e.target.style.backgroundColor = "grey";
+        e.target.innerText = "Loading...";
       fetch(`${uri}/checkemail`,{
         method: 'POST',
         headers: {
@@ -52,6 +54,11 @@ function ForgetPassword() {
         sendEmail(data?.code, data?.fullName, data?.email)
       })
       .catch(err=> alert(err))
+      .finally(()=>{
+        e.target.disabled = false;
+        e.target.style.backgroundColor = "#e03e03";
+        e.target.innerText = "Submit";
+      })
     }
 
   return (
@@ -64,9 +71,9 @@ function ForgetPassword() {
                 <br/>
                 <input type='email' placeholder='email...' onChange={(e)=>setEmail(e.target.value)} required/>
                 <br/>
-                <button onClick={handleSubmit}>Submit</button>
+                <button onClick={(e)=>handleSubmit(e)}>Submit</button>
             </form>:
-            <ResetPassword email={email}/>
+            <ResetPassword email={email} handleResend={handleSubmit}/>
         }
     </div>
   )
