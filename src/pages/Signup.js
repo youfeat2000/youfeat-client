@@ -13,7 +13,6 @@ function Signup() {
   const navigate = useNavigate();
 
   const sendEmail = (code) => {
-    console.log(code?.toString())
     const emailParams = {
       to_email: email,
       message: code?.toString(),
@@ -23,10 +22,9 @@ function Signup() {
       .send(process.env.REACT_APP_SERVICE_KEY, process.env.REACT_APP_TEMPLATE_KEY, emailParams, process.env.REACT_APP_USER_KEY)
       .then((response) => {
         navigate('../confirmemailcode')
-        console.log("Email sent successfully:", response);
       })
       .catch((error) => {
-        console.log("Email sending failed:", error);
+        alert("Email sending failed:");
       });
   };
    
@@ -66,7 +64,6 @@ function Signup() {
           }
         })
         .then((data) => {
-          console.log(data, data?.code)
           sendEmail(data?.code)
         })
         .catch((err) => alert(err))
