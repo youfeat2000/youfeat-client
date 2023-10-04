@@ -5,7 +5,7 @@ const AuthContext = createContext();
 export function ContextProvider({ children }) {
   const navigate = useNavigate();
   const [auth, setAuth] = useState(null);
-  const {email, setEmail} = useState()
+  const [email, setEmail] = useState()
 
   //backend url to share it across the applicatoin
   //const uri = "http://localhost:3500";
