@@ -24,7 +24,8 @@ function VideoUpload({ userId, setUserId }) {
   }, [videoLength]);
 
   const handleChange = (e) => {
-    if (e.target.files[0]) {
+    alert('Video uploading is not Open yet')
+    /*if (e.target.files[0]) {
       setVideo(e.target.files[0]);
       setVideoName(e.target.files[0].name);
 
@@ -35,12 +36,14 @@ function VideoUpload({ userId, setUserId }) {
       vide.onloadedmetadata = () => {
         setVideoLength(vide.duration);
       };
-    }
+    }*/
   };
 
   const handleUpload = (e) => {
     //checks if the video is too long
-    if (catigory === null) {
+    alert('Video uploading is not open yet')
+    setUserId(null);
+    /*if (catigory === null) {
       return alert("select a catigory");
     }
     if (videoLarge) {
@@ -79,7 +82,7 @@ function VideoUpload({ userId, setUserId }) {
         e.target.disabled = false;
         setUserId(null);
         setVideoName(null);
-      });
+      });*/
   };
   return (
     <>

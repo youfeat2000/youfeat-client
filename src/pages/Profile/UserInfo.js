@@ -74,40 +74,34 @@ function UserInfo({ foundUser }) {
     <>
       <UserBioUpdate userId={userId} setUserId={setUserId} />
       <div className="profile-info" ref={userInfo}>
-        <article>
-          <br />
+        <article style={{position: 'relative'}}>
+        <CgPen
+        className="edit-profile"
+          onClick={() => setUserId(foundUser[0]?._id)}
+        />
           <p style={{ fontSize: "25px", marginTop: "10px" }}>
             {foundUser[0]?.fullName}
           </p>
-          <p style={{ marginTop: "5px" }}>{foundUser[0]?.email}</p>
+          {foundUser[0]?.state &&
           <p>
-            State<b>:</b> {foundUser[0]?.state}
-          </p>
+            <b>State:</b> {foundUser[0]?.state}
+            </p>
+          }
+          {foundUser[0]?.dob &&
+          <p>
+            <b>Date of Birth:</b> {foundUser[0]?.dob.slice(0,10)}
+            </p>
+          }{foundUser[0]?.highschool &&
+              <p>
+                <b>High School:</b> {foundUser[0]?.highschool}
+                </p>
+              }
           <br />
-          <p>
-            {/*checking if the user has a bio */}
-            {foundUser[0]?.bio ? (
-              <>
-                {foundUser[0]?.bio?.length >= 100
-                  ? foundUser[0]?.bio.slice(0, 300) + "..."
-                  : foundUser[0]?.bio}
-                {user?._id === foundUser[0]?._id && (
-                  <CgPen
-                    style={{
-                      float: "right",
-                      fontSize: "30px",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setUserId(foundUser[0]?._id)}
-                  />
-                )}
-              </>
-            ) : (
-              <span onClick={() => setUserId(foundUser[0]?._id)}>
-                {user?._id === foundUser[0]?._id && "Add bio"}
-              </span>
-            )}
-          </p>
+          {foundUser[0]?.bio &&
+              <p>
+                 {foundUser[0]?.bio}
+              </p>
+          }
           <br />
         </article>
         <div>
