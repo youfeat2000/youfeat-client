@@ -6,13 +6,13 @@ import ProfileContext from "../../context/ProfileContext";
 function VideoUpload({ userId, setUserId }) {
   const [title, setTitle] = useState("");
   const [video, setVideo] = useState("");
+  const { setUser, user, users } = useContext(ProfileContext);
+  const { uri } = useContext(AuthContext);
   const [videoLength, setVideoLength] = useState();
   const [videoLarge, setVideoLarge] = useState(false);
   const [videoName, setVideoName] = useState(null);
   const [catigory, setCatigory] = useState(null);
   const [description, setDescription] = useState("");
-  const { uri } = useContext(AuthContext);
-  const { setUser } = useContext(ProfileContext);
 
   //this useEffect checks if the video is too long
   useEffect(() => {
@@ -24,7 +24,8 @@ function VideoUpload({ userId, setUserId }) {
   }, [videoLength]);
 
   const handleChange = (e) => {
-    alert('Video uploading is not Open yet')
+    alert('Video uploading is not open yet')
+    setUserId(null)
     /*if (e.target.files[0]) {
       setVideo(e.target.files[0]);
       setVideoName(e.target.files[0].name);
@@ -43,8 +44,11 @@ function VideoUpload({ userId, setUserId }) {
     //checks if the video is too long
     alert('Video uploading is not open yet')
     setUserId(null);
-    /*if (catigory === null) {
-      return alert("select a catigory");
+    /*if(catigory){
+    let newUsers = users?.filter((v)=>v.video.catigory === catigory)
+    if (newUsers?.length >= 200 ){
+      return alert('This catigory is already full')
+    }
     }
     if (videoLarge) {
       return alert("video duration too long");
@@ -74,7 +78,7 @@ function VideoUpload({ userId, setUserId }) {
       })
       .then((data) => {
         setUser(data);
-        alert("video updated");
+        alert("video uploaded");
       })
       .finally(() => {
         e.target.style.backgroundColor = "#374254";
@@ -121,7 +125,7 @@ function VideoUpload({ userId, setUserId }) {
               required
               onChange={(e) => setDescription(e.target.value)}
             />
-            <select
+            {!user?.video && <select
               placeholder="catigory"
               required
               onChange={(e) => setCatigory(e.target.value)}>
@@ -131,7 +135,7 @@ function VideoUpload({ userId, setUserId }) {
               <option value="Commedy">Comedy</option>
               <option value="Short drama">Short drama</option>
               <option value="Poetry/Speach">Poetry/Speach</option>
-            </select>
+            </select>}
             <button onClick={(e) => handleUpload(e)}>Upload</button>
           </form>
         </div>

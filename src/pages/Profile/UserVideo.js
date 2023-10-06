@@ -6,7 +6,8 @@ import VideoUpload from "./VideoUpload";
 function UserVideo({ foundUser }) {
   const [userId, setUserId] = useState(null);
   const handleUpload = () => {
-    setUserId(foundUser[0]?._id);
+    alert('Vedeo uploads is not yet open')
+    //setUserId(foundUser[0]?._id);
   };
   return (
     <div className="video-uploads">

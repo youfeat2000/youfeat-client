@@ -75,10 +75,10 @@ function UserInfo({ foundUser }) {
       <UserBioUpdate userId={userId} setUserId={setUserId} />
       <div className="profile-info" ref={userInfo}>
         <article style={{position: 'relative'}}>
-        <CgPen
+        {foundUser[0]?._id === user?._id &&<CgPen
         className="edit-profile"
           onClick={() => setUserId(foundUser[0]?._id)}
-        />
+        />}
           <p style={{ fontSize: "25px", marginTop: "10px" }}>
             {foundUser[0]?.fullName}
           </p>

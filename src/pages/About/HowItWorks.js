@@ -36,9 +36,7 @@ function HowItWorks({ how }) {
         </li>
         <li>
           <b>Winners Shine Bright:</b> When the competition concludes, the
-          creators with the highest number of votes emerge as winners. But
-          that's not all YouFeat Nigeria Limited has a unique twist.
-          Participants earn 30% of every paid vote their video receives. It's a
+          creators with the highest number of votes emerge as winners. It's a
           rewarding opportunity to not only showcase your talent but also earn
           recognition for it.
         </li>
