@@ -124,7 +124,11 @@ function AllVideos({ users }) {
                     <b>{videoVote?.length}V</b>
                   </p>
                 </div>
-                <button onClick={(e) => handleVote(e, value)}>{!yourVote?.length ? 'Vote' : <GiCheckMark size={18}/>}</button>
+                {!yourVote?.length ?
+                <button onClick={(e) => handleVote(e, value)}> Vote </button>
+                :
+                <button> <GiCheckMark size={18}/></button>
+              }
                 <i className="comment-icon">
                   <small>{comments?.length}</small>
                   <FaCommentDots onClick={() => handleComment(value)} />

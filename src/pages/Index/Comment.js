@@ -16,7 +16,7 @@ function Comment({ user, commenterId, setUser }) {
     const userId = user?._id;
     const body = {
       userId,
-      comments,
+      comment: comments,
       commenterId,
     };
     console.log(body);

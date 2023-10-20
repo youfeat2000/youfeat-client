@@ -17,10 +17,10 @@ function UserVideoStatistics({ foundUser }) {
             {user?._id && params ? (
               <>
                 <h2 style={{ marginRight: "10px" }}>
-                  you do not have a any video yet
+                  You do not have a any video yet
                 </h2>
                 <p style={{ marginLeft: "10px" }}>
-                  Publish a video and stand a chance to win
+                  Upload a video to get started
                 </p>
               </>
             ) : (

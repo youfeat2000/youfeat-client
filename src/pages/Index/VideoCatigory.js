@@ -24,7 +24,7 @@ function VideoCatigory({ setUsers }) {
         <li onClick={() => handleFilter("Dance")}>Dance</li>
         <li onClick={() => handleFilter("Music")}>Music</li>
         <li onClick={() => handleFilter("Commedy")}>Comedy</li>
-        <li onClick={() => handleFilter("Short drama")}>Drama</li>
+        <li onClick={() => handleFilter("Short drama")}>Sport Freestyle</li>
         <li onClick={() => handleFilter("Poetry/Speach")}>Poetry/Speach</li>
       </ul>
     </div>

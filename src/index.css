@@ -302,7 +302,7 @@ body {
   background-color: #fafafa;
   color: #374254;
   border: 1px solid #374254;
-  transition: background-color 0.4s;
+  transition: background-color 0.6s;
 }
 .all-video button:hover {
   background-color: #374254;
@@ -472,13 +472,12 @@ body {
   margin-top: 15px;
 }
 .edit-profile{
-  right: 20px;
-  top: 10px;
+  right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  font-size: 30px;
+  font-size: 40px;
 }
 
 /*Edit bio*/
@@ -640,6 +639,7 @@ body {
   background-color: #fafafa;
   color: #374254;
   border: 1px solid #374254;
+  transition: background-color 0.6s;
 }
 .profile-info button:hover {
   background-color: #374254;
@@ -661,7 +661,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 5px;
 }
 .user-video {
   width: 100%;
@@ -824,6 +823,8 @@ body {
   background-color: #374254;
   color: #fafafa;
   border: 1px solid #fafafa;
+  cursor: pointer;
+  transition: background-color 0.6s;
 }
 .admin-header button:hover {
   background-color: #fafafa;
@@ -838,7 +839,7 @@ body {
 }
 .all-users {
   margin: 10px;
-  padding: 5px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   border-bottom: 0.5px solid #bdb9b9;
@@ -852,6 +853,7 @@ body {
 }
 .all-users div {
   display: flex;
+  align-items: center;
 }
 .all-users span {
   margin-left: 10px;
@@ -866,6 +868,8 @@ body {
   background-color: #fafafa;
   color: #374254;
   border: 1px solid #374254;
+  cursor: pointer;
+  transition: background-color 0.6s;
 }
 
 /*Notification page*/
@@ -947,13 +951,18 @@ body {
   padding: 15px;
   height: 70px;
   border-bottom: 1px solid #9ba4b5;
+  border-top: 1px solid #9ba4b5;
   cursor: pointer;
 }
 .about-details {
-  padding: 10px;
-  display: none;
-  border-bottom: 1px solid #9ba4b5;
+  max-height: 0;
   background-color: #fafafa;
+  overflow-y: hidden;
+  transition: max-height 0.3s;
+  height: inherit;
+}
+.about-details p{
+  padding: 10px;
 }
 .about-action span {
   transition: transform 300ms;
@@ -1074,12 +1083,12 @@ body {
     width: 48%;
     margin: 10px;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
   .video-uploads {
     width: 48%;
     margin: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
   .user-video video {
     height: 100%;
@@ -1103,8 +1112,9 @@ body {
     display: none;
   }
   .user-video-stats {
-    width: 97%;
+    width: 98%;
     margin: 10px;
+    border-radius: 10px;
   }
   .search2 {
     display: flex;
@@ -1138,9 +1148,6 @@ body {
   /*about*/
   .about-details li {
     padding: 10px 20px;
-  }
-  .about-details {
-    padding: 10px;
   }
   .filter-rank div {
     width: 30%;

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import emailjs from 'emailjs-com'
@@ -11,6 +11,7 @@ function Signup() {
   const [password, setPassword] = useState(null);
   const [verifyPassword, setVerifyPassword] = useState(null);
   const navigate = useNavigate();
+  const btnRef = useRef()
 
   const sendEmail = (code) => {
     const emailParams = {
@@ -25,7 +26,12 @@ function Signup() {
       })
       .catch((error) => {
         alert("Email sending failed:");
-      });
+      })
+      .finally(()=>{
+        btnRef.current.disabled = false;
+        btnRef.current.style.backgroundColor = "#e03e03";
+        btnRef.current.innerText = "Register";
+      })
   };
    
   //send information to server
@@ -33,9 +39,9 @@ function Signup() {
     if (password !== verifyPassword) {
       return alert("your password does not match");
     } else {
-      e.target.disabled = true;
-        e.target.style.backgroundColor = "grey";
-        e.target.innerText = "Loading...";
+    btnRef.current.disabled = true;
+    btnRef.current.style.backgroundColor = "grey";
+    btnRef.current.innerText = "Loading...";
       fetch(`${uri}/signup`, {
         method: "POST",
         headers: {
@@ -66,11 +72,11 @@ function Signup() {
         .then((data) => {
           sendEmail(data?.code)
         })
-        .catch((err) => alert(err))
-        .finally(()=>{
-          e.target.disabled = false;
-        e.target.style.backgroundColor = "#e03e03";
-        e.target.innerText = "Login";
+        .catch((err) => {
+          alert(err)
+          btnRef.current.disabled = false;
+          btnRef.current.style.backgroundColor = "#e03e03";
+          btnRef.current.innerText = "Register";
         })
     }
   };
@@ -149,7 +155,7 @@ function Signup() {
           </div>
         </div>
         <br />
-        <button onClick={(e)=>handleRegister(e)}>Register</button>
+        <button onClick={(e)=>handleRegister(e) } ref={btnRef}>Register</button>
         <br />
         <p style={{ fontSize: "larger", color: "white" }}>
           Have an account{" "}

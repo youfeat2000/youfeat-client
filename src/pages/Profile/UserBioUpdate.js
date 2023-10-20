@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import ProfileContext from "../../context/ProfileContext";
 import AuthContext from "../../context/AuthContext";
-import { CgPen } from "react-icons/cg";
+import { MdModeEdit } from "react-icons/md";
 
 //this is the popup that allows users edit their bio
 function UserBioUpdate({ userId, setUserId }) {
@@ -55,39 +55,40 @@ function UserBioUpdate({ userId, setUserId }) {
             <h2 onClick={handleExit}>&times;</h2>
             <br/>
             <section>
-            <h3>Your Bio <CgPen onClick={()=>setToggle('bio')}/><span>{bio?.slice(0,10)}...</span></h3>
+            <h3>Your Bio <MdModeEdit size={20} style={{marginLeft: '10px'}} onClick={()=>setToggle('bio')}/></h3>
             {toggle === 'bio'?
             <textarea placeholder="Bio.." type='text' onChange={(e)=>setBio(e.target.value)}/>:
-            <span>
+            <span style={{marginTop: '10px'}}>
               {user?.bio ?<p>{user?.bio}</p>:<p>No Bio...</p> }
               </span>}
               </section>
               <br/>
             <section>
-            <h3>Your State <CgPen onClick={()=>setToggle('state')}/><span>{state?.slice(0,10)}...</span></h3>
+            <h3>Your State <MdModeEdit size={20} style={{marginLeft: '10px'}} onClick={()=>setToggle('state')}/></h3>
             {toggle === 'state'?
             <input placeholder="state..." type='text' onChange={(e)=>setState(e.target.value)}/>:
-            <span>
-              {user?.state ?<p>{user?.State}</p>:<p>No State...</p> }
+            <span style={{marginTop: '10px'}}>
+              {user?.state ?<p>{user?.state}</p>:<p>No State...</p> }
               </span>}
               </section>
               <br/>
             <section>
-            <h3>Your Date of Birth <CgPen onClick={()=>setToggle('dob')}/><span>{dob?.slice(0,10)}...</span></h3>
+            <h3>Your Date of Birth <MdModeEdit size={20} style={{marginLeft: '10px'}} onClick={()=>setToggle('dob')}/></h3>
             {toggle === 'dob'?
             <input type='date' placeholder="Date of Birth..." onChange={(e)=>setDob(e.target.value)}/>:
-            <span>
-              {user?.dob ?<p>{user?.dob}</p>:<p>No Date od Birth..</p> }
+            <span style={{marginTop: '10px'}}>
+              {user?.dob ?<p>{user?.dob.slice(0, 10)}</p>:<p>No Date od Birth..</p> }
               </span>}
               </section>
             <br/>
             <section>
-            <h3>Your High School <CgPen onClick={()=>setToggle('hs')}/><span>{highschool?.slice(0,10)}...</span></h3>
+            <h3>Your High School <MdModeEdit size={20} style={{marginLeft: '10px'}} onClick={()=>setToggle('hs')}/></h3>
             {toggle === 'hs'?
             <input type='text' placeholder="high school" onChange={(e)=>setHighschool(e.target.value)}/>:
-            <span>
+            <span style={{marginTop: '10px'}}>
               {user?.highschool ?<p>{user?.highschool}</p>:<p>No High School...</p> }
-              </span>}
+              </span>
+              }
               </section>
             <br/>
             <button onClick={(e)=>handleSubmit(e)}>Submit</button>

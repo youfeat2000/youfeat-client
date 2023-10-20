@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { CgPen } from "react-icons/cg";
+import { BiEdit } from "react-icons/bi";
 import UserBioUpdate from "./UserBioUpdate";
 import { useParams } from "react-router-dom";
 import SocialShare from "./SocialShare";
@@ -75,7 +75,7 @@ function UserInfo({ foundUser }) {
       <UserBioUpdate userId={userId} setUserId={setUserId} />
       <div className="profile-info" ref={userInfo}>
         <article style={{position: 'relative'}}>
-        {foundUser[0]?._id === user?._id &&<CgPen
+        {foundUser[0]?._id === user?._id &&<BiEdit
         className="edit-profile"
           onClick={() => setUserId(foundUser[0]?._id)}
         />}
@@ -106,7 +106,10 @@ function UserInfo({ foundUser }) {
         </article>
         <div>
           {foundUser[0]?.contestant && (
-            <button onClick={(e) => handleVote(e, foundUser)}>{!yourVote?.length ? 'Vote' : <GiCheckMark size={18}/>}</button>
+            !yourVote?.length ?
+              <button onClick={(e) => handleVote(e, foundUser)}> Vote </button>
+              :
+              <button> <GiCheckMark size={18}/></button>
           )}
           <button
             href={`https://youfeat.onrender.com/profile/${params.id}`}

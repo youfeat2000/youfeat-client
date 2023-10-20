@@ -35,13 +35,14 @@ function About() {
   const sponsorshipi = useRef();
   const advartise = useRef();
   const advartisei = useRef();
+  
 
   const handletoggle = (e, i) => {
-    if (e.current.style.display === "none") {
-      e.current.style.display = "block";
+    if (e.current.style.maxHeight === '0px') {
+      e.current.style.maxHeight = "20000px";
       i.current.style.transform = "rotate(180deg)";
     } else {
-      e.current.style.display = "none";
+      e.current.style.maxHeight = '0px';
       i.current.style.transform = "rotate(0deg)";
     }
   };

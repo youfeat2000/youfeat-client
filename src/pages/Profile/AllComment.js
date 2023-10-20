@@ -18,11 +18,10 @@ function AllComment() {
         return (
           <div key={value._id}>
             <h4>{user[0]?.fullName}</h4>
-            <p>{value.comment}</p>
+            <p>{value?.comment}</p>
           </div>
         );
       })}
-      <br />
     </div>
   );
 }
