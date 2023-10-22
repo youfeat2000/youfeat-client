@@ -85,6 +85,7 @@ function DashboardNav() {
                     <small>
                       <img
                         src={`${uri}/image/${user?.profileImage}`}
+                        alt='profile picture'
                         onClick={() => navigate(`profile/${user?._id}`)}
                       />
                     </small>
