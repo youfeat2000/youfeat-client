@@ -7,6 +7,7 @@ function ConfirmEmailCode() {
   const {uri, setAuth, email} = useContext(AuthContext)
     const [code, setCode] = useState()
     const navigate = useNavigate()
+    
   const handleVerify =(e)=>{
     e.target.style.backgroundColor = "grey";
     e.target.innerText = "Loading...";
