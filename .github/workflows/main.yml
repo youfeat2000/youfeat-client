@@ -27,6 +27,6 @@ jobs:
       with:
         server: ftp.youfeat.ng
         username: admin@youfeat.ng
-        password: ZOeyYzq]$a}c
+        password: jns08166533430
         protocol: ftps
         local-dir: ./build/
