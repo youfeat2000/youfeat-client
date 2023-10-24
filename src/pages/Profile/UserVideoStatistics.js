@@ -7,6 +7,7 @@ import ProfileContext from "../../context/ProfileContext";
 function UserVideoStatistics({ foundUser }) {
   const { user } = useContext(ProfileContext);
   const params = useParams();
+  console.log(params.id)
   return (
     <>
       <div className="user-video-stats">
@@ -14,14 +15,11 @@ function UserVideoStatistics({ foundUser }) {
           <ProfileVideo foundUser={foundUser} />
         ) : (
           <span>
-            {user?._id && params ? (
+            {user?._id && params.id ? (
               <>
-                <h2 style={{ marginRight: "10px" }}>
-                  You do not have a any video yet
-                </h2>
-                <p style={{ marginLeft: "10px" }}>
-                  Upload a video to get started
-                </p>
+                <h3 style={{ marginRight: "10px" }}>
+                  You have not uploaded any video yet
+                </h3>
               </>
             ) : (
               <h3>No video to display</h3>

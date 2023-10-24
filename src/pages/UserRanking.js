@@ -68,7 +68,7 @@ function UserRanking() {
     } else {
       const i = users?.filter(
         (v) =>
-          v?.video?.catigory?.toLowerCase() === e.target.value.toLowerCase() &&
+          v?.catigory?.toLowerCase() === e.target.value.toLowerCase() &&
           v?.contestant
       );
       setNewUsers(i);
@@ -89,7 +89,7 @@ function UserRanking() {
           <select onChange={(e) => handleFilter(e)}>
             <option>All</option>
             <option>Dance</option>
-            <option>Drama</option>
+            <option>Sport</option>
             <option>Music</option>
             <option>Comedy</option>
             <option>Poetry/Speach</option>

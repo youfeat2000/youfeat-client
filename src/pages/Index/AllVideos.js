@@ -90,7 +90,7 @@ function AllVideos({ users }) {
             const videoVote = vote?.filter((i) => i?.userId === value?._id);
             const yourVote = videoVote?.filter((i) => i?.voterId === user?._id)
             const comments = comment?.filter((i) => i?.userId === value?._id);
-            console.log(yourVote)
+            
             return (
               <div key={value?._id} className="video">
                 <div className="video-con">

@@ -3,7 +3,7 @@ const ProfileContext = createContext();
 export function ProfileProvider({ children }) {
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const [vote, setVote] = useState([]);
   const [search, setSearch] = useState();
   const [comment, setComment] = useState([]);

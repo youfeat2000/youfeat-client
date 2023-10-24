@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import VideoUpload from "./VideoUpload";
 
 //the section in the profile page that allows users uploads video

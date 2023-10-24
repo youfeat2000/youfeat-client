@@ -7,9 +7,9 @@ function Signup() {
   const { uri, email, setEmail} = useContext(AuthContext);
   const [fullName, setFullName] = useState(null);
   const [state, setState] = useState(null);
-  const [PhoneNumber, setPoneNumber] = useState(null);
   const [password, setPassword] = useState(null);
   const [verifyPassword, setVerifyPassword] = useState(null);
+  const [catigory, setCatigory] = useState(null)
   const navigate = useNavigate();
   const btnRef = useRef()
 
@@ -50,11 +50,11 @@ function Signup() {
         body: JSON.stringify({
           fullName,
           email,
-          PhoneNumber,
           password,
           state,
           contestant: true,
           role: 2000,
+          catigory,
           code: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000,
         }),
       })
@@ -111,14 +111,19 @@ function Signup() {
             />
             <br />
             <label>
-              Phone number<span style={{ color: "orangered" }}>*</span>
+            Category<span style={{ color: "orangered" }}>*</span>
             </label>
-            <input
-              type="tel"
-              placeholder="phone number"
-              onChange={(e) => setPoneNumber(e.target.value)}
+            <select
+              placeholder="catigory"
               required
-            />
+              onChange={(e) => setCatigory(e.target.value)}>
+              <option value={null}>select a catigory</option>
+              <option value="Dance">Dance</option>
+              <option value="Music">Music</option>
+              <option value="Commedy">Comedy</option>
+              <option value="Sport">Sport</option>
+              <option value="Poetry/Speach">Poetry/Speach</option>
+            </select>
             <br />
           </div>
           <div>

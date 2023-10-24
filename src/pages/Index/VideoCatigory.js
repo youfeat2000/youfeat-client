@@ -12,7 +12,7 @@ function VideoCatigory({ setUsers }) {
 
   const handleFilter = (filter) => {
     const newVideoList = users?.filter((value) => {
-      return value?.video?.catigory === filter && value?.video;
+      return value?.catigory === filter && value?.video;
     });
     setUsers(newVideoList);
   };
@@ -24,7 +24,7 @@ function VideoCatigory({ setUsers }) {
         <li onClick={() => handleFilter("Dance")}>Dance</li>
         <li onClick={() => handleFilter("Music")}>Music</li>
         <li onClick={() => handleFilter("Commedy")}>Comedy</li>
-        <li onClick={() => handleFilter("Short drama")}>Sport Freestyle</li>
+        <li onClick={() => handleFilter("Sport")}>Sport</li>
         <li onClick={() => handleFilter("Poetry/Speach")}>Poetry/Speach</li>
       </ul>
     </div>

@@ -90,14 +90,14 @@ function ConfirmEmailCode() {
   return (
     <div className='login'>
         <form onSubmit={(e)=>e.preventDefault()}>
-            <h2>Confirm your email</h2>
-            <p>A verification code has been sent to your email</p>
+            <h2 style={{color:'#fafafa'}}>Confirm your email</h2>
+            <p style={{color:'#fafafa'}}>A verification code has been sent to your email</p>
             <br/>
             <input type='number' placeholder = '123-456' required onChange={(e)=>setCode(e.target.value)}/>
             <br/>
             <button onClick={(e)=>handleVerify(e)}>Verify</button>
             <br/>
-            <p>Did't get an email <span onClick={handleResend} style={{color:'green', fontWeight: 600}}>Resend</span></p>
+            <p style={{color:'#fafafa'}}>Did't get an email <span onClick={handleResend} style={{color:'green', fontWeight: 600}}>Resend</span></p>
         </form>
     </div>
   )
