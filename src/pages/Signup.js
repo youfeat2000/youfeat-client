@@ -2,6 +2,7 @@ import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import emailjs from 'emailjs-com'
+import Popup from "../component/Popup";
 
 function Signup() {
   const { uri, email, setEmail} = useContext(AuthContext);
@@ -10,6 +11,7 @@ function Signup() {
   const [password, setPassword] = useState(null);
   const [verifyPassword, setVerifyPassword] = useState(null);
   const [catigory, setCatigory] = useState(null)
+  const [message, setMessage] = useState(null)
   const navigate = useNavigate();
   const btnRef = useRef()
 
@@ -25,7 +27,7 @@ function Signup() {
         navigate('../confirmemailcode')
       })
       .catch((error) => {
-        alert("Email sending failed:");
+        setMessage("Email sending failed:");
       })
       .finally(()=>{
         btnRef.current.disabled = false;
@@ -73,7 +75,7 @@ function Signup() {
           sendEmail(data?.code)
         })
         .catch((err) => {
-          alert(err)
+          setMessage(err)
           btnRef.current.disabled = false;
           btnRef.current.style.backgroundColor = "#e03e03";
           btnRef.current.innerText = "Register";
@@ -86,6 +88,7 @@ function Signup() {
     <div className="login" onSubmit={(e) => e.preventDefault()}>
       <br />
       <form>
+        <Popup message={message} setMessage={setMessage}/>
         <h2 style={{ color: "white" }}>Register</h2>
         <br />
         <div className="input-con">

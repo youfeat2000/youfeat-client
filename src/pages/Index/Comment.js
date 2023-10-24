@@ -19,7 +19,6 @@ function Comment({ user, commenterId, setUser }) {
       comment: comments,
       commenterId,
     };
-    console.log(body);
     fetch(`${uri}/comment`, {
       method: "POST",
       headers: {

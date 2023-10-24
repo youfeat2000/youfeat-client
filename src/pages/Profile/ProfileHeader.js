@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaCamera } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
+import Popup from "../../component/Popup";
 
 //this is the profile header component
 function ProfileHeader({ foundUser }) {
   const { uri } = useContext(AuthContext);
   const { user, setUser } = useContext(ProfileContext);
+  const [message, setMessage] = useState(null)
   const params = useParams();
 
   //this functions uploads the usser profile image
@@ -23,16 +25,19 @@ function ProfileHeader({ foundUser }) {
       .then((res) => res.json())
       .then((data) => {
         setUser(data);
-        alert("profile updated");
+        setMessage("Profile image uploaded");
       })
       .catch((err) => {
         console.log(err);
-        alert("error");
+        setMessage("error while uploading your image");
       });
   };
 
   return (
+    <>
+     <Popup message={message} setMessage={setMessage}/>
     <header className="profile-header">
+       
       <div>
         {params.id === user?._id && (
           <span className="camera">
@@ -52,6 +57,7 @@ function ProfileHeader({ foundUser }) {
         )}
       </div>
     </header>
+    </>
   );
 }
 

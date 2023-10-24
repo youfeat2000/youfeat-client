@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import AuthContext from "../context/AuthContext";
 import img from '../public/logo2.png'
+import Popup from "../component/Popup";
 
 function Login() {
   const { uri, setAuth } = useContext(AuthContext);
@@ -10,6 +11,7 @@ function Login() {
   const [formWidth, setFormWidth] = useState("40%");
   const [password, setPassword] = useState(null);
   const [toggle, setToggle] = useState(false);
+  const [message, setMessage] = useState(null)
   const navigate = useNavigate();
 
   //checks the width to inform the width of the form
@@ -48,7 +50,7 @@ function Login() {
         navigate("/");
       })
       .catch((err) => {
-        alert(err);
+        setMessage(err);
       })
       .finally(()=>{
         e.target.disabled = false;
@@ -60,6 +62,7 @@ function Login() {
   return (
     <div className="login">
       <form onSubmit={(e) => e.preventDefault()} style={{ width: formWidth  }}>
+        <Popup message={message} setMessage={setMessage}/>
         <img src={img} alt='logo' width='200px' />
         <br />
         <h2 style={{ color: "white" }}>Login</h2>

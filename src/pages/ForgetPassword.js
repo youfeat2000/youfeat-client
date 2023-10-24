@@ -3,10 +3,12 @@ import ResetPassword from '../component/ResetPassword'
 import AuthContext from '../context/AuthContext'
 import emailjs from 'emailjs-com'
 import { useNavigate } from 'react-router-dom'
+import Popup from '../component/Popup'
 
 function ForgetPassword() {
     const [email, setEmail] = useState()
     const [resulved, setResulved] = useState(false)
+    const [message, setMessage] = useState(null)
     const {uri} = useContext(AuthContext)
     const navigate = useNavigate()
 
@@ -53,7 +55,7 @@ function ForgetPassword() {
       .then((data)=>{
         sendEmail(data?.code, data?.fullName, data?.email)
       })
-      .catch(err=> alert(err))
+      .catch(err=> setMessage(err))
       .finally(()=>{
         e.target.disabled = false;
         e.target.style.backgroundColor = "#e03e03";
@@ -65,6 +67,7 @@ function ForgetPassword() {
     <div className='login'>
         {!resulved ?
             <form onSubmit={(e)=> e.preventDefault()}>
+        <Popup message={message} setMessage={setMessage}/>
                 <label>
               Enter Your Email<span style={{ color: "orangered" }}>*</span>
                 </label>

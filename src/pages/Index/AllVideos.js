@@ -7,6 +7,8 @@ import {GiCheckMark} from 'react-icons/gi'
 import Comment from "./Comment";
 import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
+import UserVerificationPopup from "../../component/UserVerificationPopup";
+import Popup from "../../component/Popup";
 
 //this page contains the list of all the video and is used in the Index page
 function AllVideos({ users }) {
@@ -16,6 +18,8 @@ function AllVideos({ users }) {
   const [videoName, setVideoName] = useState(null);
   const [userId, setUserId] = useState(null);
   const [commenterId, setCommenterId] = useState(null);
+  const [message, setMessage] = useState(null)
+  const [pop, setPop] = useState(false)
   const navigate = useNavigate();
 
   //this use effect filter all the users that has their video upladed
@@ -34,6 +38,7 @@ function AllVideos({ users }) {
   //voting function
   const handleVote = (e, value) => {
     //checking if the user is logedin
+    if(user?.verified){
     if (auth) {
       e.target.innerText = "Loading...";
       fetch(`${uri}/vote`, {
@@ -52,11 +57,11 @@ function AllVideos({ users }) {
         .then((res) => res.json())
         .then((data) => {
           setVote([...vote, data]);
-          alert("your vote has been sent");
+          setMessage("your vote has been sent");
         })
         .catch((err) => {
           console.log(err);
-          alert("something went wrong");
+          setMessage("something went wrong");
         })
         .finally(() => {
           e.target.innerText = "Vote";
@@ -65,6 +70,9 @@ function AllVideos({ users }) {
     } else {
       navigate("/login");
     }
+  }else{
+    setPop(true)
+  }
   };
 
   const handleComment = (id) => {
@@ -82,6 +90,8 @@ function AllVideos({ users }) {
       {/*checking if videos */}
       {search?.length ? (
         <div className="all-video">
+        <Popup message={message} setMessage={setMessage}/>
+          <UserVerificationPopup pop={pop} navigate={'/resetpassword'} setPop={setPop}/>
           {/*video popUp */}
           <VideoPlayer videoName={videoName} setVideoName={setVideoName} />
           {/*mapping through all the video */}

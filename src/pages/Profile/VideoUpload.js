@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
+import Popup from "../../component/Popup";
 
 //this is the popup that allows you upload a video
 function VideoUpload({ userId, setUserId }) {
@@ -11,8 +12,8 @@ function VideoUpload({ userId, setUserId }) {
   const [videoLength, setVideoLength] = useState();
   const [videoLarge, setVideoLarge] = useState(false);
   const [videoName, setVideoName] = useState(null);
-  const [catigory, setCatigory] = useState(null);
   const [description, setDescription] = useState("");
+  const [message, setMessage] = useState(null)
 
   //this useEffect checks if the video is too long
   useEffect(() => {
@@ -24,7 +25,7 @@ function VideoUpload({ userId, setUserId }) {
   }, [videoLength]);
 
   const handleChange = (e) => {
-    alert('Video uploading is not open yet')
+    setMessage('Video uploading is not open yet')
     setUserId(null)
     /*if (e.target.files[0]) {
       setVideo(e.target.files[0]);
@@ -42,16 +43,11 @@ function VideoUpload({ userId, setUserId }) {
 
   const handleUpload = (e) => {
     //checks if the video is too long
-    alert('Video uploading is not open yet')
+    setMessage('Video uploading is not open yet')
     setUserId(null);
-    /*if(catigory){
-    let newUsers = users?.filter((v)=>v.video.catigory === catigory)
-    if (newUsers?.length >= 200 ){
-      return alert('This catigory is already full')
-    }
-    }
+    /*
     if (videoLarge) {
-      return alert("video duration too long");
+      return setMessage("video duration too long");
     }
     e.target.style.backgroundColor = "grey";
     e.target.innerText = "Loading...";
@@ -78,7 +74,7 @@ function VideoUpload({ userId, setUserId }) {
       })
       .then((data) => {
         setUser(data);
-        alert("video uploaded");
+        setMessage("video uploaded");
       })
       .finally(() => {
         e.target.style.backgroundColor = "#374254";
@@ -92,6 +88,7 @@ function VideoUpload({ userId, setUserId }) {
     <>
       {userId && (
         <div className="uplaod-video">
+        <Popup message={message} setMessage={setMessage}/>
           <form onSubmit={(e) => e.preventDefault()}>
             <h1 onClick={() => setUserId(null)}>&times;</h1>
             <article>
@@ -125,17 +122,6 @@ function VideoUpload({ userId, setUserId }) {
               required
               onChange={(e) => setDescription(e.target.value)}
             />
-            {!user?.video && <select
-              placeholder="catigory"
-              required
-              onChange={(e) => setCatigory(e.target.value)}>
-              <option value={null}>select a catigory</option>
-              <option value="Dance">Dance</option>
-              <option value="Music">Music</option>
-              <option value="Commedy">Comedy</option>
-              <option value="Short drama">Short drama</option>
-              <option value="Poetry/Speach">Poetry/Speach</option>
-            </select>}
             <button onClick={(e) => handleUpload(e)}>Upload</button>
           </form>
         </div>

@@ -2,10 +2,12 @@ import React, {useContext, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 import emailjs from 'emailjs-com'
+import Popup from '../component/Popup'
 
 function ConfirmEmailCode() {
   const {uri, setAuth, email} = useContext(AuthContext)
     const [code, setCode] = useState()
+    const [message, setMessage] = useState()
     const navigate = useNavigate()
     
   const handleVerify =(e)=>{
@@ -36,7 +38,7 @@ function ConfirmEmailCode() {
         navigate("/");
     })
     .catch((err) => {
-        alert(err)
+        setMessage(err)
       })
       .finally(()=>{
         e.target.disabled = false;
@@ -90,6 +92,7 @@ function ConfirmEmailCode() {
   return (
     <div className='login'>
         <form onSubmit={(e)=>e.preventDefault()}>
+        <Popup message={message} setMessage={setMessage}/>
             <h2 style={{color:'#fafafa'}}>Confirm your email</h2>
             <p style={{color:'#fafafa'}}>A verification code has been sent to your email</p>
             <br/>

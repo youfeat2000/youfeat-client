@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
+import Popup from "../../component/Popup";
 
 //this pade is the popup that allows admin send notifcation
 function Notify({ sendTo, setSendTo }) {
   const { uri } = useContext(AuthContext);
   const [message, setMessage] = useState("");
+  const [mes, setMes] = useState(null)
 
   //sending notification to the server
   const handleNotify = (e) => {
@@ -26,7 +28,7 @@ function Notify({ sendTo, setSendTo }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        alert("Notification sent");
+        setMes("Notification sent");
         console.log(data);
       })
       .catch((err) => alert("Error"))
@@ -42,6 +44,7 @@ function Notify({ sendTo, setSendTo }) {
       {sendTo && (
         <div className="edit-bio">
           <div>
+        <Popup message={mes} setMessage={setMes}/>
             <h2 onClick={() => setSendTo(null)}>&times;</h2>
             <h1>Send notification</h1>
             <textarea

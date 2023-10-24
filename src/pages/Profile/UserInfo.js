@@ -1,22 +1,24 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiEdit } from "react-icons/bi";
 import UserBioUpdate from "./UserBioUpdate";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SocialShare from "./SocialShare";
 import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
 import {GiCheckMark} from 'react-icons/gi'
+import UserVerificationPopup from "../../component/UserVerificationPopup";
 
 //this is the component that contains the user bio, user name and email in the profile page
 function UserInfo({ foundUser }) {
   const userInfo = useRef();
   const [userId, setUserId] = useState(null);
   const [userUrl, setUserUrl] = useState(null);
-  const { uri } = useContext(AuthContext);
+  const { uri, auth } = useContext(AuthContext);
   const { user, setVote, vote } = useContext(ProfileContext);
   const [yourVote, setYourVote] = useState([])
+  const [pop, setPop] = useState(false)
   const params = useParams();
-
+  const navigate = useNavigate()
 
   useEffect(()=>{
     const userVotes = vote.filter((i)=> i?.userId === foundUser[0]?._id)
@@ -25,8 +27,9 @@ function UserInfo({ foundUser }) {
   }, [vote, foundUser])
 
   const handleVote = (e, value) => {
+if(user?.verified){
+    if(auth){
     e.target.innerText = "Loading...";
-
     fetch(`${uri}/vote`, {
       method: "POST",
       headers: {
@@ -53,6 +56,12 @@ function UserInfo({ foundUser }) {
         e.target.innerText = "Vote";
         e.target.style.backroundColor = "#fafafa";
       });
+    }else{
+      navigate('../../confirmemailcode')
+    }
+  }else{
+    setPop(true)
+  }
   };
 
   //this useEffect checks if the user is a contestant to determine the length of this section
@@ -74,6 +83,7 @@ function UserInfo({ foundUser }) {
     <>
       <UserBioUpdate userId={userId} setUserId={setUserId} />
       <div className="profile-info" ref={userInfo}>
+        <UserVerificationPopup navigate={'../../login'} pop={pop} setPop={setPop}/>
         <article style={{position: 'relative'}}>
         {foundUser[0]?._id === user?._id &&<BiEdit
         className="edit-profile"
