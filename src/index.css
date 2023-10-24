@@ -667,6 +667,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 5px;
 }
 .user-video {
   width: 100%;
