@@ -7,7 +7,7 @@ import ProfileContext from "../../context/ProfileContext";
 function UserVideoStatistics({ foundUser }) {
   const { user } = useContext(ProfileContext);
   const params = useParams();
-  console.log(params.id)
+
   return (
     <>
       <div className="user-video-stats">
