@@ -122,7 +122,7 @@ if(user?.verified){
               <button> <GiCheckMark size={18}/></button>
           )}
           <button
-            href={`https://youfeat.onrender.com/profile/${params.id}`}
+            href={`https://www.youfeat.ng/profile/${params.id}`}
             onClick={(e) => copyUri(e)}>
             Share
           </button>
