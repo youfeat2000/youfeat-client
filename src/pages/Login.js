@@ -43,6 +43,8 @@ function Login() {
           throw "wrong email/password";
         } else if (res.status === 500) {
           throw "server error";
+        }else{
+          throw "something went wrong"
         }
       })
       .then((data) => {
