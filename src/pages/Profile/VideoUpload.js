@@ -25,9 +25,8 @@ function VideoUpload({ userId, setUserId }) {
   }, [videoLength]);
 
   const handleChange = (e) => {
-    setMessage('Video uploading is not open yet')
-    setUserId(null)
-    /*if (e.target.files[0]) {
+    //setMessage('Video uploading is not open yet')
+    if (e.target.files[0]) {
       setVideo(e.target.files[0]);
       setVideoName(e.target.files[0].name);
 
@@ -38,14 +37,13 @@ function VideoUpload({ userId, setUserId }) {
       vide.onloadedmetadata = () => {
         setVideoLength(vide.duration);
       };
-    }*/
+    }
   };
 
   const handleUpload = (e) => {
     //checks if the video is too long
-    setMessage('Video uploading is not open yet')
-    setUserId(null);
-    /*
+    //setMessage('Video uploading is not open yet')
+    
     if (videoLarge) {
       return setMessage("video duration too long");
     }
@@ -82,7 +80,7 @@ function VideoUpload({ userId, setUserId }) {
         e.target.disabled = false;
         setUserId(null);
         setVideoName(null);
-      });*/
+      });
   };
   return (
     <>

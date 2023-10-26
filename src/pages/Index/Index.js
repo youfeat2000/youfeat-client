@@ -9,7 +9,6 @@ function Index() {
   const { uri } = useContext(AuthContext);
   const { vote, comment, setVote, setComment, setUsers, user } =
     useContext(ProfileContext);
-    console.log(user);
   useEffect(() => {
     if (!vote?.length) {
       fetch(`${uri}/allvote`, {
