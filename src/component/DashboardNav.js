@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { CgProfile, CgSearch } from "react-icons/cg";
 import { FaHamburger } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ function DashboardNav() {
   const { uri, auth } = useContext(AuthContext);
   const [searchToggle, setSearchToggle] = useState(false);
   const navigate = useNavigate();
+  const tug = useRef()
 
   //this is the logic for the searchbar
   const handleChange = (e) => {
@@ -38,6 +39,7 @@ function DashboardNav() {
   //this helps the user toggle the searchbar in smaller screen
   const handleSearchToggle = () => {
     setSearchToggle(true);
+    tug.current.focus()
   };
   return (
     <nav className="nav">
