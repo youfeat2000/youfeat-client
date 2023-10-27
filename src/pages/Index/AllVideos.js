@@ -9,6 +9,9 @@ import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
 import UserVerificationPopup from "../../component/UserVerificationPopup";
 import Popup from "../../component/Popup";
+import img1 from '../../public/img1.jpg'
+import img2 from '../../public/img2.jpg'
+
 
 //this page contains the list of all the video and is used in the Index page
 function AllVideos({ users }) {
@@ -22,6 +25,7 @@ function AllVideos({ users }) {
   const [pop, setPop] = useState(false)
   const navigate = useNavigate();
 
+  const image = [{img: img1, id: 1}, {img: img2, id:2}]
   //this use effect filter all the users that has their video upladed
   useEffect(() => {
     const i = users?.filter((value) => {
@@ -148,7 +152,17 @@ function AllVideos({ users }) {
           })}
         </div>
       ) : (
-        <h2 style={{ color: "black", textAlign: "center" }}>No Video for Now!</h2>
+          <div className="all-video">
+            {image?.map((value) => {
+              return (
+                <div key={value?.id} className="image">
+                  <div className="img-con">
+                    <img src={value.img} alt='youfeat image'/>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
       )}
     </>
   );

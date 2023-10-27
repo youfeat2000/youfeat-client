@@ -31,6 +31,7 @@ function DashbordSideBar() {
 
   const logout = () => {
     handleLogout();
+    setToggle(true);
     setAuth(null);
   };
 

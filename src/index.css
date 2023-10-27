@@ -379,6 +379,23 @@ body {
   margin-top: 8px;
   position: relative;
 }
+.image{
+  width: 100%;
+  background-color: #fafafa;
+  color: #374254;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 8px;
+  position: relative;
+}
+.img-con{
+  width: 100%;
+}
+.img-con img{
+  width:100%;
+  object-fit: cover;
+}
 .video-con {
   max-height: 300px;
   overflow: hidden;
@@ -1105,6 +1122,18 @@ body {
     width: 300px;
     margin: 15px;
     border-radius: 10px;
+  }
+  .image{
+    width: 47%;
+    margin: 15px;
+    border-radius: 10px;
+  }
+  .img-con {
+  height: 300px;
+  }
+  .img-con img{
+    border-radius: 10px;
+  height: 100%;
   }
   .video-con {
     border-radius: 10px 10px 0 0;

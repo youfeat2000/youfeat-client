@@ -54,7 +54,6 @@ function VideoUpload({ userId, setUserId }) {
     const formData = new FormData();
     formData.append("video", video);
     formData.append("title", title);
-    formData.append("catigory", catigory);
     formData.append("description", description);
     formData.append("userId", userId);
 
