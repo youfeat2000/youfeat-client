@@ -64,6 +64,7 @@ function DashboardNav() {
               type="text"
               placeholder="search..."
               onChange={(e) => handleChange(e)}
+              ref={tug}
             />
           </div>
         ) : (
@@ -78,7 +79,7 @@ function DashboardNav() {
               </h1>
             )}
             <span>
-              <Search handleChange={handleChange} />
+              <Search handleChange={handleChange} tug={tug}/>
               <CgSearch className="search-icon" onClick={handleSearchToggle} />
               {/*checking if the user is logged in to display profile image */}
               {auth && (

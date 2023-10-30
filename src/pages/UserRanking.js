@@ -85,7 +85,7 @@ function UserRanking() {
     <div>
       <div className="filter-rank">
         <div>
-          <p>Rank by catigory</p>
+          <p>Rank by category</p>
           <select onChange={(e) => handleFilter(e)}>
             <option>All</option>
             <option>Dance</option>
