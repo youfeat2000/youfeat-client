@@ -27,7 +27,8 @@ function UserInfo({ foundUser }) {
   }, [vote, foundUser])
 
   const handleVote = (e, value) => {
-if(user?.verified){
+    alert('voting is not open..')
+/*if(user?.verified){
     if(auth){
     e.target.innerText = "Loading...";
     fetch(`${uri}/vote`, {
@@ -62,6 +63,7 @@ if(user?.verified){
   }else{
     setPop(true)
   }
+  */
   };
 
   //this useEffect checks if the user is a contestant to determine the length of this section

@@ -11,7 +11,7 @@ function UserVideo({ foundUser }) {
   const [userId, setUserId] = useState(null);
   const [pop, setPop] = useState(false)
   const handleUpload = () => {
-    setMessage('Vedeo uploads is not yet open')
+    setMessage('Video uploads is not yet open')
     /*if(foundUser[0]?.verified){
       setUserId(foundUser[0]?._id);
     }else{
