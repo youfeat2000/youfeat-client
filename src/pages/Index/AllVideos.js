@@ -117,7 +117,7 @@ function AllVideos({ users }) {
                   {value.profileImage ? (
                     <img
                       src={`${uri}/image/${value?.profileImage}`}
-                      alt="profile"
+                      alt="youfeat contestant profile"
                     />
                   ) : (
                     <CgProfile size={"50px"} color="#0e1424" />

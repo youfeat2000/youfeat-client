@@ -51,7 +51,7 @@ function ProfileHeader({ foundUser }) {
           </span>
         )}
         {foundUser[0]?.profileImage ? (
-          <img src={`${uri}/image/${foundUser[0]?.profileImage}`} />
+          <img src={`${uri}/image/${foundUser[0]?.profileImage}`} alt='youfeat contestant' />
         ) : (
           <CgProfile className="profile-img" />
         )}

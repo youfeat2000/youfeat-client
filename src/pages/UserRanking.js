@@ -112,7 +112,7 @@ function UserRanking() {
                 {value?.profileImage ? (
                   <img
                     src={`${uri}/image/${value?.profileImage}`}
-                    alt="profile"
+                    alt="youfeat contestant"
                   />
                 ) : (
                   <CgProfile size={"60px"} />

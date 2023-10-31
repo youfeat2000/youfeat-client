@@ -65,7 +65,7 @@ function Login() {
     <div className="login">
       <form onSubmit={(e) => e.preventDefault()} style={{ width: formWidth  }}>
         <Popup message={message} setMessage={setMessage}/>
-        <img src={img} alt='logo' width='200px' />
+        <img src={img} alt='youfeat logo' width='200px' />
         <br />
         <h2 style={{ color: "white" }}>Login</h2>
         <br />
