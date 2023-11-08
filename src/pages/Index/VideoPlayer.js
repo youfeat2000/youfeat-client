@@ -12,7 +12,7 @@ function VideoPlayer({ videoName, setVideoName }) {
           <h1 onClick={() => setVideoName(null)}><BiArrowBack/></h1>
           <div>
             <video autoPlay controls>
-              <source src={`${uri}/video/${videoName}`} />
+              <source src={`${uri}/video/${videoName}`}  />
             </video>
           </div>
         </div>

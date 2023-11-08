@@ -22,7 +22,7 @@ function AllUsers() {
               {value?.profileImage ? (
                 <img
                   src={`${uri}/image/${value?.profileImage}`}
-                  alt="profile"
+                  alt="youfeat user profile"
                 />
               ) : (
                 <CgProfile size={"60px"} />
