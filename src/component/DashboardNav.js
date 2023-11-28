@@ -75,12 +75,13 @@ function DashboardNav() {
                   onClick={() => {
                     toggle ? setToggle(false) : setToggle(true);
                   }}
+                  style={{color: "#374254"}}
                 />
               </h1>
             )}
             <span>
               <Search handleChange={handleChange} tug={tug}/>
-              <CgSearch className="search-icon" onClick={handleSearchToggle} />
+              <CgSearch className="search-icon" onClick={handleSearchToggle} style={{color: "#374254"}} />
               {/*checking if the user is logged in to display profile image */}
               {auth && (
                 <>

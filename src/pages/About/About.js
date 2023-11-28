@@ -11,6 +11,7 @@ import Partnership from "./Partnership";
 import Sponsorship from "./Sponsorship";
 import Advartise from "./Advartise";
 import { IoIosArrowDropdown } from "react-icons/io";
+import "./index.css"
 
 function About() {
   const intro = useRef();

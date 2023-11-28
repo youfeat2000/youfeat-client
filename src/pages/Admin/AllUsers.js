@@ -3,6 +3,7 @@ import Notify from "./Notify";
 import { CgProfile } from "react-icons/cg";
 import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
+import "./index.css"
 
 //this component is imported and used in the Admin Page
 function AllUsers() {

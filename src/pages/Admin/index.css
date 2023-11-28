@@ -1,0 +1,82 @@
+
+/*Admin page*/
+.admin-header {
+    background-color: #374254;
+    padding: 10px;
+    color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .admin-header input {
+    margin-left: 10px;
+    height: 15px;
+    width: 15px;
+    margin-top: 10px;
+  }
+  .admin-header button {
+    padding: 10px;
+    align-self: center;
+    font-size: larger;
+    border: none;
+    border-radius: 20px;
+    background-color: #374254;
+    color: #fafafa;
+    border: 1px solid #fafafa;
+    cursor: pointer;
+    transition: background-color 0.6s;
+  }
+  .admin-header button:hover {
+    background-color: #fafafa;
+    color: #374254;
+  }
+  
+  /*All users*/
+  .all-users-con {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .all-users {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px solid #bdb9b9;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .all-users img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  .all-users div {
+    display: flex;
+    align-items: center;
+  }
+  .all-users span {
+    margin-left: 10px;
+  }
+  .all-users button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    align-self: center;
+    font-size: larger;
+    border: none;
+    border-radius: 20px;
+    background-color: #fafafa;
+    color: #374254;
+    border: 1px solid #374254;
+    cursor: pointer;
+    transition: background-color 0.6s;
+  }
+  
+@media (min-width: 850px) {
+.all-users {
+    flex-direction: row;
+  }
+  .admin-header {
+    flex-direction: row;
+  }
+}

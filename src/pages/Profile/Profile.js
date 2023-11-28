@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import AllComment from "./AllComment";
 import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
+import "./index.css"
 
 function Profile() {
   const [foundUser, setFoundUser] = useState([]);

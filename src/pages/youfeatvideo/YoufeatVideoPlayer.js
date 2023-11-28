@@ -1,19 +1,20 @@
-import React, { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
+import React from "react";
 import {BiArrowBack} from 'react-icons/bi'
 
 //this is the video popup section that allows user watch videos
-function VideoPlayer({ videoName, setVideoName }) {
-  const { uri } = useContext(AuthContext);
+function YoufeatVideoPlayer({ videoName, setVideoName }) {
+const handlePlay =(e)=>{
+  e.target.play()
+}
   return (
     <div>
       {videoName && (
         <div className="video-player">
           <p onClick={() => setVideoName(null)}><BiArrowBack/></p>
           <div>
-            <video autoPlay controls>
-              <source src={`${uri}/video/${videoName}`}  />
-            </video>
+            <video  onCanPlay={(e)=>handlePlay(e)} loop controls >
+              <source src={require('../../public/video1.mp4')} type="video/mp4"/>
+              </video>
           </div>
         </div>
       )}
@@ -21,4 +22,4 @@ function VideoPlayer({ videoName, setVideoName }) {
   );
 }
 
-export default VideoPlayer;
+export default YoufeatVideoPlayer;

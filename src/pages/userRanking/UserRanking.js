@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-import ProfileContext from "../context/ProfileContext";
-import AuthContext from "../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
+import "./index.css"
 
 function UserRanking() {
   const { users, user, vote, loading, setUsers, setVote, setUser } =

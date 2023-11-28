@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
 import ProfileContext from "../context/ProfileContext";
 import AuthContext from "../context/AuthContext";
+import logo from "../public/youfeatlogo.png"
 
 //this is the sidebar
 function DashbordSideBar() {
@@ -60,6 +61,8 @@ function DashbordSideBar() {
                   <img
                     src={`${uri}/image/${user?.profileImage}`}
                     alt="ropfile"
+                    className = "sidebar-image"
+                    
                   />
                 </small>
               ) : (
@@ -77,6 +80,10 @@ function DashbordSideBar() {
           <li onClick={() => handleNavigate("/")}>
             <AiFillHome style={{ marginRight: "20px", fontSize: "30px" }} />
             Home
+          </li>
+          <li onClick={() => handleNavigate("/youfeat")}>
+            <img src={logo} alt="youfeat logo" style={{ marginRight: "20px", fontSize: "30px", width:"30px", height:"30px" }} />
+            Youfeat Videos
           </li>
           {auth && (
             <li onClick={() => handleNavigate(`/profile/${user?._id}`)}>

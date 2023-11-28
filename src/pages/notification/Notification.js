@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import ProfileContext from "../context/ProfileContext";
-import AuthContext from "../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
+import AuthContext from "../../context/AuthContext";
+import "./index.css"
 
 function Notification() {
   const [notification, setNotification] = useState([]);

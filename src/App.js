@@ -1,4 +1,3 @@
-//testing
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
@@ -9,12 +8,13 @@ import ProtectedRoute from "./component/ProtectedRoute";
 import PersistentLogin from "./component/PersistentLogin";
 import PreventLogin from "./component/PreventLogin";
 import Profile from "./pages/Profile/Profile";
-import Notification from "./pages/Notification";
+import Notification from "./pages/notification/Notification";
 import Admin from "./pages/Admin/Admin";
-import UserRanking from "./pages/UserRanking";
+import UserRanking from "./pages/userRanking/UserRanking";
 import About from "./pages/About/About";
 import ConfirmEmailCode from "./pages/ConfirmEmailCode"
 import ForgetPassword from "./pages/ForgetPassword";
+import YoufeatVideo from "./pages/youfeatvideo/YoufeatVideo";
 
 const App = () => {
   return (
@@ -34,6 +34,7 @@ const App = () => {
             <Route path="/admin" element={<Admin />} />
           </Route>
           <Route path="/rank" element={<UserRanking />} />
+          <Route path="/youfeat" element={<YoufeatVideo/>}/>
           <Route path="/about" element={<About />} />
         </Route>
       </Route>
