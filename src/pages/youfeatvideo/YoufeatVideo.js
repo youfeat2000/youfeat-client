@@ -24,7 +24,7 @@ function YoufeatVideo() {
                   <div className="youfeat-video-con" onClick={()=>setVideoName(value.video)}>
                     <CgPlayButtonO className='play-icon'/>
                       <video autoPlay muted >
-                        <source src={value.video} />
+                        <source src={value?.video} />
                       </video>
                   </div>
                   <span>

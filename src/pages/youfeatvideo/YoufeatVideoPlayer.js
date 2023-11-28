@@ -13,7 +13,7 @@ const handlePlay =(e)=>{
           <p onClick={() => setVideoName(null)}><BiArrowBack/></p>
           <div>
             <video  onCanPlay={(e)=>handlePlay(e)} loop controls >
-              <source src={require('../../public/video1.mp4')} type="video/mp4"/>
+              <source src={videoName} type="video/mp4"/>
               </video>
           </div>
         </div>
