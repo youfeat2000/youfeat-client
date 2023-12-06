@@ -26,7 +26,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.youfeat.ng
-        username: youfeat2
+        username: youfeat2@youfeat.ng
         password: xKdhXIot.kt}
         protocol: ftps
         local-dir: ./build/
