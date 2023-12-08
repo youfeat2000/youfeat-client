@@ -20,7 +20,12 @@ function Login() {
       setFormWidth("90%");
     }
   }, []);
-
+useEffect(()=>{
+  fetch("https://server.youfeat.ng")
+  .then(res=>res.json())
+  .then(data=>console.log(data))
+  .catch(err=>console.log(err))
+},[])
   const handleLogin = (e) => {
     if (!email && !password) {
       alert("email/password required");
