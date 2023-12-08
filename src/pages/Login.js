@@ -52,7 +52,11 @@ function Login() {
         navigate("/");
       })
       .catch((err) => {
+        if(typeof err === "string"){
         setMessage(err);
+        }else{
+          setMessage("Something went wrong")
+        }
       })
       .finally(()=>{
         e.target.disabled = false;
