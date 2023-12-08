@@ -8,7 +8,7 @@ export function ContextProvider({ children }) {
   const [email, setEmail] = useState()
 
   //backend url to share it across the applicatoin
-  const uri = "http://server.youfeat.ng"
+  const uri = "https://server.youfeat.ng";
   //const uri = "http://localhost:3500";
   //const uri = "https://youfeat-server.onrender.com";
 
