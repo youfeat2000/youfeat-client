@@ -55,7 +55,7 @@ function UserBioUpdate({ userId, setUserId }) {
             <h2 onClick={handleExit}>&times;</h2>
             <br/>
             <section>
-            <h3>Your Bio <MdModeEdit size={20} style={{marginLeft: '20px'}} onClick={()=>setToggle('bio')}/></h3>
+            <h3>Your Bio <MdModeEdit size={25} style={{marginLeft: '20px', cursor: "pointer"}} onClick={()=>setToggle('bio')}/></h3>
             {toggle === 'bio'?
             <textarea placeholder="Bio.." type='text' onChange={(e)=>setBio(e.target.value)}/>:
             <span style={{marginTop: '10px'}}>
@@ -64,7 +64,7 @@ function UserBioUpdate({ userId, setUserId }) {
               </section>
               <br/>
             <section>
-            <h3>Your State <MdModeEdit size={20} style={{marginLeft: '20px'}} onClick={()=>setToggle('state')}/></h3>
+            <h3>Your State <MdModeEdit size={25} style={{marginLeft: '20px', cursor: "pointer"}} onClick={()=>setToggle('state')}/></h3>
             {toggle === 'state'?
             <input placeholder="state..." type='text' onChange={(e)=>setState(e.target.value)}/>:
             <span style={{marginTop: '10px'}}>
@@ -73,7 +73,7 @@ function UserBioUpdate({ userId, setUserId }) {
               </section>
               <br/>
             <section>
-            <h3>Your Date of Birth <MdModeEdit size={20} style={{marginLeft: '20px'}} onClick={()=>setToggle('dob')}/></h3>
+            <h3>Your Date of Birth <MdModeEdit size={25} style={{marginLeft: '20px', cursor: "pointer"}} onClick={()=>setToggle('dob')}/></h3>
             {toggle === 'dob'?
             <input type='date' placeholder="Date of Birth..." onChange={(e)=>setDob(e.target.value)}/>:
             <span style={{marginTop: '10px'}}>
@@ -82,7 +82,7 @@ function UserBioUpdate({ userId, setUserId }) {
               </section>
             <br/>
             <section>
-            <h3>Your High School <MdModeEdit size={20} style={{marginLeft: '20px'}} onClick={()=>setToggle('hs')}/></h3>
+            <h3>Your High School <MdModeEdit size={25} style={{marginLeft: '20px', cursor: "pointer"}} onClick={()=>setToggle('hs')}/></h3>
             {toggle === 'hs'?
             <input type='text' placeholder="high school" onChange={(e)=>setHighschool(e.target.value)}/>:
             <span style={{marginTop: '10px'}}>
