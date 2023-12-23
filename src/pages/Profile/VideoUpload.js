@@ -41,8 +41,6 @@ function VideoUpload({ userId, setUserId }) {
   };
 
   const handleUpload = (e) => {
-    //checks if the video is too long
-    //setMessage('Video uploading is not open yet')
     
     if (videoLarge) {
       return setMessage("video duration too long");
